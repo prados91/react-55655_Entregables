@@ -2,14 +2,7 @@ class ProductManager {
     static #products = [];
     constructor() {}
     createProduct({ title, photo, ...data }) {
-        if (
-            title === undefined ||
-            photo === undefined ||
-            title === "" ||
-            photo === "" ||
-            typeof title !== "string" ||
-            typeof photo !== "string"
-        ) {
+        if (!title || !photo || typeof title !== "string" || typeof photo !== "string") {
             console.log("There is no name or photo location information, or some of this information is incorrect.");
         } else {
             const product = {

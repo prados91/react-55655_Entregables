@@ -2,12 +2,9 @@ class UserManager {
     static #users = [];
     createUser({ name, photo, email }) {
         if (
-            name === undefined ||
-            photo === undefined ||
-            email === undefined ||
-            name === "" ||
-            photo === "" ||
-            email === "" ||
+            !name ||
+            !photo ||
+            !email ||
             typeof name !== "string" ||
             typeof photo !== "string" ||
             typeof email !== "string"
