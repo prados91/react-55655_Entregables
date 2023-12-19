@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Zapatillas",
+    "photo": "./image1",
+    "price": 10,
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "title": "pantalón",
+    "photo": "./image2",
+    "price": 10,
+    "stock": 50
+  }
+]
