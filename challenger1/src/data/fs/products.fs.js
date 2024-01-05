@@ -12,32 +12,26 @@ class ProductsManager {
         if (file) {
             this.products = JSON.parse(fs.readFileSync(this.path, "utf-8"));
         } else {
-            fs.writeFileSync(this.path, JSON.stringify([], null, 2));
+            const data = JSON.stringify([], null, 2);
+            fs.writeFileSync(this.path, data);
         }
     }
     async createProduct({ title, photo, ...data }) {
         try {
-            if (!title || !photo || typeof title !== "string" || typeof photo !== "string") {
-                throw new Error(
-                    "There is no name or photo location information, or some of this information is incorrect."
-                );
-            } else {
-                const product = {
-                    id: crypto.randomBytes(12).toString("hex"),
-                    title,
-                    photo,
-                    price: data.price || 100,
-                    stock: data.stock || 500,
-                };
-                this.products.push(product);
-                const jsonData = JSON.stringify(this.products, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-                console.log("create " + product.id);
-                return product.id;
-            }
+            const product = {
+                id: crypto.randomBytes(12).toString("hex"),
+                title,
+                photo,
+                price: data.price || 100,
+                stock: data.stock || 500,
+            };
+            this.products.push(product);
+            const jsonData = JSON.stringify(this.products, null, 2);
+            await fs.promises.writeFile(this.path, jsonData);
+            console.log("create " + product.id);
+            return product.id;
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -70,8 +64,7 @@ class ProductsManager {
                 throw new Error("The product with the specified id (" + `${id}` + ") does not exist.");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -88,8 +81,7 @@ class ProductsManager {
                 return id;
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
     async updateProduct(pid, data) {
@@ -111,8 +103,7 @@ class ProductsManager {
                 throw new Error("There isn't any product");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 }

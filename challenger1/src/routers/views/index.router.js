@@ -2,9 +2,10 @@ import { Router } from "express";
 
 const viewsRouter = Router();
 
-viewsRouter.get("/", async (req, res, next) => {
+viewsRouter.get("/", (req, res, next) => {
     try {
-        return res.render("index", {});
+        const mainProducts = ["1", "2", "3"];
+        return res.render("index", { products: mainProducts, details: "Detalle" });
     } catch (error) {
         next(error);
     }

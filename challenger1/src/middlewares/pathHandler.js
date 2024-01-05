@@ -1,9 +1,8 @@
 const pathHandler = (req, res, next) => {
-    console.error(`${req.method} ${req.url} not found path`)
     return res.json({
-        status: 500,
-        message: `${req.method} ${req.url} not found path`,
-    })
-}
+        status: 404,
+        response: `${req.method} ${req.url} not found endpoint`,
+    });
+};
 
-export default pathHandler
+export default pathHandler;

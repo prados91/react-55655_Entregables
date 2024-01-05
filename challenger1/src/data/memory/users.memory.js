@@ -43,8 +43,7 @@ class UsersManager {
                 return user.id;
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -60,8 +59,7 @@ class UsersManager {
                 throw new Error("There are no users in the database.");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -77,8 +75,7 @@ class UsersManager {
                 throw new Error("The user with the specified id (" + `${id}` + ") does not exist.");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -86,7 +83,7 @@ class UsersManager {
         try {
             let one = this.users.find((each) => each.id === id);
             if (!one) {
-                throw new Error("There isn't any user");
+                throw new Error("There isn't any product");
             } else {
                 this.users = this.users.filter((each) => each.id !== id);
                 const jsonData = JSON.stringify(this.users, null, 2);
@@ -95,8 +92,7 @@ class UsersManager {
                 return id;
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -118,11 +114,11 @@ class UsersManager {
                 throw new Error("There isn't any user");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 }
-const user = new UsersManager("./data/fs/files/users.json");
+
+const user = new UsersManager("./src/data/fs/files/users.json");
 
 export default user;

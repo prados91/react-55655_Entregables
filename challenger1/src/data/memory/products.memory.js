@@ -1,4 +1,5 @@
 import fs from "fs";
+import crypto from "crypto";
 
 class ProductsManager {
     constructor(path) {
@@ -22,19 +23,20 @@ class ProductsManager {
                 );
             } else {
                 const product = {
-                    id: this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1,
+                    id: crypto.randomBytes(12).toString("hex"),
                     title,
                     photo,
-                    price: data.price || 10,
-                    stock: data.stock || 50,
+                    price: data.price || 100,
+                    stock: data.stock || 500,
                 };
                 this.products.push(product);
-                await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 2));
-                return true;
+                const jsonData = JSON.stringify(this.products, null, 2);
+                await fs.promises.writeFile(this.path, jsonData);
+                console.log("create " + product.id);
+                return product.id;
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -44,7 +46,8 @@ class ProductsManager {
             const readFileParsed = JSON.parse(readFile);
 
             if (readFileParsed.length > 0) {
-                return console.log(readFileParsed);
+                console.log(readFileParsed);
+                return readFileParsed;
             } else {
                 throw new Error("There are no products in the database.");
             }
@@ -58,15 +61,15 @@ class ProductsManager {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
             const readFileParsed = JSON.parse(readFile);
-            const prodById = readFileParsed.find((each) => each.id === Number(id));
+            const prodById = readFileParsed.find((each) => each.id === id);
             if (prodById) {
-                return console.log(prodById);
+                console.log(prodById);
+                return prodById;
             } else {
                 throw new Error("The product with the specified id (" + `${id}` + ") does not exist.");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
@@ -83,11 +86,9 @@ class ProductsManager {
                 return id;
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
-
     async updateProduct(pid, data) {
         try {
             const all = await this.readProducts();
@@ -107,12 +108,11 @@ class ProductsManager {
                 throw new Error("There isn't any product");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 }
 
-const product = new ProductsManager("./data/fs/files/products.json");
+const product = new ProductsManager("./src/data/fs/files/products.json");
 
 export default product;
