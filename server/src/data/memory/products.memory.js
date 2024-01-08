@@ -91,20 +91,26 @@ class ProductsManager {
     }
     async updateProduct(pid, data) {
         try {
-            const one = this.readProductById(pid);
-            if (one) {
-                one.title = data.title || one.title;
-                one.photo = data.photo || one.photo;
-                one.price = data.price || one.price;
-                one.stock = data.stock || one.stock;
+            const index = this.products.findIndex((product) => product.id === pid);
 
-                const jsonData = JSON.stringify(this.products, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-
-                return "Product updated";
-            } else {
-                throw new Error("There isn't any product");
+            if (index === -1) {
+                throw new Error("Product not found");
             }
+
+            const updatedProduct = {
+                ...this.products[index],
+                title: data.title || this.products[index].title,
+                photo: data.photo || this.products[index].photo,
+                price: data.price || this.products[index].price,
+                stock: data.stock || this.products[index].stock,
+            };
+
+            this.products[index] = updatedProduct;
+
+            const jsonData = JSON.stringify(this.products, null, 2);
+            await fs.promises.writeFile(this.path, jsonData);
+
+            return pid;
         } catch (error) {
             throw error;
         }

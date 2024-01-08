@@ -61,7 +61,7 @@ class ProductsManager {
                 //console.log(prodById);
                 return prodById;
             } else {
-                throw new Error("The product with the specified id (" + `${id}` + ") does not exist.");
+                throw new Error("The product with the specified id (" + id + ") does not exist.");
             }
         } catch (error) {
             throw error;

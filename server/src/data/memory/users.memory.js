@@ -98,21 +98,25 @@ class UsersManager {
 
     async updateUser(uid, data) {
         try {
-            const all = await this.readUsers();
-            const index = all.findIndex((u) => u.id === uid);
+            const index = this.users.findIndex((user) => user.id === uid);
 
-            if (index !== -1) {
-                all[index] = {
-                    ...all[index],
-                    name: data.name || all[index].name,
-                    photo: data.photo || all[index].photo,
-                    email: data.email || all[index].email,
-                };
-                const jsonData = JSON.stringify(all, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-            } else {
-                throw new Error("There isn't any user");
+            if (index === -1) {
+                throw new Error("User not found");
             }
+
+            const updatedUser = {
+                ...this.users[index],
+                name: data.name || this.users[index].name,
+                photo: data.photo || this.users[index].photo,
+                email: data.email || this.users[index].email,
+            };
+
+            this.users[index] = updatedUser;
+
+            const jsonData = JSON.stringify(this.users, null, 2);
+            await fs.promises.writeFile(this.path, jsonData);
+
+            return uid;
         } catch (error) {
             throw error;
         }
