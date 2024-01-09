@@ -1,7 +1,7 @@
 const propsOrders = (req, res, next) => {
-    const { id } = req.body;
-    if (!id) {
-        const error = new Error("The user ID (" + `${id}` + ") don't have any order.");
+    const { pid,uid,quantity,state } = req.body;
+    if (!pid || !uid || !quantity || !state) {
+        const error = new Error("There is a problem creating the order.");
         error.statusCode = 404;
         throw error;
     } else {

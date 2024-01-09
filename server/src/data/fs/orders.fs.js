@@ -1,7 +1,7 @@
 import fs from "fs";
 import crypto from "crypto";
 
-class OrderManager {
+class OrdersManager {
     constructor(path) {
         this.path = path;
         this.orders = [];
@@ -19,22 +19,18 @@ class OrderManager {
 
     async createOrder({ pid, uid, quantity, state }) {
         try {
-            if (!pid || !uid || !quantity || !state) {
-                throw new Error("There is a problem creating the order.");
-            } else {
-                const order = {
-                    id: crypto.randomBytes(12).toString("hex"),
-                    pid,
-                    uid,
-                    quantity,
-                    state,
-                };
-                this.orders.push(order);
-                const jsonData = JSON.stringify(this.orders, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-                console.log("create " + order.id);
-                return order.id;
-            }
+            const order = {
+                id: crypto.randomBytes(12).toString("hex"),
+                pid,
+                uid,
+                quantity,
+                state,
+            };
+            this.orders.push(order);
+            const jsonData = JSON.stringify(this.orders, null, 2);
+            await fs.promises.writeFile(this.path, jsonData);
+            console.log("create " + order.id);
+            return order.id;
         } catch (error) {
             throw error;
         }
@@ -49,7 +45,7 @@ class OrderManager {
                 console.log(readFileParsed);
                 return readFileParsed;
             } else {
-                throw new Error("There are no Orders in the database.");
+                throw new Error("There are no orders in the database.");
             }
         } catch (error) {
             console.log(error.message);
@@ -61,9 +57,8 @@ class OrderManager {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
             const readFileParsed = JSON.parse(readFile);
-            const orderByUid = readFileParsed.find((each) => each.uid === uid);
-            if (orderByUid) {
-                console.log(orderByUid);
+            const orderByUid = readFileParsed.filter((each) => each.uid === uid);
+            if (orderByUid.length > 0) {
                 return orderByUid;
             } else {
                 throw new Error("The specified user (" + uid + ") don't have any order.");
@@ -72,7 +67,8 @@ class OrderManager {
             throw error;
         }
     }
-    async updateProduct(oid, quantity, state) {
+
+    async updateOrder(oid, quantity, state) {
         try {
             const index = this.orders.findIndex((each) => each.id === oid);
 
@@ -99,11 +95,11 @@ class OrderManager {
 
     async removeOrders(oid) {
         try {
-            const orders = this.orders.find((each) => each.oid === oid);
+            const orders = this.orders.find((each) => each.id === oid);
             if (!orders) {
                 throw new Error("There isn't any order with the specified id");
             } else {
-                this.orders = this.orders.filter((each) => each.oid !== oid);
+                this.orders = this.orders.filter((each) => each.id !== oid);
                 const jsonData = JSON.stringify(this.orders, null, 2);
                 await fs.promises.writeFile(this.path, jsonData);
                 console.log("deleted " + oid);
@@ -114,3 +110,7 @@ class OrderManager {
         }
     }
 }
+
+const orders = new OrdersManager("./src/data/fs/files/orders.json");
+
+export default orders;

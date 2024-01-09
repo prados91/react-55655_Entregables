@@ -16,6 +16,7 @@ class ProductsManager {
             fs.writeFileSync(this.path, data);
         }
     }
+
     async createProduct({ title, photo, ...data }) {
         try {
             const product = {
@@ -68,22 +69,6 @@ class ProductsManager {
         }
     }
 
-    async removeProductById(id) {
-        try {
-            let one = this.products.find((each) => each.id === id);
-            if (!one) {
-                throw new Error("There isn't any product");
-            } else {
-                this.products = this.products.filter((each) => each.id !== id);
-                const jsonData = JSON.stringify(this.products, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-                console.log("deleted " + id);
-                return id;
-            }
-        } catch (error) {
-            throw error;
-        }
-    }
     async updateProduct(pid, data) {
         try {
             const index = this.products.findIndex((product) => product.id === pid);
@@ -110,8 +95,25 @@ class ProductsManager {
             throw error;
         }
     }
+
+    async removeProductById(id) {
+        try {
+            let one = this.products.find((each) => each.id === id);
+            if (!one) {
+                throw new Error("There isn't any product");
+            } else {
+                this.products = this.products.filter((each) => each.id !== id);
+                const jsonData = JSON.stringify(this.products, null, 2);
+                await fs.promises.writeFile(this.path, jsonData);
+                console.log("deleted " + id);
+                return id;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
-const product = new ProductsManager("./src/data/fs/files/products.json");
+const products = new ProductsManager("./src/data/fs/files/products.json");
 
-export default product;
+export default products;

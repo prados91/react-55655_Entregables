@@ -16,5 +16,11 @@
     "name": "usuario23",
     "photo": "./location21/photo21.png",
     "email": "usuario23@usuario.com"
+  },
+  {
+    "id": "bf23f4413c22174d74b412ae",
+    "name": "NombreUsuario",
+    "photo": "./photo/photoUser.png",
+    "email": "usuario@usuario.com"
   }
 ]

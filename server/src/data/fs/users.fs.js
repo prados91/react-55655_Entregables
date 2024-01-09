@@ -59,7 +59,7 @@ class UsersManager {
                 console.log(userById);
                 return userById;
             } else {
-                throw new Error("The user with the specified id (" + `${id}` + ") does not exist.");
+                throw new Error("The user with the specified id (" + id + ") does not exist.");
             }
         } catch (error) {
             throw error;
@@ -110,6 +110,6 @@ class UsersManager {
     }
 }
 
-const user = new UsersManager("./src/data/fs/files/users.json");
+const users = new UsersManager("./src/data/fs/files/users.json");
 
-export default user;
+export default users;
