@@ -1,0 +1,16 @@
+[
+  {
+    "id": "ecfcad8269d82be2b8f8f944",
+    "title": "Zapatillas",
+    "photo": "./location1/photo1.png",
+    "price": 100,
+    "stock": 500
+  },
+  {
+    "id": "afc7c20f39a01048408dc28d",
+    "title": "augustoo",
+    "photo": "./location1/augusto.png",
+    "price": 470,
+    "stock": 90
+  }
+]
