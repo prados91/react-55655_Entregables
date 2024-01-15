@@ -84,7 +84,7 @@ class UsersManager {
             throw error;
         }
     }
-    
+
     async updateUser(uid, data) {
         try {
             const index = this.users.findIndex((user) => user.id === uid);
@@ -115,3 +115,4 @@ class UsersManager {
 const users = new UsersManager("./src/data/fs/files/users.json");
 
 export default users;
+

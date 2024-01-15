@@ -96,7 +96,7 @@ class ProductsManager {
             throw error;
         }
     }
-    
+
     async removeProductById(id) {
         try {
             let one = this.products.find((each) => each.id === id);

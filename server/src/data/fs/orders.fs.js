@@ -92,7 +92,7 @@ class OrdersManager {
             throw error;
         }
     }
-    
+
     async removeOrders(oid) {
         try {
             const orders = this.orders.find((each) => each.id === oid);

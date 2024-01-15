@@ -84,7 +84,7 @@ class UsersManager {
             throw error;
         }
     }
-    
+
     async updateUser(uid, data) {
         try {
             const index = this.users.findIndex((user) => user.id === uid);

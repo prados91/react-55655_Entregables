@@ -96,7 +96,7 @@ class ProductsManager {
             throw error;
         }
     }
-    
+
     async removeProductById(id) {
         try {
             let one = this.products.find((each) => each.id === id);
@@ -118,3 +118,4 @@ class ProductsManager {
 const products = new ProductsManager("./src/data/fs/files/products.json");
 
 export default products;
+
