@@ -16,7 +16,6 @@ class ProductsManager {
             fs.writeFileSync(this.path, data);
         }
     }
-
     async createProduct({ title, photo, ...data }) {
         try {
             const product = {
@@ -35,7 +34,6 @@ class ProductsManager {
             throw error;
         }
     }
-
     async readProducts() {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -52,7 +50,6 @@ class ProductsManager {
             return error.message;
         }
     }
-
     async readProductById(id) {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -68,7 +65,6 @@ class ProductsManager {
             throw error;
         }
     }
-
     async updateProduct(pid, data) {
         try {
             const index = this.products.findIndex((product) => product.id === pid);
@@ -95,7 +91,6 @@ class ProductsManager {
             throw error;
         }
     }
-
     async removeProductById(id) {
         try {
             let one = this.products.find((each) => each.id === id);

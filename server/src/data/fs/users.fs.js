@@ -33,7 +33,6 @@ class UsersManager {
             throw error;
         }
     }
-
     async readUsers() {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -49,7 +48,6 @@ class UsersManager {
             throw error;
         }
     }
-
     async readUserById(id) {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -65,7 +63,6 @@ class UsersManager {
             throw error;
         }
     }
-
     async removeUserById(id) {
         try {
             let one = this.users.find((each) => each.id === id);
@@ -82,7 +79,6 @@ class UsersManager {
             throw error;
         }
     }
-
     async updateUser(uid, data) {
         try {
             const index = this.users.findIndex((user) => user.id === uid);
