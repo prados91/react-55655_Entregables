@@ -7,6 +7,7 @@ class OrdersManager {
         this.orders = [];
         this.init();
     }
+
     init() {
         const file = fs.existsSync(this.path);
         if (file) {
@@ -15,6 +16,7 @@ class OrdersManager {
             fs.writeFileSync(this.path, JSON.stringify([], null, 2));
         }
     }
+
     async createOrder({ pid, uid, quantity, state }) {
         try {
             const order = {
@@ -33,6 +35,7 @@ class OrdersManager {
             throw error;
         }
     }
+
     async readOrders() {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -49,6 +52,7 @@ class OrdersManager {
             return error.message;
         }
     }
+
     async readOrdersByUser(uid) {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -63,6 +67,7 @@ class OrdersManager {
             throw error;
         }
     }
+
     async updateOrder(oid, quantity, state) {
         try {
             const index = this.orders.findIndex((each) => each.id === oid);
@@ -87,6 +92,7 @@ class OrdersManager {
             throw error;
         }
     }
+
     async removeOrders(oid) {
         try {
             const orders = this.orders.find((each) => each.id === oid);

@@ -7,6 +7,7 @@ class UsersManager {
         this.users = [];
         this.init();
     }
+
     init() {
         const file = fs.existsSync(this.path);
         if (file) {
@@ -16,6 +17,7 @@ class UsersManager {
             fs.writeFileSync(this.path, data);
         }
     }
+
     async createUser({ name, photo, email }) {
         try {
             const user = {
@@ -110,6 +112,7 @@ class UsersManager {
     }
 }
 
-const user = new UsersManager("./src/data/fs/files/users.json");
+const users = new UsersManager("./src/data/fs/files/users.json");
 
-export default user;
+export default users;
+

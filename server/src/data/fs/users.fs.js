@@ -7,6 +7,7 @@ class UsersManager {
         this.users = [];
         this.init();
     }
+
     init() {
         const file = fs.existsSync(this.path);
         if (file) {
@@ -16,6 +17,7 @@ class UsersManager {
             fs.writeFileSync(this.path, data);
         }
     }
+
     async createUser({ name, photo, email }) {
         try {
             const user = {
@@ -33,6 +35,7 @@ class UsersManager {
             throw error;
         }
     }
+
     async readUsers() {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -48,6 +51,7 @@ class UsersManager {
             throw error;
         }
     }
+
     async readUserById(id) {
         try {
             const readFile = await fs.promises.readFile(this.path, "utf-8");
@@ -63,6 +67,7 @@ class UsersManager {
             throw error;
         }
     }
+
     async removeUserById(id) {
         try {
             let one = this.users.find((each) => each.id === id);
@@ -79,6 +84,7 @@ class UsersManager {
             throw error;
         }
     }
+
     async updateUser(uid, data) {
         try {
             const index = this.users.findIndex((user) => user.id === uid);

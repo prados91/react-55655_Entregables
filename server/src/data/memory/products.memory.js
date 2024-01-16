@@ -7,6 +7,7 @@ class ProductsManager {
         this.products = [];
         this.init();
     }
+
     init() {
         const file = fs.existsSync(this.path);
         if (file) {
@@ -114,6 +115,7 @@ class ProductsManager {
     }
 }
 
-const product = new ProductsManager("./src/data/fs/files/products.json");
+const products = new ProductsManager("./src/data/fs/files/products.json");
 
-export default product;
+export default products;
+
