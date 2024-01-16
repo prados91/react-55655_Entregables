@@ -11,5 +11,13 @@ document.querySelector("#newProduct").addEventListener("click", (event) => {
     photo && (data.photo = photo);
     price && (data.price = price);
     stock && (data.stock = stock);
-    console.log(data);
+    socket.emit("newProduct", data);
+});
+
+socket.on("alert", (data) => {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: data,
+    });
 });

@@ -6,7 +6,7 @@ const usersRouter = Router();
 usersRouter.get("/", async (req, res, next) => {
     try {
         const all = await users.readUsers();
-        return res.render("users", { users: all, title: "users" });
+        return res.render("register", { users: all, title: "USERS" });
     } catch (error) {
         next(error);
     }

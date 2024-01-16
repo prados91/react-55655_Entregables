@@ -2,25 +2,25 @@
   {
     "id": "4f73cfc9c8d123b3354a7344",
     "name": "usuario99",
-    "photo": "./location2/photo2.png",
+    "photo": "https://cdn-icons-png.flaticon.com/512/1625/1625862.png",
     "email": "usuario@usuario.com"
   },
   {
     "id": "497e64c0f1985812f5c9344f",
     "name": "usuario21",
-    "photo": "./location21/photo21.png",
+    "photo": "https://cdn-icons-png.flaticon.com/512/1625/1625862.png",
     "email": "usuario21@usuario.com"
   },
   {
     "id": "6030c619dbc727945591de49",
     "name": "usuario23",
-    "photo": "./location21/photo21.png",
+    "photo": "https://cdn-icons-png.flaticon.com/512/1625/1625862.png",
     "email": "usuario23@usuario.com"
   },
   {
     "id": "bf23f4413c22174d74b412ae",
     "name": "NombreUsuario",
-    "photo": "./photo/photoUser.png",
+    "photo": "https://cdn-icons-png.flaticon.com/512/1625/1625862.png",
     "email": "usuario@usuario.com"
   }
 ]

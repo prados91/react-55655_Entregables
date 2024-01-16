@@ -6,18 +6,17 @@ import propsUsersUtils from "./propsUsers.utils.js";
 import orders from "../data/fs/orders.fs.js";
 import propsOrdersUtils from "./propsOrders.utils.js";
 
-export default (socket) => {
+export default async (socket) => {
     console.log("client " + socket.id + " connected");
-
-    socket.emit("products", products.readProducts());
+    socket.emit("products", await products.readProducts());
     socket.on("newProduct", async (data) => {
         try {
             propsProductsUtils(data);
             await products.createProduct(data);
-            socketServer.emit("products", products.readProducts());
+            socketServer.emit("refresh", products.readProducts());
         } catch (error) {
             console.log(error);
-            //emitir al cliente un mensaje de alerta.
+            socketServer.emit("alert", error.message);
         }
     });
 };

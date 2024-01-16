@@ -42,14 +42,13 @@ class ProductsManager {
             const readFileParsed = JSON.parse(readFile);
 
             if (readFileParsed.length > 0) {
-                console.log(readFileParsed);
+                //console.log(readFileParsed);
                 return readFileParsed;
             } else {
                 throw new Error("There are no products in the database.");
             }
         } catch (error) {
-            console.log(error.message);
-            return error.message;
+            throw error;
         }
     }
 
