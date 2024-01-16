@@ -173,5 +173,12 @@
     "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F05-zapatilla5.png?alt=media&token=d719ec59-a785-4234-8cfa-cae31678ce2f",
     "price": "1",
     "stock": "100"
+  },
+  {
+    "id": "e14d3bdefb5443b621d4ef30",
+    "title": "AND1 Override",
+    "photo": "https://and1.com/cdn/shop/files/OVERRIDE_AD90069M_O_6_1000x.jpg?v=1692644987",
+    "price": "120",
+    "stock": "1"
   }
 ]
