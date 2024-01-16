@@ -13,3 +13,13 @@ Se crearon dos archivos .js con la solución de cada consigna.
 
 ## Sprint 2
 Se modificaron los archivos para utilizar FS.
+
+## Sprint 3
+Agregado de server
+
+## Server / Challenger1
+Primer pre entrega. Estructuración de servidor correcta.
+Websocket y Router
+
+## Sprint 4
+Handlebars y Socket.
