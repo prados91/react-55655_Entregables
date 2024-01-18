@@ -13,7 +13,7 @@ export default async (socket) => {
         try {
             propsProductsUtils(data);
             await products.createProduct(data);
-            socketServer.emit("refresh", products.readProducts());
+            socketServer.emit("products", products.readProducts());
         } catch (error) {
             console.log(error);
             socketServer.emit("alert", error.message);
