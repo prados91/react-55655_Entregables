@@ -20,7 +20,19 @@ productsRouter.post("/", propsProducts, async (req, res, next) => {
 
 productsRouter.get("/", async (req, res, next) => {
     try {
-        const all = await products.read({});
+        const filter = {};
+        const order = {
+            stock: 1,
+        };
+
+        if (req.query.title) {
+            filter.title = req.query.title;
+        }
+
+        if (req.query.stock === "desc") {
+            order.stock = -1;
+        }
+        const all = await products.read({ filter, order });
         return res.json({
             statusCode: 200,
             response: all,

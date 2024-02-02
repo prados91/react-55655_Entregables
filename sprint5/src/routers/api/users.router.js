@@ -21,7 +21,20 @@ usersRouter.post("/", async (req, res, next) => {
 
 usersRouter.get("/", async (req, res, next) => {
     try {
-        const all = await users.read({});
+        const filter = {};
+        const order = {
+            name: 1,
+        };
+
+        if (req.query.email) {
+            filter.email = req.query.email;
+        }
+
+        if (req.query.name === "desc") {
+            order.name = -1;
+        }
+
+        const all = await users.read({ filter, order });
         return res.json({
             statusCode: 200,
             response: all,
@@ -35,6 +48,19 @@ usersRouter.get("/:uid", async (req, res, next) => {
     try {
         const { uid } = req.params;
         const one = await users.readOne(uid);
+        return res.json({
+            statusCode: 200,
+            response: one,
+        });
+    } catch (error) {
+        return next(error);
+    }
+});
+
+usersRouter.get("/find/:email", async (req, res, next) => {
+    try {
+        const { email } = req.params;
+        const one = await users.readByEmail(email);
         return res.json({
             statusCode: 200,
             response: one,

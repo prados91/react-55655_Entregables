@@ -108,6 +108,22 @@ class UsersManager {
             throw error;
         }
     }
+
+    async readByEmail(email) {
+        try {
+            const readFile = await fs.promises.readFile(this.path, "utf-8");
+            const readFileParsed = JSON.parse(readFile);
+            const userByEmail = readFileParsed.find((each) => each.email === email);
+            if (userByEmail) {
+                console.log(userByEmail);
+                return userByEmail;
+            } else {
+                throw new Error("The user with the specified email (" + email + ") does not exist.");
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 const users = new UsersManager("./src/data/fs/files/users.json");

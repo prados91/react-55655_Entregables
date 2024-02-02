@@ -5,7 +5,8 @@ import propsOrders from "../../middlewares/propsOrders.js";
 
 const ordersRouter = Router();
 
-ordersRouter.post("/", propsOrders, async (req, res, next) => {
+//ordersRouter.post("/", propsOrders, async (req, res, next) => {
+ordersRouter.post("/", async (req, res, next) => {
     try {
         const data = req.body;
         const response = await orders.create(data);
@@ -20,7 +21,20 @@ ordersRouter.post("/", propsOrders, async (req, res, next) => {
 
 ordersRouter.get("/", async (req, res, next) => {
     try {
-        const all = await orders.read({});
+        const filter = {};
+        const order = {
+            quantity: 1,
+        };
+
+        if (req.query.user_id) {
+            filter.user_id = req.query.user_id;
+        }
+
+        if (req.query.quantity === "desc") {
+            order.quantity = -1;
+        }
+
+        const all = await orders.read({ filter, order });
         return res.json({
             statusCode: 200,
             response: all,
@@ -30,10 +44,10 @@ ordersRouter.get("/", async (req, res, next) => {
     }
 });
 
-ordersRouter.get("/:uid", async (req, res, next) => {
+ordersRouter.get("/:oid", async (req, res, next) => {
     try {
-        const { uid } = req.params;
-        const all = await orders.readOne(uid);
+        const { oid } = req.params;
+        const all = await orders.readOne(oid);
         return res.json({
             statusCode: 200,
             response: all,
