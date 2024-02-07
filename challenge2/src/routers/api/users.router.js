@@ -12,7 +12,7 @@ usersRouter.post("/", async (req, res, next) => {
         const response = await users.create(data);
         return res.json({
             statusCode: 201,
-            response,
+            response: response,
         });
     } catch (error) {
         return next(error);
@@ -21,19 +21,22 @@ usersRouter.post("/", async (req, res, next) => {
 
 usersRouter.get("/", async (req, res, next) => {
     try {
-        const orderAndPaginate = {
+        const options = {
             limit: req.query.limit || 10,
             page: req.query.page || 1,
-            //sort: { name: 1 },
+            sort: { name: 1 },
         };
         const filter = {};
         if (req.query.email) {
             filter.email = new RegExp(req.query.email.trim(), "i");
         }
-        if (req.query.name === "desc") {
-            orderAndPaginate.sort.name = -1;
+        if (req.query.name) {
+            filter.name = new RegExp(req.query.name.trim(), "i");
         }
-        const all = await users.read({ filter, orderAndPaginate });
+        if (req.query.sort === "desc") {
+            options.sort.name = -1;
+        }
+        const all = await users.read({ filter, options });
         return res.json({
             statusCode: 200,
             response: all,

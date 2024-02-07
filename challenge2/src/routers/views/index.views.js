@@ -15,15 +15,8 @@ const viewsRouter = Router();
 
 viewsRouter.get("/", async (req, res, next) => {
     try {
-        const orderAndPaginate = {
-            limit: req.query.limit || 25,
-            page: req.query.page || 1,
-            sort: { name: 1 },
-        };
-        const filter = {};
-        const all = await products.read({ filter, orderAndPaginate });
-        const allDocsAsJSON = all.docs.map((doc) => doc.toObject());
-        return res.render("index", { products: allDocsAsJSON, title: "Welcome to Basketball | Store" });
+        const all = await products.read({});
+        return res.render("index", { products: all.docs, title: "Welcome to Basketball | Store" });
     } catch (error) {
         next(error);
     }

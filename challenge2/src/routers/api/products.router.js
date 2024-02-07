@@ -2,6 +2,7 @@ import { Router } from "express";
 //import products from "../../data/fs/products.fs.js";
 import { products } from "../../data/mongo/manager.mongo.js";
 import propsProducts from "../../middlewares/propsProducts.js";
+//import isStockOk from "../../utils/isStockOk.js";
 
 const productsRouter = Router();
 
@@ -20,19 +21,19 @@ productsRouter.post("/", propsProducts, async (req, res, next) => {
 
 productsRouter.get("/", async (req, res, next) => {
     try {
-        const orderAndPaginate = {
+        const options = {
             limit: req.query.limit || 20,
             page: req.query.page || 1,
-            sort: { stock: 1 },
+            sort: { title: 1 },
         };
         const filter = {};
         if (req.query.title) {
             filter.title = new RegExp(req.query.title.trim(), "i");
         }
-        if (req.query.stock === "desc") {
-            orderAndPaginate.sort.stock = -1;
+        if (req.query.sort === "desc") {
+            options.sort.title = -1;
         }
-        const all = await products.read({ filter, orderAndPaginate });
+        const all = await products.read({ filter, options });
         return res.json({
             statusCode: 200,
             response: all,
@@ -60,12 +61,10 @@ productsRouter.put("/:pid", async (req, res, next) => {
         const { pid } = req.params;
         const data = req.body;
         const response = await products.update(pid, data);
-        if (response) {
-            return res.json({
-                statusCode: 200,
-                response: "The product " + response + " was updated.",
-            });
-        }
+        return res.json({
+            statusCode: 200,
+            response: "The product " + response + " was updated.",
+        });
     } catch (error) {
         return next(error);
     }

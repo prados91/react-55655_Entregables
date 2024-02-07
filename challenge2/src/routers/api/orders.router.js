@@ -21,7 +21,7 @@ ordersRouter.post("/", async (req, res, next) => {
 
 ordersRouter.get("/", async (req, res, next) => {
     try {
-        const orderAndPaginate = {
+        const options = {
             limit: req.query.limit || 20,
             page: req.query.page || 1,
             sort: { quantity: 1 },
@@ -30,10 +30,10 @@ ordersRouter.get("/", async (req, res, next) => {
         if (req.query.user_id) {
             filter.user_id = new RegExp(req.query.user_id.trim(), "i");
         }
-        if (req.query.quantity === "desc") {
-            orderAndPaginate.sort.quantity = -1;
+        if (req.query.sort === "desc") {
+            options.sort.quantity = -1;
         }
-        const all = await orders.read({ filter, orderAndPaginate });
+        const all = await orders.read({ filter, options });
         return res.json({
             statusCode: 200,
             response: all,
@@ -75,12 +75,11 @@ ordersRouter.put("/:oid", async (req, res, next) => {
         const { oid } = req.params;
         const data = req.body;
         const response = await orders.update(oid, data);
-        if (response) {
-            return res.json({
-                statusCode: 200,
-                response: "The order " + response + " was updated.",
-            });
-        }
+
+        return res.json({
+            statusCode: 200,
+            response: "The order " + response + " was updated.",
+        });
     } catch (error) {
         return next(error);
     }
