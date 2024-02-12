@@ -1,4 +1,4 @@
-const notFound = (data) => {
+const notFoundOne = (data) => {
     if (data.length === 0) {
         const error = new Error("There aren't documents");
         error.statusCode = 404;
@@ -13,4 +13,4 @@ const notFound = (data) => {
     //return data;
 };
 
-export default notFound;
+export default notFoundOne;

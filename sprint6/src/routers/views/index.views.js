@@ -1,15 +1,12 @@
 import { Router } from "express";
 
+import { orders, products, users } from "../../data/mongo/manager.mongo.js";
 import productsRouter from "./products.views.js";
 import ordersRouter from "./orders.views.js";
 import usersRouter from "./users.views.js";
 import formsRouter from "./forms.views.js";
+import sessionsRouter from "./sessions.view.js"
 
-/*import orders from "../../data/fs/orders.fs.js";
-import products from "../../data/fs/products.fs.js";
-import users from "../../data/fs/users.fs.js";*/
-
-import { orders, products, users } from "../../data/mongo/manager.mongo.js";
 
 const viewsRouter = Router();
 
@@ -21,9 +18,10 @@ viewsRouter.get("/", async (req, res, next) => {
         next(error);
     }
 });
-viewsRouter.use("/real", productsRouter);
+viewsRouter.use("/products", productsRouter);
 viewsRouter.use("/form", formsRouter);
 viewsRouter.use("/register", usersRouter);
 viewsRouter.use("/orders", ordersRouter);
+viewsRouter.use("/auth", sessionsRouter)
 
 export default viewsRouter;

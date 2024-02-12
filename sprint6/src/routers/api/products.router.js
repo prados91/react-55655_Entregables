@@ -2,11 +2,12 @@ import { Router } from "express";
 //import products from "../../data/fs/products.fs.js";
 import { products } from "../../data/mongo/manager.mongo.js";
 import propsProducts from "../../middlewares/propsProducts.js";
-//import isStockOk from "../../utils/isStockOk.js";
+import isAdminMid from "../../middlewares/isAdmin.mid.js";
+import isStockOk from "../../utils/isStockOk.js";
 
 const productsRouter = Router();
 
-productsRouter.post("/", propsProducts, async (req, res, next) => {
+productsRouter.post("/", isAdminMid, propsProducts, async (req, res, next) => {
     try {
         const data = req.body;
         const response = await products.create(data);
@@ -56,7 +57,7 @@ productsRouter.get("/:pid", async (req, res, next) => {
     }
 });
 
-productsRouter.put("/:pid", async (req, res, next) => {
+productsRouter.put("/:pid", isStockOk, async (req, res, next) => {
     try {
         const { pid } = req.params;
         const data = req.body;

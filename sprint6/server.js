@@ -1,23 +1,21 @@
 import "dotenv/config.js";
-
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import morgan from "morgan";
 import { engine } from "express-handlebars";
-
 import cookieParser from "cookie-parser";
 import expressSession from "express-session";
 import sessionFileStore from "session-file-store";
 import MongoStore from "connect-mongo";
 
 import socketUtils from "./src/utils/socket.utils.js";
-import dbConnection from "./src/utils/dbConnection.utils.js";
 
 import router from "./src/routers/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.js";
 import pathHandler from "./src/middlewares/pathHandler.js";
 import __dirname from "./utils.js";
+import dbConnection from "./src/utils/dbConnection.utils.js";
 
 //Server
 const server = express();

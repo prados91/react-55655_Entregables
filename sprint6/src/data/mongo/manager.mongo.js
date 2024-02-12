@@ -3,7 +3,7 @@ import Product from "./models/products.model.js";
 import User from "./models/users.model.js";
 import { Types } from "mongoose";
 
-import notFound from "../../utils/notFound.utils.js";
+import notFoundOne from "../../utils/notFoundOne.utils.js";
 
 class MongoManager {
     constructor(model) {
@@ -21,8 +21,8 @@ class MongoManager {
 
     async read({ filter, options }) {
         try {
-          options = { ...options, lean: true };
-          const all = await this.model.paginate(filter, options);
+            options = { ...options, lean: true };
+            const all = await this.model.paginate(filter, options);
             if (all.totalDocs === 0) {
                 const error = new Error("There aren't any document");
                 error.statusCode = 404;
@@ -61,7 +61,7 @@ class MongoManager {
     async readOne(id) {
         try {
             const one = await this.model.findById(id);
-            notFound(one);
+            notFoundOne(one);
             return one;
         } catch (error) {
             throw error;
@@ -70,8 +70,8 @@ class MongoManager {
 
     async readByEmail(email) {
         try {
-            const one = await this.model.find({ email: email });
-            notFound(one);
+            const one = await this.model.findOne({ email });
+            notFoundOne(one);
             return one;
         } catch (error) {
             throw error;
@@ -82,7 +82,7 @@ class MongoManager {
         try {
             const opt = { new: true };
             const one = await this.model.findByIdAndUpdate(id, data, opt);
-            notFound(one);
+            notFoundOne(one);
             return one;
         } catch (error) {
             throw error;
@@ -92,8 +92,22 @@ class MongoManager {
     async destroy(id) {
         try {
             const one = await this.model.findByIdAndDelete(id);
-            notFound(one);
+            notFoundOne(one);
             return one;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async stats({ filter }) {
+        try {
+            let stats = await this.model.find(filter).explain("executionStats");
+            console.log(stats);
+            stats = {
+                quantity: stats.executionStats.nReturned,
+                time: stats.executionStats.executionTimeMillis,
+            };
+            return stats;
         } catch (error) {
             throw error;
         }
