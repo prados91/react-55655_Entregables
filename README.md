@@ -23,3 +23,12 @@ Websocket y Router
 
 ## Sprint 4
 Handlebars y Socket.
+
+## Sprint 5
+Manager de Mongo.
+
+## Challenger 2
+Manager de Mongo avanzado. Filtración y paginación.
+
+## Sprint 6
+Session and storage de Mongo. FrontEnd.
