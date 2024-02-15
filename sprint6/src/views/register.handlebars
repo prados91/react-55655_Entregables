@@ -1,0 +1,22 @@
+<main class="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly">
+    <section class="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style="min-width: 380px;">
+        <h2 class="mt-5 mb-2 text-center">NEW USER!</h2>
+        <form style="max-width: 360px;" class="w-100 d-flex flex-column justify-content-center items-align-center">
+            <fieldset class="mb-3 text-center">
+                <label for="title" class="form-label mb-0">Name</label>
+                <input type="text" class="form-control" id="title" />
+            </fieldset>
+            <fieldset class="mb-3 text-center">
+                <label for="photo" class="form-label mb-0">Photo</label>
+                <input type="text" class="form-control" id="photo" />
+            </fieldset>
+            <fieldset class="mb-3 text-center">
+                <label for="price" class="form-label mb-0">E-mail</label>
+                <input type="email" class="form-control" id="email" />
+            </fieldset>
+            <button id="newUser" type="button" class="w-100 btn btn-danger">REGISTER!</button>
+        </form>
+    </section>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/real.js"></script>

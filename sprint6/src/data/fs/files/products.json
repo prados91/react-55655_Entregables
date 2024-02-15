@@ -1,0 +1,184 @@
+[
+  {
+    "id": "yowq2DiyDTYk5RYvZmVd",
+    "title": "Camiseta Boston Celtics",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F02%20-%20bc-camiseta.jpg?alt=media&token=26735190-7716-47a0-8eb3-f6b684e1782d",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "xQAlXEx0odl5lGnM4uGk",
+    "title": "Camiseta Chicago Bulls",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F02%20-%20cb-camiseta.jpg?alt=media&token=4c873159-fc21-4aa3-bd68-f320bef7655c",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "ketiCdq90ZTXcP7nH7ek",
+    "title": "Camiseta Golden State Warriors",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F02%20-%20gs-camiseta.jpg?alt=media&token=3ba5c397-fcc0-4ffe-b808-b205f173951a",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "SWzFBETj9adxM1C6UTxS",
+    "title": "Camiseta Los Angeles Lakers",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F02%20-%20la-camiseta.jpg?alt=media&token=a8f54359-1f93-4234-8664-cbef48acd3ee",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "XgtX08hblQ39RnbnGRGr",
+    "title": "Camiseta San Antonio Spurs",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F02%20-%20sa-camiseta.jpg?alt=media&token=9bbedd9d-902d-4717-a86d-7ab1799ed35d",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "AeoMk6ZEONFXcGvRGQ5o",
+    "title": "Campera Boston Celtics",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F04%20-%20bc-buzo.jpg?alt=media&token=cf0cd054-7382-4da4-bb0c-2f69079a5b71",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "hej5GtAMfs2uxqaWDvWE",
+    "title": "Campera Chicago Bulls",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F04%20-%20cb-buzo.jpg?alt=media&token=74eae124-51cf-4f6f-8b19-7039c1e9b344",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "ssiLE5jee0rhaYa7m8RX",
+    "title": "Campera Golden State Warriors",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F04%20-%20gs-buzo.jpg?alt=media&token=4fb6e3b8-b45a-49ae-83f2-41b839297f77",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "ajKsESs324jUyEnXWGAr",
+    "title": "Campera Los Angeles Lakers",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F04%20-%20la-buzo.jpg?alt=media&token=2fffadb2-8e2c-43e1-9c4f-8bec89541980",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "7ge4osDubPRnDUS3kE9A",
+    "title": "Campera San Antionio Spurs",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F04%20-%20sa-buzo.jpg?alt=media&token=3c0ddf23-75a0-4200-8e5c-53b54bcf2a46",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "L5kmIRiMj7j8ea4VuBKm",
+    "title": "Gorra Boston Celtics",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F01%20-%20bc-gorra.jpg?alt=media&token=9411cee0-b56a-413e-8694-ef569d2a2123",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "hTPKtcQi1ulUVukFV9QB",
+    "title": "Gorra Chicago Bulls",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F01%20-%20cb-gorra.jpg?alt=media&token=b16aba4b-a8e3-4b91-9805-7313c4139a06",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "xMdcDImk94urybpnLFBU",
+    "title": "Gorra Golden State",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F01%20-%20gs-gorra.jpg?alt=media&token=63e65e7d-c470-4d07-9274-be953b9a6be1",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "EP7aWYhP6VzWMFyFPizz",
+    "title": "Gorra Los Angeles Lakers",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F01%20-%20la-gorra.jpg?alt=media&token=913d887c-9259-49e4-b7b0-6606ca834444",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "gYBKhrG2p23VhDVXV2Bh",
+    "title": "Gorra San Antonio Spurs",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F01%20-%20sa-gorra.jpg?alt=media&token=e5c5f597-1166-4c3d-bfeb-8b1967acec9a",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "LgItrXY0hDYfDoChTf78",
+    "title": "Pantalón Boston Celtics",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F03%20-%20bc-pantalon.jpg?alt=media&token=6e191b9d-bcdc-47c8-80b8-1d4933b354d3",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "tJSd9FhPmz8QdBtuNShs",
+    "title": "Pantalón Chicago Bulls",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F03%20-%20cb-pantalon.jpg?alt=media&token=a2a442ca-ac8d-45f9-95ac-ebab1214bdf5",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "izrr454PDk2WRcGzJOnb",
+    "title": "Pantalón Golden State Warriors",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F03%20-%20gs-pantalon.jpg?alt=media&token=fa5aaba5-dc01-4a3a-867a-b3ad52cb3a82",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "BCOMBqYkCik6EflARtpW",
+    "title": "Pantalón Los Angeles Lakers",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F03%20-%20la-pantalon.jpg?alt=media&token=a2348d41-39b7-431d-9524-bcff5a16b910",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "6uPnG8UxjbzPnrpp9I2G",
+    "title": "Pantalón San Antonio Spurs",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F03%20-%20sa-pantalon.jpg?alt=media&token=ebe924cc-264e-4857-a56f-aad14ac882ec",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "1C5AObRuF5LLHDeeo8pr",
+    "title": "Zapatillas Air Jordan 1",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F05-zapatilla1.png?alt=media&token=e07a7047-09bc-4853-93c7-81d00160a681",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "0OX73nxelQFARBbKjKnE",
+    "title": "Zapatillas Air Jordan Blue High",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F05-zapatilla2.png?alt=media&token=be3b974d-5c8f-47c5-a66f-dd9a44772216",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "e4HZEdZqMpTzif4LQi6z",
+    "title": "Zapatillas Jordan",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F05-zapatilla3.png?alt=media&token=86605a63-ba46-485d-9399-7945859d6cfe",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "izNCHdeXsb7L57AfQce6",
+    "title": "Zapatillas Nike LeBron NXXT Low",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F05-zapatilla4.png?alt=media&token=39a9d89c-a216-4276-9df1-02a08161f74a",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "hjmE9q1fOVLTt9Nm1Tbh",
+    "title": "Zapatillas Nike LeBron XXI",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/basketstore-d9daa.appspot.com/o/Productos%2F05-zapatilla5.png?alt=media&token=d719ec59-a785-4234-8cfa-cae31678ce2f",
+    "price": "1",
+    "stock": "100"
+  },
+  {
+    "id": "e14d3bdefb5443b621d4ef30",
+    "title": "AND1 Override",
+    "photo": "https://and1.com/cdn/shop/files/OVERRIDE_AD90069M_O_6_1000x.jpg?v=1692644987",
+    "price": "120",
+    "stock": "1"
+  }
+]
