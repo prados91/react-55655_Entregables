@@ -46,6 +46,18 @@ usersRouter.get("/", async (req, res, next) => {
     }
 });
 
+usersRouter.get("/stats", async (req, res, next) => {
+    try {
+      const all = await users.stats({});
+      return res.json({
+        statusCode: 200,
+        response: all,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  });
+
 usersRouter.get("/:uid", async (req, res, next) => {
     try {
         const { uid } = req.params;

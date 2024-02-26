@@ -1,16 +1,9 @@
-const notFoundOne = (data) => {
-    if (data.length === 0) {
-        const error = new Error("There aren't documents");
+function notFoundOne(one) {
+    if (!one) {
+        const error = new Error("There isn't any document");
         error.statusCode = 404;
         throw error;
     }
-
-    if (!data) {
-        const error = new Error("Document not found");
-        error.statusCode = 404;
-        throw error;
-    }
-    //return data;
-};
+}
 
 export default notFoundOne;

@@ -1,4 +1,4 @@
-import has8charUtils from "../utils/has8char.util.js";
+import has8charUtils from "../utils/has8char.utils.js";
 
 function has8char(req, res, next) {
     try {

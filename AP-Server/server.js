@@ -34,9 +34,8 @@ server.engine("handlebars", engine());
 server.set("view engine", "handlebars");
 server.set("views", __dirname + "/src/views");
 
-//MIDDLEWARES
 const FileStore = sessionFileStore(expressSession);
-//middlewares
+//MIDDLEWARES
 server.use(cookieParser(process.env.SECRET_KEY));
 //MEMORY STORE
 /* server.use(
@@ -61,23 +60,23 @@ server.use(cookieParser(process.env.SECRET_KEY));
   })
 ); */
 //MONGO STORE
-server.use(
-    expressSession({
-        secret: process.env.SECRET_KEY,
-        resave: true,
-        saveUninitialized: true,
-        store: new MongoStore({
-            ttl: 7 * 24 * 60 * 60, //chequear la unidad de ttl
-            mongoUrl: process.env.DB_LINK,
-        }),
-    })
-);
+/* server.use(
+  expressSession({
+    secret: process.env.SECRET_KEY,
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      ttl: 7 * 24 * 60 * 60, //chequear la unidad de ttl
+      mongoUrl: process.env.DB_LINK,
+    }),
+  })
+); */
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.static("public"));
 server.use(morgan("dev"));
 
-//Endpoints
+//endpoints
 server.use("/", router);
 server.use(errorHandler);
 server.use(pathHandler);

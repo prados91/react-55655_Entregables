@@ -2,19 +2,17 @@ import { Router } from "express";
 //import products from "../../data/fs/products.fs.js";
 import { products } from "../../data/mongo/manager.mongo.js";
 import propsProducts from "../../middlewares/propsProducts.js";
-import isAdminMid from "../../middlewares/isAdmin.mid.js";
-import isStockOk from "../../utils/isStockOk.js";
+import isAdmin from "../../middlewares/isAdmin.mid.js";
+import passCallBackMid from "../../middlewares/passCallBack.mid.js";
+import isStockOk from "../../utils/isStockOk.utils.js";
 
 const productsRouter = Router();
 
-productsRouter.post("/", isAdminMid, propsProducts, async (req, res, next) => {
+productsRouter.post("/", passCallBackMid("jwt"), isAdmin, async (req, res, next) => {
     try {
         const data = req.body;
         const response = await products.create(data);
-        return res.json({
-            statusCode: 201,
-            response,
-        });
+        return res.json({ statusCode: 201, response });
     } catch (error) {
         return next(error);
     }

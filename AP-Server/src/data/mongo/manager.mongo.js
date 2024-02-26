@@ -1,9 +1,8 @@
 import Order from "./models/orders.model.js";
 import Product from "./models/products.model.js";
 import User from "./models/users.model.js";
-import { Types } from "mongoose";
-
 import notFoundOne from "../../utils/notFoundOne.utils.js";
+import { Types } from "mongoose";
 
 class MongoManager {
     constructor(model) {
@@ -21,7 +20,6 @@ class MongoManager {
 
     async read({ filter, options }) {
         try {
-            options = { ...options, lean: true };
             const all = await this.model.paginate(filter, options);
             if (all.totalDocs === 0) {
                 const error = new Error("There aren't any document");
@@ -60,7 +58,7 @@ class MongoManager {
 
     async readOne(id) {
         try {
-            const one = await this.model.findById(id);
+            const one = await this.model.findById(id).lean();
             notFoundOne(one);
             return one;
         } catch (error) {
@@ -71,7 +69,7 @@ class MongoManager {
     async readByEmail(email) {
         try {
             const one = await this.model.findOne({ email });
-            notFoundOne(one);
+            //notFoundOne(one);
             return one;
         } catch (error) {
             throw error;
@@ -102,7 +100,7 @@ class MongoManager {
     async stats({ filter }) {
         try {
             let stats = await this.model.find(filter).explain("executionStats");
-            console.log(stats);
+            //console.log(stats);
             stats = {
                 quantity: stats.executionStats.nReturned,
                 time: stats.executionStats.executionTimeMillis,

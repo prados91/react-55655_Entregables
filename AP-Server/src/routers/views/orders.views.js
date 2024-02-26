@@ -1,22 +1,29 @@
 import { Router } from "express";
 //import orders from "../../data/fs/orders.fs.js";
-import { orders } from "../../data/mongo/manager.mongo.js";
+import { orders, users } from "../../data/mongo/manager.mongo.js";
+import passCallBack from "../../middlewares/passCallBack.mid.js";
 
 const ordersRouter = Router();
 
-ordersRouter.get("/", async (req, res, next) => {
+ordersRouter.get("/", passCallBack("jwt"), async (req, res, next) => {
     try {
-        const all = await orders.read({});
-        return res.render("orders", { orders: all, title: "orders" });
+        const options = {
+            limit: req.query.limit || 20,
+            page: req.query.page || 1,
+            sort: { title: 1 },
+            lean: true,
+        };
+        const user = await users.readByEmail(req.user.email);
+        const filter = {
+            user_id: user._id,
+        };
+        const all = await orders.read({ filter, options });
+        return res.render("orders", { title: "MY CART", orders: all.docs });
     } catch (error) {
-        next(error);
-    }
-});
-ordersRouter.get("/new", (req, res, next) => {
-    try {
-        return res.render("new", { title: "NEW" });
-    } catch (error) {
-        next(error);
+        return res.render("orders", {
+            title: "MY CART",
+            message: "NO ORDERS YET!",
+        });
     }
 });
 
