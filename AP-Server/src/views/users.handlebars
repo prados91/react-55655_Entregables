@@ -1,0 +1,17 @@
+<main>
+    <div class="container text-center">
+        <div class="row">
+            {{#each users}}
+            <div class="col-10 col-sm-6 col-md-4 col-xl-3 p-4 d-flex align-items-stretch ">
+                <div class="card card__users" style="width: 18rem;">
+                    <img src={{this.photo}} class="card-img-top img-fluid" alt={{this.name}}>
+                    <div class="card-body card__users--data">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p class="card-text">{{this.email}}</p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</main>
