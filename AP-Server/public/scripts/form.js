@@ -4,9 +4,9 @@ selector.addEventListener("click", async () => {
         const data = {
             title: document.querySelector("#title").value,
         };
-        document.querySelector("#photo").value && (data.poster = document.querySelector("#poster").value);
+        document.querySelector("#photo").value && (data.photo = document.querySelector("#photo").value);
         document.querySelector("#price").value && (data.price = document.querySelector("#price").value);
-        document.querySelector("#stock").value && (data.capacity = document.querySelector("#capacity").value);
+        document.querySelector("#stock").value && (data.stock = document.querySelector("#stock").value);
         const opts = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
