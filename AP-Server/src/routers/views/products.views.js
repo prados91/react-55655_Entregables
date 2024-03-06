@@ -1,36 +1,36 @@
-import { Router } from "express";
+import CustomRouter from "../CustomRouter.js";
 
 import { products } from "../../data/mongo/manager.mongo.js";
 
 import passCallBack from "../../middlewares/passCallBack.mid.js";
 import isAdmin from "../../middlewares/isAdmin.mid.js";
 
-const productsRouter = Router();
+export default class ProductsRouter extends CustomRouter {
+    init() {
+        this.read("/real", ["ADMIN", "PREM"], passCallBack("jwt"), isAdmin, (req, res, next) => {
+            try {
+                return res.render("real", { title: "REAL" });
+            } catch (error) {
+                next(error);
+            }
+        });
 
-productsRouter.get("/real", passCallBack("jwt"), isAdmin, (req, res, next) => {
-    try {
-        return res.render("real", { title: "REAL" });
-    } catch (error) {
-        next(error);
+        this.read("/form", ["ADMIN", "PREM"], passCallBack("jwt"), isAdmin, (req, res, next) => {
+            try {
+                return res.render("form", { title: "CREATE A PRODUCT" });
+            } catch (error) {
+                next(error);
+            }
+        });
+
+        this.read("/:pid", ["PUBLIC"], async (req, res, next) => {
+            try {
+                const { pid } = req.params;
+                const one = await products.readOne(pid);
+                return res.render("detail", { product: one, title: one.title.toUpperCase() });
+            } catch (error) {
+                next(error);
+            }
+        });
     }
-});
-
-productsRouter.get("/form", passCallBack("jwt"), isAdmin, (req, res, next) => {
-    try {
-        return res.render("form", { title: "CREATE NEW PRODUCT" });
-    } catch (error) {
-        next(error);
-    }
-});
-
-productsRouter.get("/:pid", async (req, res, next) => {
-    try {
-        const { pid } = req.params;
-        const one = await products.readOne(pid);
-        return res.render("detail", { product: one, title: one.title.toUpperCase() });
-    } catch (error) {
-        next(error);
-    }
-});
-
-export default productsRouter;
+}

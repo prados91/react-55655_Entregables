@@ -1,114 +1,91 @@
-import { Router } from "express";
+import CustomRouter from "../CustomRouter.js";
 //import users from "../../data/fs/users.fs.js";
 import { users } from "../../data/mongo/manager.mongo.js";
 
-const usersRouter = Router();
-
-usersRouter.post("/", async (req, res, next) => {
-    try {
-        const data = req.body;
-        const response = await users.create(data);
-        return res.json({
-            statusCode: 201,
-            response: response,
+export default class UsersRouter extends CustomRouter {
+    init() {
+        this.create("/", ["ADMIN"], async (req, res, next) => {
+            try {
+                const data = req.body;
+                const response = await users.create(data);
+                return res.success201(response);
+            } catch (error) {
+                return next(error);
+            }
         });
-    } catch (error) {
-        return next(error);
-    }
-});
 
-usersRouter.get("/", async (req, res, next) => {
-    try {
-        const options = {
-            limit: req.query.limit || 10,
-            page: req.query.page || 1,
-            sort: { name: 1 },
-        };
-        const filter = {};
-        if (req.query.email) {
-            filter.email = new RegExp(req.query.email.trim(), "i");
-        }
-        if (req.query.name) {
-            filter.name = new RegExp(req.query.name.trim(), "i");
-        }
-        if (req.query.sort === "desc") {
-            options.sort.name = -1;
-        }
-        const all = await users.read({ filter, options });
-        return res.json({
-            statusCode: 200,
-            response: all,
+        this.read("/", ["ADMIN"], async (req, res, next) => {
+            try {
+                const options = {
+                    limit: req.query.limit || 10,
+                    page: req.query.page || 1,
+                    sort: { name: 1 },
+                };
+                const filter = {};
+                if (req.query.email) {
+                    filter.email = new RegExp(req.query.email.trim(), "i");
+                }
+                if (req.query.name) {
+                    filter.name = new RegExp(req.query.name.trim(), "i");
+                }
+                if (req.query.sort === "desc") {
+                    options.sort.name = "desc";
+                }
+                const all = await users.read({ filter, options });
+                return res.success200(all);
+            } catch (error) {
+                return next(error);
+            }
         });
-    } catch (error) {
-        return next(error);
-    }
-});
 
-usersRouter.get("/stats", async (req, res, next) => {
-    try {
-      const all = await users.stats({});
-      return res.json({
-        statusCode: 200,
-        response: all,
-      });
-    } catch (error) {
-      return next(error);
-    }
-  });
-
-usersRouter.get("/:uid", async (req, res, next) => {
-    try {
-        const { uid } = req.params;
-        const one = await users.readOne(uid);
-        return res.json({
-            statusCode: 200,
-            response: one,
+        this.read("/:uid", ["ADMIN"], async (req, res, next) => {
+            try {
+                const { uid } = req.params;
+                const one = await users.readOne(uid);
+                return res.success200(one);
+            } catch (error) {
+                return next(error);
+            }
         });
-    } catch (error) {
-        return next(error);
-    }
-});
 
-usersRouter.get("/find/:email", async (req, res, next) => {
-    try {
-        const { email } = req.params;
-        const one = await users.readByEmail(email);
-        return res.json({
-            statusCode: 200,
-            response: one,
+        this.read("/find/:email", ["ADMIN"], async (req, res, next) => {
+            try {
+                const { email } = req.params;
+                const one = await users.readByEmail(email);
+                return res.success200(one);
+            } catch (error) {
+                return next(error);
+            }
         });
-    } catch (error) {
-        return next(error);
-    }
-});
 
-usersRouter.put("/:uid", async (req, res, next) => {
-    try {
-        const { uid } = req.params;
-        const data = req.body;
-        const response = await users.update(uid, data);
-        if (response) {
-            return res.json({
-                statusCode: 200,
-                response: "The user " + response + " was updated.",
-            });
-        }
-    } catch (error) {
-        return next(error);
-    }
-});
-
-usersRouter.delete("/:uid", async (req, res, next) => {
-    try {
-        const { uid } = req.params;
-        const response = await users.destroy(uid);
-        return res.json({
-            statusCode: 200,
-            response,
+        this.update("/:uid", ["ADMIN"], async (req, res, next) => {
+            try {
+                const { uid } = req.params;
+                const data = req.body;
+                const response = await users.update(uid, data);
+                return res.success200(response);
+            } catch (error) {
+                return next(error);
+            }
         });
-    } catch (error) {
-        return next(error);
-    }
-});
 
-export default usersRouter;
+        this.destroy("/:uid", ["ADMIN"], async (req, res, next) => {
+            try {
+                const { uid } = req.params;
+                const response = await users.destroy(uid);
+                return res.success200(response);
+            } catch (error) {
+                return next(error);
+            }
+        });
+
+        this.read("/stats", ["ADMIN"], async (req, res, next) => {
+            try {
+                const all = await users.stats({});
+                return res.success200(all);
+            } catch (error) {
+                return next(error);
+            }
+        });
+    }
+}
