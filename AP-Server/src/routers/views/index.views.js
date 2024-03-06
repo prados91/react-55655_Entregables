@@ -1,45 +1,49 @@
-import { Router } from "express";
+import CustomRouter from "../CustomRouter.js";
 
-import { orders, products, users } from "../../data/mongo/manager.mongo.js";
-import productsRouter from "./products.views.js";
-import ordersRouter from "./orders.views.js";
-import usersRouter from "./users.views.js";
-import formsRouter from "./forms.views.js";
-import sessionsRouter from "./sessions.view.js";
+import { products } from "../../data/mongo/manager.mongo.js";
 
-const viewsRouter = Router();
+import ProductsRouter from "./products.views.js";
+import SessionsRouter from "./sessions.view.js";
+import OrdersRouter from "./orders.views.js";
 
-viewsRouter.get("/", async (req, res, next) => {
-    try {
-        const options = {
-            limit: req.query.limit || 10,
-            page: req.query.page || 1,
-            sort: { title: 1 },
-            lean: true,
-        };
-        const filter = {};
-        if (req.query.title) {
-            filter.title = new RegExp(req.query.title.trim(), "i");
-        }
-        if (req.query.sort === "desc") {
-            options.sort.title = "desc";
-        }
-        const all = await products.read({ filter, options });
-        return res.render("index", {
-            products: all.docs,
-            next: all.nextPage,
-            prev: all.prevPage,
-            title: "Welcome to Basketball | Store",
-            filter: req.query.title,
+const product = new ProductsRouter();
+const productsRouter = product.getRouter();
+const order = new OrdersRouter();
+const ordersRouter = order.getRouter();
+const session = new SessionsRouter();
+const sessionsRouter = session.getRouter();
+
+export default class ViewsRouter extends CustomRouter {
+    init() {
+        this.router.use("/products", productsRouter);
+        this.router.use("/orders", ordersRouter);
+        this.router.use("/sessions", sessionsRouter);
+        this.read("/", ["PUBLIC"], async (req, res, next) => {
+            try {
+                const options = {
+                    limit: req.query.limit || 10,
+                    page: req.query.page || 1,
+                    sort: { title: 1 },
+                    lean: true,
+                };
+                const filter = {};
+                if (req.query.title) {
+                    filter.title = new RegExp(req.query.title.trim(), "i");
+                }
+                if (req.query.sort === "desc") {
+                    options.sort.title = "desc";
+                }
+                const all = await products.read({ filter, options });
+                return res.render("index", {
+                    products: all.docs,
+                    next: all.nextPage,
+                    prev: all.prevPage,
+                    title: "Welcome to Basketball | Store",
+                    filter: req.query.title,
+                });
+            } catch (error) {
+                next(error);
+            }
         });
-    } catch (error) {
-        next(error);
     }
-});
-viewsRouter.use("/products", productsRouter);
-//viewsRouter.use("/form", formsRouter);
-//viewsRouter.use("/register", usersRouter);
-viewsRouter.use("/orders", ordersRouter);
-viewsRouter.use("/sessions", sessionsRouter);
-
-export default viewsRouter;
+}

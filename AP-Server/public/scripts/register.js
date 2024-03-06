@@ -18,7 +18,14 @@ selector.addEventListener("click", async () => {
         let response = await fetch("/api/sessions/register", opts);
         response = await response.json();
         //console.log(response);
-        response.statusCode === 201 ? location.replace("/sessions/login") : alert("ERROR: " + response.message);
+        response.statusCode === 201
+            ? location.replace("/sessions/login") //alert("ERROR: " + response.message);
+            : Swal.fire({
+                  icon: "warning",
+                  title: "ERROR: " + response.message,
+                  showConfirmButton: false,
+                  timer: 2000,
+              });
     } catch (error) {
         alert(error.message);
     }

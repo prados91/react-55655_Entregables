@@ -14,7 +14,21 @@ selector.addEventListener("click", async () => {
         };
         let response = await fetch("/api/products", opts);
         response = await response.json();
-        response.statusCode === 201 ? alert("Product created!") : alert("ERROR: " + response.message);
+        //response.statusCode === 201 ? alert("Product created!") : alert("ERROR: " + response.message);
+
+        response.statusCode === 201
+            ? Swal.fire({
+                  icon: "success",
+                  title: "¡Product created!",
+                  showConfirmButton: false,
+                  timer: 2000,
+              })
+            : Swal.fire({
+                  icon: "error",
+                  title: "ERROR: " + response.message,
+                  showConfirmButton: false,
+                  timer: 2000,
+              });
     } catch (error) {
         alert(error.message);
     }
