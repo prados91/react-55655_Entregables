@@ -15,9 +15,18 @@ fetch("/api/sessions/", { method: "POST" })
                     let response = await fetch("/api/sessions/signout", opts);
                     response = await response.json();
                     if (response.statusCode === 200) {
-                        alert(response.message);
-                        localStorage.removeItem("token");
-                        location.replace("/");
+                        //alert(response.message);
+                        Swal.fire({
+                            title: "GOOD BYE!",
+                            icon: "success",
+                            confirmButtonColor: "#3085d6",
+                            confirmButtonText: "OK",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                localStorage.removeItem("token");
+                                location.replace("/");
+                            }
+                        });
                     }
                 } catch (error) {
                     console.log(error);

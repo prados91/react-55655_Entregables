@@ -9,8 +9,17 @@ selector.addEventListener("click", async (product) => {
         };
         let response = await fetch("/api/orders", opts);
         response = await response.json();
-        if (response.statusCode === 401) alert("PLEASE LOG IN!");
-        else location.replace("/orders");
+
+        if (response.statusCode === 401) {
+            Swal.fire({
+                icon: "warning",
+                title: "¡PLEASE, FIRST LOG IN OR REGISTER!",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        } else {
+            location.replace("/orders");
+        }
     } catch (error) {
         alert(error.message);
     }

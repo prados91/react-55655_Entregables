@@ -9,14 +9,29 @@ selectors.forEach((each) =>
             };
             let response = await fetch(url, opts);
             response = await response.json();
-            console.log(response);
+            //console.log(response);
             if (response.statusCode === 200) {
-                alert(response.message);
-                location.reload();
+                // alert(response.message);
+                Swal.fire({
+                    title: "DELETED",
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+                //location.reload();
             }
-            
         } catch (error) {
-            alert(error.message);
+            //alert(error.message);
+            Swal.fire({
+                icon: "warning",
+                title: error.message,
+                showConfirmButton: false,
+                timer: 2000,
+            });
         }
     })
 );

@@ -11,7 +11,13 @@ google.addEventListener("click", async () => {
         //alert(response.message);
         //response.session && location.replace("/");
     } catch (error) {
-        alert(error.message);
+        //alert(error.message);
+        Swal.fire({
+            icon: "warning",
+            title: error.message,
+            showConfirmButton: false,
+            timer: 2000,
+        });
     }
 });
 
@@ -28,6 +34,12 @@ github.addEventListener("click", async () => {
         //alert(response.message);
         //response.session && location.replace("/");
     } catch (error) {
-        alert(error.message);
+        //alert(error.message);
+        Swal.fire({
+            icon: "warning",
+            title: error.message,
+            showConfirmButton: false,
+            timer: 2000,
+        });
     }
 });
