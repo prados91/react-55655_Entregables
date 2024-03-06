@@ -1,11 +1,9 @@
 import { Router } from "express";
 //import users from "../../data/fs/users.fs.js";
 import { users } from "../../data/mongo/manager.mongo.js";
-import propsUsers from "../../middlewares/propsUsers.js";
 
 const usersRouter = Router();
 
-//usersRouter.post("/", propsUsers, async (req, res, next) => {
 usersRouter.post("/", async (req, res, next) => {
     try {
         const data = req.body;

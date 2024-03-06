@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { products } from "../../data/mongo/manager.mongo.js";
 
 import passCallBack from "../../middlewares/passCallBack.mid.js";
@@ -16,7 +17,7 @@ productsRouter.get("/real", passCallBack("jwt"), isAdmin, (req, res, next) => {
 
 productsRouter.get("/form", passCallBack("jwt"), isAdmin, (req, res, next) => {
     try {
-        return res.render("form", { title: "NEW PRODUCT" });
+        return res.render("form", { title: "CREATE NEW PRODUCT" });
     } catch (error) {
         next(error);
     }
