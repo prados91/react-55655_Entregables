@@ -1,9 +1,8 @@
 import CustomRouter from "../CustomRouter.js";
-//import orders from "../../data/fs/orders.fs.js";
 import { orders, users } from "../../data/mongo/manager.mongo.js";
 import passCallBack from "../../middlewares/passCallBack.mid.js";
 
-export default class OrdersRouter extends CustomRouter {
+class OrdersRouter extends CustomRouter {
     init() {
         this.read("/", ["ADMIN", "PREM", "PUBLIC"], passCallBack("jwt"), async (req, res, next) => {
             try {
@@ -28,3 +27,6 @@ export default class OrdersRouter extends CustomRouter {
         });
     }
 }
+
+const ordersRouter = new OrdersRouter();
+export default ordersRouter.getRouter();

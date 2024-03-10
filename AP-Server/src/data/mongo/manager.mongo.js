@@ -1,6 +1,7 @@
-import Order from "./models/orders.model.js";
-import Product from "./models/products.model.js";
 import User from "./models/users.model.js";
+import Product from "./models/products.model.js";
+import Order from "./models/orders.model.js";
+import Comment from "./models/comment.model.js";
 import notFoundOne from "../../utils/notFoundOne.utils.js";
 import { Types } from "mongoose";
 
@@ -115,7 +116,8 @@ class MongoManager {
 const orders = new MongoManager(Order);
 const products = new MongoManager(Product);
 const users = new MongoManager(User);
+const comments = new MongoManager(Comment);
 
-export { orders, products, users };
+export { orders, products, users, comments };
 
 export default MongoManager;
