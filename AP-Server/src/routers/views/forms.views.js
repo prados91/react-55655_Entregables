@@ -1,6 +1,6 @@
 import CustomRouter from "../CustomRouter.js";
 
-export default class FormsRouter extends CustomRouter {
+class FormsRouter extends CustomRouter {
     init() {
         this.read("/", ["ADMIN"], async (req, res, next) => {
             try {
@@ -11,3 +11,6 @@ export default class FormsRouter extends CustomRouter {
         });
     }
 }
+
+const formsRouter = new FormsRouter();
+export default formsRouter.getRouter();

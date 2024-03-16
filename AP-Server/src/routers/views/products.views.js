@@ -5,7 +5,7 @@ import { products } from "../../data/mongo/manager.mongo.js";
 import passCallBack from "../../middlewares/passCallBack.mid.js";
 import isAdmin from "../../middlewares/isAdmin.mid.js";
 
-export default class ProductsRouter extends CustomRouter {
+class ProductsRouter extends CustomRouter {
     init() {
         this.read("/real", ["ADMIN", "PREM"], passCallBack("jwt"), isAdmin, (req, res, next) => {
             try {
@@ -34,3 +34,6 @@ export default class ProductsRouter extends CustomRouter {
         });
     }
 }
+
+const productsRouter = new ProductsRouter();
+export default productsRouter.getRouter();

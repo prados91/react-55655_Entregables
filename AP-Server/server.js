@@ -1,4 +1,4 @@
-import "dotenv/config.js";
+import env from "./src/utils/env.util.js";
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
@@ -7,11 +7,11 @@ import { engine } from "express-handlebars";
 import cookieParser from "cookie-parser";
 import expressSession from "express-session";
 import sessionFileStore from "session-file-store";
-import MongoStore from "connect-mongo";
+import args from "./src/utils/args.util.js";
 
 import socketUtils from "./src/utils/socket.utils.js";
 
-import IndexRouter from "./src/routers/index.router.js";
+import router from "./src/routers/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.js";
 import pathHandler from "./src/middlewares/pathHandler.js";
 import __dirname from "./utils.js";
@@ -19,10 +19,11 @@ import dbConnection from "./src/utils/dbConnection.utils.js";
 
 //Server
 const server = express();
-const PORT = process.env.PORT || 8080;
+const PORT = env.PORT || 8080;
 const ready = () => {
     console.log("Server ready on port " + PORT);
     dbConnection();
+    console.log("mode " + args.env);
 };
 const httpServer = createServer(server);
 const socketServer = new Server(httpServer);
@@ -36,7 +37,7 @@ server.set("views", __dirname + "/src/views");
 
 const FileStore = sessionFileStore(expressSession);
 //MIDDLEWARES
-server.use(cookieParser(process.env.SECRET_KEY));
+server.use(cookieParser(env.SECRET_KEY));
 //MEMORY STORE
 /* server.use(
   expressSession({
@@ -77,8 +78,7 @@ server.use(express.static("public"));
 server.use(morgan("dev"));
 
 //endpoints
-const router = new IndexRouter()
-server.use("/", router.getRouter());
+server.use("/", router);
 server.use(errorHandler);
 server.use(pathHandler);
 
