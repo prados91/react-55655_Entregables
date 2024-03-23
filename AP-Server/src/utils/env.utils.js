@@ -1,9 +1,11 @@
 import { config } from "dotenv";
-import args from "./args.util.js";
+import args from "./args.utils.js";
 
 const { env } = args;
 const path = env === "prod" ? "./.env.prod" : env === "dev" ? "./.env.dev" : "./.env.test";
 config({ path });
+
+console.log(path)
 
 export default {
     PORT: process.env.PORT,

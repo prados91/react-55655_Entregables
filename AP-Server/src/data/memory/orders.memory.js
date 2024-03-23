@@ -111,7 +111,6 @@ class OrdersManager {
     }
 }
 
-
 const orders = new OrdersManager("./src/data/fs/files/orders.json");
 
 export default orders;

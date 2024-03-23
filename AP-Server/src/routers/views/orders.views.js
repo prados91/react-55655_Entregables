@@ -1,5 +1,6 @@
 import CustomRouter from "../CustomRouter.js";
-import { orders, users } from "../../data/mongo/manager.mongo.js";
+import dao from  "../../data/index.factory.js";
+const { orders, users } = dao;
 import passCallBack from "../../middlewares/passCallBack.mid.js";
 
 class OrdersRouter extends CustomRouter {

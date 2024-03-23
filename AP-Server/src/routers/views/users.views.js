@@ -1,6 +1,6 @@
 import CustomRouter from "../CustomRouter.js";
-//import users from "../../data/fs/users.fs.js";
-import { users } from "../../data/mongo/manager.mongo.js";
+import dao from "../data/index.factory.js";
+const { users } = dao;
 
 export default class UsersRouter extends CustomRouter {
     init() {

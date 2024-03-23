@@ -1,112 +1,87 @@
 import fs from "fs";
-import crypto from "crypto";
+import notFoundOne from "../../utils/notFoundOne.utils.js";
 
 class ProductsManager {
+    init() {
+        try {
+            const exists = fs.existsSync(this.path);
+            if (!exists) {
+                const data = JSON.stringify([], null, 2);
+                fs.writeFileSync(this.path, data);
+            } else {
+                this.products = JSON.parse(fs.readFileSync(this.path, "utf-8"));
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
     constructor(path) {
         this.path = path;
         this.products = [];
         this.init();
     }
-    init() {
-        const file = fs.existsSync(this.path);
-        if (file) {
-            this.products = JSON.parse(fs.readFileSync(this.path, "utf-8"));
-        } else {
-            const data = JSON.stringify([], null, 2);
-            fs.writeFileSync(this.path, data);
-        }
-    }
-
-    async create({ title, photo, ...data }) {
+    async create(data) {
         try {
-            const product = {
-                id: crypto.randomBytes(12).toString("hex"),
-                title,
-                photo,
-                price: data.price || 100,
-                stock: data.stock || 500,
-            };
-            this.products.push(product);
+            this.products.push(data);
             const jsonData = JSON.stringify(this.products, null, 2);
             await fs.promises.writeFile(this.path, jsonData);
-            console.log("create " + product.id);
-            return product.id;
+            return data;
         } catch (error) {
             throw error;
         }
     }
-
-    async read() {
+    read({ filter, options }) {
+        //este metodo para ser compatible con las otras persistencias
+        //necesita agregar los filtros
+        //y la paginacion/orden
         try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-
-            if (readFileParsed.length > 0) {
-                //console.log(readFileParsed);
-                return readFileParsed;
+            if (this.products.length === 0) {
+                const error = new Error("NOT FOUND!");
+                error.statusCode = 404;
+                throw error;
             } else {
-                throw new Error("There are no products in the database.");
+                return this.products;
             }
         } catch (error) {
             throw error;
         }
     }
-
-    async readOne(id) {
+    readOne(id) {
         try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-            const prodById = readFileParsed.find((each) => each.id === id);
-            if (prodById) {
-                //console.log(prodById);
-                return prodById;
+            const one = this.products.find((each) => each._id === id);
+            if (!one) {
+                const error = new Error("NOT FOUND!");
+                error.statusCode = 404;
+                throw error;
             } else {
-                throw new Error("The product with the specified id (" + id + ") does not exist.");
+                return one;
             }
         } catch (error) {
             throw error;
         }
     }
-
-    async update(pid, data) {
+    async update(eid, data) {
         try {
-            const index = this.products.findIndex((product) => product.id === pid);
-
-            if (index === -1) {
-                throw new Error("Product not found");
+            const one = this.readOne(eid);
+            notFoundOne(one);
+            for (let each in data) {
+                one[each] = data[each];
             }
-
-            const updatedProduct = {
-                ...this.products[index],
-                title: data.title || this.products[index].title,
-                photo: data.photo || this.products[index].photo,
-                price: data.price || this.products[index].price,
-                stock: data.stock || this.products[index].stock,
-            };
-
-            this.products[index] = updatedProduct;
-
             const jsonData = JSON.stringify(this.products, null, 2);
             await fs.promises.writeFile(this.path, jsonData);
-
-            return pid;
+            return one;
         } catch (error) {
             throw error;
         }
     }
-
     async destroy(id) {
         try {
-            let one = this.products.find((each) => each.id === id);
-            if (!one) {
-                throw new Error("There isn't any product");
-            } else {
-                this.products = this.products.filter((each) => each.id !== id);
-                const jsonData = JSON.stringify(this.products, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-                console.log("deleted " + id);
-                return id;
-            }
+            const one = this.readOne(id);
+            notFoundOne(one);
+            this.products = this.products.filter((each) => each._id !== id);
+            const jsonData = JSON.stringify(this.products, null, 2);
+            await fs.promises.writeFile(this.path, jsonData);
+            return one;
         } catch (error) {
             throw error;
         }
@@ -114,5 +89,4 @@ class ProductsManager {
 }
 
 const products = new ProductsManager("./src/data/fs/files/products.json");
-
 export default products;

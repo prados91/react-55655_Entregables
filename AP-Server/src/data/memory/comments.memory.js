@@ -1,36 +1,30 @@
 import crypto from "crypto";
-import notFoundOne from "../../utils/notFoundOne.util.js";
 
-class UsersManager {
-    static #users = [];
+class CommentsManager {
+    static #comments = [];
     constructor() {}
     async create(data) {
         try {
-            if (!data.name || !data.email) {
-                const error = new Error("name & email are required");
-                error.statusCode = 400;
-                throw error;
-            }
-            const user = {
+            const comment = {
                 id: crypto.randomBytes(12).toString("hex"),
-                name: data.name,
-                email: data.email,
-                photo: data.photo || "https://i.postimg.cc/wTgNFWhR/profile.png",
+                user_id: data.user_id,
+                product_id: data.product_id,
+                text: data.text,
             };
-            UsersManager.#users.push(user);
-            return user.id;
+            CommentsManager.#comments.push(comment);
+            return comment.id;
         } catch (error) {
             throw error;
         }
     }
     read() {
         try {
-            if (UsersManager.#users.length === 0) {
+            if (CommentsManager.#comments.length === 0) {
                 const error = new Error("NOT FOUND!");
                 error.statusCode = 404;
                 throw error;
             } else {
-                return UsersManager.#users;
+                return CommentsManager.#comments;
             }
         } catch (error) {
             throw error;
@@ -38,7 +32,7 @@ class UsersManager {
     }
     readOne(id) {
         try {
-            const one = UsersManager.#users.find((each) => each.id === id);
+            const one = CommentsManager.#comments.find((each) => each.id === id);
             if (!one) {
                 const error = new Error("NOT FOUND!");
                 error.statusCode = 404;
@@ -52,7 +46,7 @@ class UsersManager {
     }
     async update(uid, data) {
         try {
-            const one = UsersManager.#users.readOne(uid);
+            const one = CommentsManager.#comments.readOne(uid);
             if (one) {
                 for (let each in data) {
                     one[each] = data[each];
@@ -66,8 +60,9 @@ class UsersManager {
     async destroy(id) {
         try {
             const one = this.readOne(id);
-            notFoundOne(one);
-            UsersManager.#users = UsersManager.#users.filter((each) => each.id !== id);
+            if (one) {
+                CommentsManager.#comments = CommentsManager.#comments.filter((each) => each.id !== id);
+            }
             return one;
         } catch (error) {
             throw error;
@@ -75,5 +70,5 @@ class UsersManager {
     }
 }
 
-const users = new UsersManager();
-export default { users };
+const comments = new CommentsManager();
+export default { comments };

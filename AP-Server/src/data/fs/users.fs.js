@@ -1,125 +1,99 @@
 import fs from "fs";
-import crypto from "crypto";
+import notFoundOne from "../../utils/notFoundOne.utils.js";
 
 class UsersManager {
+    init() {
+        try {
+            const exists = fs.existsSync(this.path);
+            if (!exists) {
+                const data = JSON.stringify([], null, 2);
+                fs.writeFileSync(this.path, data);
+            } else {
+                this.users = JSON.parse(fs.readFileSync(this.path, "utf-8"));
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
     constructor(path) {
         this.path = path;
         this.users = [];
         this.init();
     }
-    init() {
-        const file = fs.existsSync(this.path);
-        if (file) {
-            this.users = JSON.parse(fs.readFileSync(this.path, "utf-8"));
-        } else {
-            const data = JSON.stringify([], null, 2);
-            fs.writeFileSync(this.path, data);
-        }
-    }
-    async create({ name, photo, email }) {
+    async create(data) {
         try {
-            const user = {
-                id: crypto.randomBytes(12).toString("hex"),
-                name,
-                photo,
-                email,
-            };
-            this.users.push(user);
+            this.users.push(data);
             const jsonData = JSON.stringify(this.users, null, 2);
             await fs.promises.writeFile(this.path, jsonData);
-            console.log("create " + user.id);
-            return user.id;
+            return data;
         } catch (error) {
             throw error;
         }
     }
-
-    async read() {
+    read({ filter, options }) {
+        //este metodo para ser compatible con las otras persistencias
+        //necesita agregar los filtros
+        //y la paginacion/orden
         try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-
-            if (readFileParsed.length > 0) {
-                console.log(readFileParsed);
-                return readFileParsed;
+            if (this.users.length === 0) {
+                const error = new Error("NOT FOUND!");
+                error.statusCode = 404;
+                throw error;
             } else {
-                throw new Error("There are no users in the database.");
+                return this.users;
             }
         } catch (error) {
             throw error;
         }
     }
-
-    async readOne(id) {
+    readOne(id) {
         try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-            const userById = readFileParsed.find((each) => each.id === id);
-            if (userById) {
-                console.log(userById);
-                return userById;
+            const one = this.users.find((each) => each._id === id);
+            if (!one) {
+                const error = new Error("NOT FOUND!");
+                error.statusCode = 404;
+                throw error;
             } else {
-                throw new Error("The user with the specified id (" + id + ") does not exist.");
+                return one;
             }
         } catch (error) {
             throw error;
         }
     }
-
-    async update(uid, data) {
+    readByEmail(email) {
         try {
-            const index = this.users.findIndex((user) => user.id === uid);
-
-            if (index === -1) {
-                throw new Error("User not found");
+            const one = this.users.find((each) => each.email === email);
+            if (!one) {
+                return null;
+            } else {
+                return one;
             }
-
-            const updatedUser = {
-                ...this.users[index],
-                name: data.name || this.users[index].name,
-                photo: data.photo || this.users[index].photo,
-                email: data.email || this.users[index].email,
-            };
-
-            this.users[index] = updatedUser;
-
+        } catch (error) {
+            throw error;
+        }
+    }
+    async update(eid, data) {
+        try {
+            const one = this.readOne(eid);
+            notFoundOne(one);
+            for (let each in data) {
+                one[each] = data[each];
+            }
             const jsonData = JSON.stringify(this.users, null, 2);
             await fs.promises.writeFile(this.path, jsonData);
-
-            return uid;
+            return one;
         } catch (error) {
             throw error;
         }
     }
-
     async destroy(id) {
         try {
-            let one = this.users.find((each) => each.id === id);
-            if (!one) {
-                throw new Error("There isn't any product");
-            } else {
-                this.users = this.users.filter((each) => each.id !== id);
-                const jsonData = JSON.stringify(this.users, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-                console.log("deleted " + id);
-                return id;
-            }
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async readByEmail(email) {
-        try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-            const userByEmail = readFileParsed.find((each) => each.email === email);
-            if (userByEmail) {
-                console.log(userByEmail);
-                return userByEmail;
-            } else {
-                throw new Error("The user with the specified email (" + email + ") does not exist.");
-            }
+            const one = this.readOne(id);
+            notFoundOne(one);
+            this.users = this.users.filter((each) => each._id !== id);
+            const jsonData = JSON.stringify(this.users, null, 2);
+            await fs.promises.writeFile(this.path, jsonData);
+            return one;
         } catch (error) {
             throw error;
         }
@@ -127,5 +101,4 @@ class UsersManager {
 }
 
 const users = new UsersManager("./src/data/fs/files/users.json");
-
 export default users;

@@ -1,119 +1,79 @@
-import fs from "fs";
 import crypto from "crypto";
+import notFoundOne from "../../utils/notFoundOne.util.js";
 
 class ProductsManager {
-    constructor(path) {
-        this.path = path;
-        this.products = [];
-        this.init();
-    }
-    init() {
-        const file = fs.existsSync(this.path);
-        if (file) {
-            this.products = JSON.parse(fs.readFileSync(this.path, "utf-8"));
-        } else {
-            const data = JSON.stringify([], null, 2);
-            fs.writeFileSync(this.path, data);
-        }
-    }
+    static #products = [];
 
-    async create({ title, photo, ...data }) {
+    constructor() {}
+    async create(data) {
         try {
             const product = {
                 id: crypto.randomBytes(12).toString("hex"),
-                title,
-                photo,
-                price: data.price || 100,
-                stock: data.stock || 500,
+                title: data.title,
+                photo: data.photo || "https://i.postimg.cc/HxdvTwqJ/products.jpg",
+                stock: data.stock,
+                price: data.price || 10,
+                date: data.date || new Date(),
             };
-            this.products.push(product);
-            const jsonData = JSON.stringify(this.products, null, 2);
-            await fs.promises.writeFile(this.path, jsonData);
-            console.log("create " + product.id);
-            return product.id;
+            ProductsManager.#products.push(product);
+            return product;
         } catch (error) {
             throw error;
         }
     }
-
-    async read() {
+    read({ filter, options }) {
+        //este metodo para ser compatible con las otras persistencias
+        //necesita agregar los filtros
+        //y la paginacion/orden
         try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-
-            if (readFileParsed.length > 0) {
-                console.log(readFileParsed);
-                return readFileParsed;
+            if (ProductsManager.#products.length === 0) {
+                const error = new Error("NOT FOUND!");
+                error.statusCode = 404;
+                throw error;
             } else {
-                throw new Error("There are no products in the database.");
-            }
-        } catch (error) {
-            console.log(error.message);
-            return error.message;
-        }
-    }
-
-    async readOne(id) {
-        try {
-            const readFile = await fs.promises.readFile(this.path, "utf-8");
-            const readFileParsed = JSON.parse(readFile);
-            const prodById = readFileParsed.find((each) => each.id === id);
-            if (prodById) {
-                //console.log(prodById);
-                return prodById;
-            } else {
-                throw new Error("The product with the specified id (" + id + ") does not exist.");
+                return ProductsManager.#products;
             }
         } catch (error) {
             throw error;
         }
     }
-
+    readOne(id) {
+        try {
+            const one = ProductsManager.#products.find((each) => each.id === id);
+            if (!one) {
+                const error = new Error("NOT FOUND!");
+                error.statusCode = 404;
+                throw error;
+            } else {
+                return one;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
     async update(pid, data) {
         try {
-            const index = this.products.findIndex((product) => product.id === pid);
-
-            if (index === -1) {
-                throw new Error("Product not found");
+            const one = this.readOne(pid);
+            notFoundOne(one);
+            for (let each in data) {
+                one[each] = data[each];
             }
-
-            const updatedProduct = {
-                ...this.products[index],
-                title: data.title || this.products[index].title,
-                photo: data.photo || this.products[index].photo,
-                price: data.price || this.products[index].price,
-                stock: data.stock || this.products[index].stock,
-            };
-
-            this.products[index] = updatedProduct;
-
-            const jsonData = JSON.stringify(this.products, null, 2);
-            await fs.promises.writeFile(this.path, jsonData);
-
-            return pid;
+            return one;
         } catch (error) {
             throw error;
         }
     }
-
     async destroy(id) {
         try {
-            let one = this.products.find((each) => each.id === id);
-            if (!one) {
-                throw new Error("There isn't any product");
-            } else {
-                this.products = this.products.filter((each) => each.id !== id);
-                const jsonData = JSON.stringify(this.products, null, 2);
-                await fs.promises.writeFile(this.path, jsonData);
-                console.log("deleted " + id);
-                return id;
-            }
+            const one = this.readOne(id);
+            notFoundOne(one);
+            ProductsManager.#products = ProductsManager.#products.filter((each) => each.id !== id);
+            return one;
         } catch (error) {
             throw error;
         }
     }
 }
 
-const products = new ProductsManager("./src/data/fs/files/products.json");
-
+const products = new ProductsManager();
 export default products;

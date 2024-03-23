@@ -1,6 +1,7 @@
 import CustomRouter from "../CustomRouter.js";
 
-import { products } from "../../data/mongo/manager.mongo.js";
+import dao from "../../data/index.factory.js";
+const { products } = dao;
 
 import productsRouter from "./products.views.js";
 import ordersRouter from "./orders.views.js";

@@ -5,7 +5,8 @@ import { Strategy as GithubStrategy } from "passport-github2";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 import { createHash, verifyHash } from "../utils/hash.utils.js";
 import { createToken } from "../utils/token.utils.js";
-import { users } from "../data/mongo/manager.mongo.js";
+import dao from "../data/index.factory.js";
+const { users } = dao;
 const { GOOGLE_ID, GOOGLE_CLIENT, GITHUB_ID, GITHUB_CLIENT, SECRET } = process.env;
 
 passport.use(

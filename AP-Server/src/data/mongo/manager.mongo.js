@@ -1,6 +1,6 @@
-import User from "./models/users.model.js";
-import Product from "./models/products.model.js";
-import Order from "./models/orders.model.js";
+import User from "./models/user.model.js";
+import Product from "./models/product.model.js";
+import Order from "./models/order.model.js";
 import Comment from "./models/comment.model.js";
 import notFoundOne from "../../utils/notFoundOne.utils.js";
 import { Types } from "mongoose";
@@ -9,7 +9,6 @@ class MongoManager {
     constructor(model) {
         this.model = model;
     }
-
     async create(data) {
         try {
             const one = await this.model.create(data);
@@ -18,7 +17,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async read({ filter, options }) {
         try {
             const all = await this.model.paginate(filter, options);
@@ -32,7 +30,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async report(uid) {
         try {
             const report = await this.model.aggregate([
@@ -56,7 +53,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async readOne(id) {
         try {
             const one = await this.model.findById(id).lean();
@@ -66,7 +62,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async readByEmail(email) {
         try {
             const one = await this.model.findOne({ email });
@@ -76,7 +71,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async update(id, data) {
         try {
             const opt = { new: true };
@@ -87,7 +81,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async destroy(id) {
         try {
             const one = await this.model.findByIdAndDelete(id);
@@ -97,7 +90,6 @@ class MongoManager {
             throw error;
         }
     }
-
     async stats({ filter }) {
         try {
             let stats = await this.model.find(filter).explain("executionStats");

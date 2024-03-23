@@ -25,8 +25,8 @@ class CommentsController {
                 lean: true,
             };
             const filter = {};
-            if (req.query.event_id) {
-                filter.event_id = req.query.event_id;
+            if (req.query.product_id) {
+                filter.product_id = req.query.product_id;
             }
             if (req.query.sort === "desc") {
                 options.sort.title = "desc";
