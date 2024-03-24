@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import notFoundOne from "../../utils/notFoundOne.util.js";
+import notFoundOne from "../../utils/notFoundOne.utils.js";
 
 class ProductsManager {
     static #products = [];

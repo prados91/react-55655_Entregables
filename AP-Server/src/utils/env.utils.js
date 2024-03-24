@@ -5,7 +5,7 @@ const { env } = args;
 const path = env === "prod" ? "./.env.prod" : env === "dev" ? "./.env.dev" : "./.env.test";
 config({ path });
 
-console.log(path)
+console.log(path);
 
 export default {
     PORT: process.env.PORT,
@@ -16,4 +16,6 @@ export default {
     GOOGLE_CLIENT: process.env.GOOGLE_CLIENT,
     GITHUB_ID: process.env.GITHUB_ID,
     GITHUB_CLIENT: process.env.GITHUB_CLIENT,
+    GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
+    GOOGLE_PASSWORD: process.env.GOOGLE_PASSWORD,
 };

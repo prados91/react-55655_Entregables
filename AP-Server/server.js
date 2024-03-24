@@ -31,17 +31,17 @@ server.set("view engine", "handlebars");
 server.set("views", __dirname + "/src/views");
 
 //MIDDLEWARES
-server.use(cookieParser(env.SECRET_KEY));
 server.use(
     cors({
         origin: true,
         credentials: true,
     })
 );
+server.use(cookieParser(env.SECRET_KEY));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use(express.static("public"));
 server.use(morgan("dev"));
+server.use(express.static("public"));
 
 //endpoints
 server.use("/", router);
