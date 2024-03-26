@@ -1,23 +1,14 @@
 import CustomRouter from "../CustomRouter.js";
 import passport from "../../middlewares/passport.mid.js";
 import passCallBack from "../../middlewares/passCallBack.mid.js";
-import {
-    register,
-    login,
-    google,
-    github,
-    me,
-    signout,
-    badauth,
-    verifyAccount,
-} from "../../controllers/sessions.controller.js";
+import { register, login, signout, verifyAccount } from "../../controllers/sessions.controller.js";
 
 class SessionsRouter extends CustomRouter {
     init() {
         this.create("/register", ["PUBLIC"], passCallBack("register"), register);
         this.create("/login", ["PUBLIC"], passCallBack("login"), login);
         this.create("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));
-        this.read(
+        /*this.read(
             "/google/callback",
             ["PUBLIC"],
             passport.authenticate("google", {
@@ -36,10 +27,10 @@ class SessionsRouter extends CustomRouter {
             }),
             github
         );
-        this.create("/", ["USER", "ADMIN", "PREM"], me);
+        this.create("/", ["USER", "ADMIN", "PREM"], me);*/
+        //this.read("/badauth", ["PUBLIC"], badauth);
         this.create("/signout", ["USER", "ADMIN", "PREM"], signout);
-        this.read("/badauth", ["PUBLIC"], badauth);
-        this.create("/", ["PUBLIC"], verifyAccount);
+        this.create("/verify", ["USER", "ADMIN", "PREM"], verifyAccount);
     }
 }
 

@@ -2,8 +2,6 @@ import argsUtil from "../utils/args.utils.js";
 import dbConnection from "../utils/dbConnection.utils.js";
 
 const environment = argsUtil.env;
-//la variable puede ser el ambiente o directamente la persistencia con la que tengo que trabajar
-//va a depender de una variable de entorno o del argumento que se pase
 
 let dao = {};
 

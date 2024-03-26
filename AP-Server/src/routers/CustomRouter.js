@@ -45,9 +45,9 @@ export default class CustomRouter {
                 else {
                     const { email, role } = data;
                     if (
-                        (role === 0 && arrayOfPolicies.includes("USER")) ||
-                        (role === 1 && arrayOfPolicies.includes("ADMIN")) ||
-                        (role === 2 && arrayOfPolicies.includes("PREM"))
+                        arrayOfPolicies.includes("USER") ||
+                        arrayOfPolicies.includes("ADMIN") ||
+                        arrayOfPolicies.includes("PREM")
                     ) {
                         const user = await users.readByEmail(email);
                         req.user = user;

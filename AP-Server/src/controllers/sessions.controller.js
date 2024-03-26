@@ -1,6 +1,9 @@
 import service from "../services/users.service.js";
 
 class SessionsController {
+    constructor() {
+        this.service = service;
+    }
     register = async (req, res, next) => {
         const { email, name, verifiedCode } = req.user;
         await this.service.register({ email, name, verifiedCode });
@@ -68,6 +71,7 @@ class SessionsController {
         try {
             const { email, verifiedCode } = req.body;
             const user = await service.readByEmail(email);
+            console.log(user);
             if (user.verifiedCode === verifiedCode) {
                 await service.update(user._id, { verified: true });
                 return res.json({
@@ -95,5 +99,7 @@ class SessionsController {
 
 export default SessionsController;
 const controller = new SessionsController();
-const { register, login, google, github, me, signout, verifyAccount, badauth } = controller;
-export { register, login, google, github, me, signout, verifyAccount, badauth };
+//const { register, login, google, github, me, signout, verifyAccount, badauth } = controller;
+//export { register, login, google, github, me, signout, verifyAccount, badauth };
+const { register, login, signout, verifyAccount } = controller;
+export { register, login, signout, verifyAccount };
