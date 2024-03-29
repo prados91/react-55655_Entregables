@@ -36,8 +36,18 @@ class UsersController {
     };
     readOne = async (req, res, next) => {
         try {
-            const { eid } = req.params;
-            const one = await this.service.readOne(eid);
+            const { uid } = req.params;
+            
+            const one = await this.service.readOne(uid);
+            return res.success200(one);
+        } catch (error) {
+            return next(error);
+        }
+    };
+    readByEmail = async (req, res, next) => {
+        try {
+            const { email } = req.params;
+            const one = await this.service.readByEmail(email);
             return res.success200(one);
         } catch (error) {
             return next(error);
@@ -45,9 +55,9 @@ class UsersController {
     };
     update = async (req, res, next) => {
         try {
-            const { eid } = req.params;
+            const { uid } = req.params;
             const data = req.body;
-            const response = await this.service.update(eid, data);
+            const response = await this.service.update(uid, data);
             return res.success200(response);
         } catch (error) {
             return next(error);
@@ -55,8 +65,8 @@ class UsersController {
     };
     destroy = async (req, res, next) => {
         try {
-            const { eid } = req.params;
-            const response = await this.service.destroy(eid);
+            const { uid } = req.params;
+            const response = await this.service.destroy(uid);
             return res.success200(response);
         } catch (error) {
             return next(error);
@@ -66,5 +76,5 @@ class UsersController {
 
 export default UsersController;
 const controller = new UsersController();
-const { create, read, readOne, update, destroy } = controller;
-export { create, read, readOne, update, destroy };
+const { create, read, readOne, update, destroy, readByEmail } = controller;
+export { create, read, readOne, update, destroy, readByEmail };

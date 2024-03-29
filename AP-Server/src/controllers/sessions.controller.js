@@ -45,7 +45,7 @@ class SessionsController {
             return next(error);
         }
     };
-    me = async (req, res, next) => {
+    current = async (req, res, next) => {
         try {
             const user = {
                 email: req.user.email,

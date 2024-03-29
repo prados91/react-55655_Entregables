@@ -256,7 +256,7 @@ async function sendEmail(data) {
                                             <td class="wrapper">
                                                 <p>Hi ${data.name.toUpperCase()}</p>
                                                 <p>Finish the register using the next code.</p>
-                                                <p>Verify Code: ${data.verifiedCode}.</p>
+                                                <p>Verify Code: ${data.verifiedCode}</p>
                                             </td>
                                         </tr>
                                     </table>
