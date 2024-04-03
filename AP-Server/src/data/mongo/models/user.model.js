@@ -4,11 +4,13 @@ import mongoosePaginate from "mongoose-paginate-v2";
 const collection = "users";
 const schema = new Schema(
     {
-        email: { type: String, required: true, unique: true, index: true },
-        password: { type: String, required: true },
         name: { type: String, required: true },
         lastName: { type: String },
-        role: { type: Number, default: 0 },
+        email: { type: String, required: true, index: true, unique: true },
+        password: { type: String, required: true },
+        role: { type: String, default: "USER", enum: ["USER", "ADMIN", "PREM"] },
+        verified: { type: Boolean, default: false },
+        verifiedCode: { type: String, required: true },
         photo: {
             type: String,
             default: "https://i.postimg.cc/wTgNFWhR/profile.png",

@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import notFoundOne from "../../utils/notFoundOne.util.js";
+import notFoundOne from "../../utils/notFoundOne.utils.js";
 
 class ProductsManager {
     static #products = [];
@@ -13,6 +13,7 @@ class ProductsManager {
                 photo: data.photo || "https://i.postimg.cc/HxdvTwqJ/products.jpg",
                 stock: data.stock,
                 price: data.price || 10,
+                category: data.category,
                 date: data.date || new Date(),
             };
             ProductsManager.#products.push(product);

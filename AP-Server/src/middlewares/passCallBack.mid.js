@@ -1,16 +1,15 @@
-import passport from "passport";
+import passport from "./passport.mid.js";
 
 export default (strategy) => {
     return async (req, res, next) => {
-        passport.authenticate(strategy, (error, user, info) => {
-            console.log({ error, user, info });
-            if (error) {
-                return next(error);
+        passport.authenticate(strategy, (err, user, info) => {
+            if (err) {
+                return next(err);
             }
             if (!user) {
                 return res.json({
-                    statusCode: info.statusCode || 401,
-                    message: info.message || info.toString(),
+                    statusCode: info.statusCode || 400,
+                    message: info.message || "Bad auth!",
                 });
             }
             req.user = user;

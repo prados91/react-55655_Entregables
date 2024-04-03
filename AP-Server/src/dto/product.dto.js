@@ -8,6 +8,7 @@ class ProductDTO {
         this.photo = data.photo || "https://i.postimg.cc/HxdvTwqJ/events.jpg";
         this.stock = data.stock;
         this.price = data.price || 10;
+        this.category = data.category;
         this.date = data.date || new Date();
         argsUtil.env !== "prod" && (this.updatedAt = new Date());
         argsUtil.env !== "prod" && (this.createdAt = new Date());
