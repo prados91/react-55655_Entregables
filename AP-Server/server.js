@@ -6,6 +6,7 @@ import morgan from "morgan";
 import { engine } from "express-handlebars";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import compression from "express-compression";
 
 import socketUtils from "./src/utils/socket.utils.js";
 
@@ -31,17 +32,13 @@ server.set("view engine", "handlebars");
 server.set("views", __dirname + "/src/views");
 
 //MIDDLEWARES
-server.use(
-    cors({
-        origin: true,
-        credentials: true,
-    })
-);
+server.use(cors({ origin: true, credentials: true }));
 server.use(cookieParser(env.SECRET_KEY));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
 server.use(express.static("public"));
+server.use(compression({ brotli: { enabled: true, zlib: {} } }));
 
 //endpoints
 server.use("/", router);
