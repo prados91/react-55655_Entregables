@@ -4,6 +4,8 @@ import Order from "./models/order.model.js";
 import Comment from "./models/comment.model.js";
 import notFoundOne from "../../utils/notFoundOne.utils.js";
 import { Types } from "mongoose";
+import CustomError from "../../utils/errors/CustomError.js";
+import errors from "../../utils/errors/errors.js";
 
 class MongoManager {
     constructor(model) {
@@ -21,9 +23,7 @@ class MongoManager {
         try {
             const all = await this.model.paginate(filter, options);
             if (all.totalDocs === 0) {
-                const error = new Error("There aren't any document");
-                error.statusCode = 404;
-                throw error;
+                CustomError.new(errors.notFound);
             }
             return all;
         } catch (error) {
@@ -65,7 +65,7 @@ class MongoManager {
     async readByEmail(email) {
         try {
             const one = await this.model.findOne({ email });
-            //notFoundOne(one);
+            notFoundOne(one);
             return one;
         } catch (error) {
             throw error;

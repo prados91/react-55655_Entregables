@@ -8,8 +8,6 @@ class CommentsController {
         try {
             const data = req.body;
             data.user_id = req.user._id;
-            //esto se puede mandar por body SI!!!
-            //pero es más seguro tomar el user_id de las politicas o de passport
             const one = await this.service.create(data);
             return res.success201(one);
         } catch (error) {

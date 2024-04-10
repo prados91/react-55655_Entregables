@@ -1,4 +1,6 @@
 import service from "../services/users.service.js";
+import CustomError from "../utils/errors/CustomError.js";
+import errors from "../utils/errors/errors.js";
 
 class SessionsController {
     constructor() {
@@ -71,7 +73,6 @@ class SessionsController {
         try {
             const { email, verifiedCode } = req.body;
             const user = await service.readByEmail(email);
-            console.log(user);
             if (user.verifiedCode === verifiedCode) {
                 await service.update(user._id, { verified: true });
                 return res.json({
@@ -79,10 +80,7 @@ class SessionsController {
                     message: "Verified user!",
                 });
             } else {
-                return res.json({
-                    statusCode: 400,
-                    message: "Invalid verified token!",
-                });
+                CustomError.new(errors.token);
             }
         } catch (error) {
             return next(error);
