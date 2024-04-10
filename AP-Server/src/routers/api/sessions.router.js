@@ -8,7 +8,7 @@ class SessionsRouter extends CustomRouter {
         this.create("/register", ["PUBLIC"], passCallBack("register"), register);
         this.create("/login", ["PUBLIC"], passCallBack("login"), login);
         this.create("/google", ["PUBLIC"], passport.authenticate("google", { scope: ["email", "profile"] }));
-        this.create("/signout", ["USER", "ADMIN", "PREM"], signout);
+        this.create("/signout", ["USER", "ADMIN", "PREM"], passCallBack("jwt"), signout);
         this.create("/verify", ["PUBLIC"], verifyAccount);
     }
 }
