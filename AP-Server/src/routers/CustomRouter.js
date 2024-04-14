@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import dao from "../data/index.factory.js";
 import errors from "../utils/errors/errors.js";
 import CustomError from "../utils/errors/CustomError.js";
+import env from "../utils/env.utils.js";
 const { users } = dao;
 
 export default class CustomRouter {
@@ -46,11 +47,17 @@ export default class CustomRouter {
             let token = req.cookies["token"];
             if (!token) return res.error401();
             else {
-                const data = jwt.verify(token, process.env.SECRET);
-                if (!data) return res.error400("Bad auth by token!");
+                const data = jwt.verify(token, env.SECRET);
+                if (!data) return res.error400();
                 else {
                     const { email, role } = data;
-                    if (arrayOfPolicies.includes(role)) {
+                    console.log(role);
+                    console.log(arrayOfPolicies);
+                    if (
+                        (role === "USER" && arrayOfPolicies.includes("USER")) ||
+                        (role === "ADMIN" && arrayOfPolicies.includes("ADMIN")) ||
+                        (role === "PREM" && arrayOfPolicies.includes("PREM"))
+                    ) {
                         const user = await users.readByEmail(email);
                         req.user = user;
                         return next();
