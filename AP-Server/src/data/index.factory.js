@@ -21,7 +21,7 @@ switch (environment) {
         break;
 
     default: // para modo producción se usaría MONGO
-        dbConnection().then(() => console.log("MONGO CONNECTED"));
+        dbConnection()
         const { default: productsMongo } = await import("./mongo/products.mongo.js");
         const { default: usersMongo } = await import("./mongo/users.mongo.js");
         const { default: ordersMongo } = await import("./mongo/orders.mongo.js");

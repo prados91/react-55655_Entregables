@@ -32,7 +32,8 @@ passport.use(
             const user = await repository.readByEmail(email);
             const verify = verifyHash(password, user.password);
             if (user?.verified && verify) {
-                req.token = createToken({ _id: user._id, role: user.role });
+                const token = createToken({ email, role: user.role });
+                req.token = token;
                 return done(null, user);
             } else {
                 return done(null, false, errors.auth);
@@ -112,8 +113,9 @@ passport.use(
         },
         async (payload, done) => {
             try {
-                const user = await repository.readOne(payload._id);
+                const user = await repository.readByEmail(payload.email);
                 if (user) {
+                    user.password = "";
                     return done(null, user);
                 } else {
                     return done(null, false, errors.forbidden);

@@ -8,7 +8,7 @@ class UsersRouter extends CustomRouter {
         this.read("/:uid", ["USER", "PREM"], readOne);
         this.update("/:uid", ["USER", "PREM"], update);
         this.destroy("/:uid", ["USER", "PREM"], destroy);
-        this.read('/:email',["ADMIN"], readByEmail)
+        this.read("/:email", ["ADMIN"], readByEmail);
     }
 }
 
