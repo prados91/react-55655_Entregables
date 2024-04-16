@@ -15,13 +15,16 @@ import errorHandler from "./src/middlewares/errorHandler.js";
 import pathHandler from "./src/middlewares/pathHandler.js";
 import __dirname from "./utils.js";
 
+import winston_log from "./src/utils/logger/index.js";
+import winston from "./src/middlewares/winston.js";
 
 //Server
 const server = express();
 const PORT = env.PORT || 8080;
 const ready = () => {
-    console.log("Server ready on port " + PORT);
+    winston_log.INFO("server ready on port " + PORT);
 };
+
 const httpServer = createServer(server);
 const socketServer = new Server(httpServer);
 httpServer.listen(PORT, ready);
@@ -38,6 +41,7 @@ server.use(cookieParser(env.SECRET_KEY));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
+server.use(winston);
 server.use(express.static("public"));
 server.use(compression({ brotli: { enabled: true, zlib: {} } }));
 
