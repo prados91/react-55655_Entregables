@@ -1,2 +1,33 @@
 [31mERROR[39m: undefined
 [31mERROR[39m: undefined
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: 401
+[33mWARN[39m: undefined
+[33mWARN[39m: undefined
+[33mWARN[39m: 401
+[33mWARN[39m: undefined {"statusCode":401}
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: 401Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: POST /api/sessions/logi not found endpoint
+[33mWARN[39m: POST /api/sessions/logi not found endpoint
+[33mWARN[39m: POST /api/sessions/logi not found endpoint
+[33mWARN[39m: POST /api/sessions/login Invalid credentials
+[33mWARN[39m: POST /api/sessions/signout Invalid credentials
+[33mWARN[39m: POST /api/sessions/signout Invalid credentials
+[33mWARN[39m: GET /api/users/?email=augusto.atp.91@gmail.com Forbidden
+[33mWARN[39m: GET /api/users-- not found endpoint
+[33mWARN[39m: GET /api/users Forbidden
+[33mWARN[39m: POST /api/sessions/login Missing credentials
+[33mWARN[39m: POST /api/users data and salt arguments required
+[33mWARN[39m: POST /api/users data and salt arguments required
+[33mWARN[39m: POST /api/users data and salt arguments required
+[31mERROR[39m: data and salt arguments required
+[31mERROR[39m: data and salt arguments required
+[31mERROR[39m: data and salt arguments required
+[33mWARN[39m: POST /api/uses not found endpoint

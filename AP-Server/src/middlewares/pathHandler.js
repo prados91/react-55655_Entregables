@@ -5,7 +5,8 @@ const pathHandler = (req, res, next) => {
     winston_log.WARN(response);
     return res.json({
         statusCode: 404,
-        response: response,
+        path: `${req.method} ${req.url}`,
+        message: `not found endpoint`,
     });
 };
 
