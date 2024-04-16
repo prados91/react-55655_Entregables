@@ -32,3 +32,20 @@ Manager de Mongo avanzado. Filtración y paginación.
 
 ## Sprint 6
 Session and storage de Mongo. FrontEnd.
+
+## Sprint 7. Challenge2
+
+## Sprint 8.
+Custom router.
+
+## Sprint 9.
+APP Front
+
+## Challenger3. 
+Front y Back.
+
+## Sprint 11.
+Custom Error
+
+## Sprint 12.
+Winston
