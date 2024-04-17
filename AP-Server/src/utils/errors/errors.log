@@ -31,3 +31,33 @@
 [31mERROR[39m: data and salt arguments required
 [31mERROR[39m: data and salt arguments required
 [33mWARN[39m: POST /api/uses not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: fs is not defined
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: fs is not defined
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\SMO\Desktop\utils\errors\errors.log'
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\SMO\Desktop\src\utils\errors\errors.log'
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\SMO\Desktop\src\utils\errors\errors.log'
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: ENOENT: no such file or directory, open 'C:\Users\SMO\Desktop\src\utils\errors\errors.log'
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: Unexpected token '', "[31mERROR"... is not valid JSON
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: stringifyObject is not defined
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
