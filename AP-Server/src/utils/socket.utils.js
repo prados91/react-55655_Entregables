@@ -6,10 +6,10 @@ import users from "../data/fs/users.fs.js";
 import propsUsersUtils from "./propsUsers.utils.js";
 import orders from "../data/fs/orders.fs.js";
 import propsOrdersUtils from "./propsOrders.utils.js";
-import winston_log from "../utils/logger/index.js";
+import winstonLog from "../utils/logger/index.js";
 
 export default async (socket) => {
-    winston_log.INFO("client " + socket.id + " connected");
+    winstonLog.INFO("client " + socket.id + " connected");
     socket.emit("products", await products.read());
     socket.on("newProduct", async (data) => {
         try {
@@ -17,7 +17,7 @@ export default async (socket) => {
             await products.createProduct(data);
             socketServer.emit("products", products.read());
         } catch (error) {
-            winston_log.ERROR(error);
+            winstonLog.ERROR(error);
             socketServer.emit("alert", error.message);
         }
     });

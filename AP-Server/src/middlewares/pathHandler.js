@@ -1,8 +1,8 @@
-import winston_log from "../utils/logger/index.js";
+import winstonLog from "../utils/logger/index.js";
 
 const pathHandler = (req, res, next) => {
     const response = `${req.method} ${req.url} not found endpoint`;
-    winston_log.WARN(response);
+    winstonLog.WARN(response);
     return res.json({
         statusCode: 404,
         path: `${req.method} ${req.url}`,

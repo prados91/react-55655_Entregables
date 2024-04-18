@@ -61,3 +61,68 @@
 [33mWARN[39m: GET /favicon.ico not found endpoint
 [33mWARN[39m: GET /favicon.ico not found endpoint
 [33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: winstonLog is not defined
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: ALGO ERROR
+[31mERROR[39m: winstonLog.FATAL is not a function
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[31mERROR[39m: log2 is not defined
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[31mERROR[39m: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[31mERROR[39m: Converting circular structure to JSON
+    --> starting at object with constructor 'DerivedLogger'
+    |     property '_readableState' -> object with constructor 'ReadableState'
+    |     property 'pipes' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'Console'
+    --- property 'parent' closes the circle
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: LOG WARN
+[31mERROR[39m: LOG ERROR
+[33mWARN[39m: GET /favicon.ico not found endpoint

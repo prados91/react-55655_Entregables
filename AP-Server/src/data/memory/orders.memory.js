@@ -1,6 +1,6 @@
 import fs from "fs";
 import crypto from "crypto";
-import winston_log from "../utils/logger/index.js";
+import winstonLog from "../utils/logger/index.js";
 
 class OrdersManager {
     constructor(path) {
@@ -47,7 +47,7 @@ class OrdersManager {
                 throw new Error("There are no orders in the database.");
             }
         } catch (error) {
-            winston_log.ERROR(error.message);
+            winstonLog.ERROR(error.message);
             return error.message;
         }
     }

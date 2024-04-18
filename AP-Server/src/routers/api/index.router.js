@@ -4,9 +4,7 @@ import productsRouter from "./products.router.js";
 import ordersRouter from "./orders.router.js";
 import sessionsRouter from "./sessions.router.js";
 import commentsRouter from "./comments.router.js";
-
-import fs from "fs";
-
+import winstonLog from "../../utils/logger/index.js";
 class ApiRouter extends CustomRouter {
     init() {
         this.router.use("/users", usersRouter);
@@ -17,12 +15,12 @@ class ApiRouter extends CustomRouter {
 
         this.router.use("/logger", async (req, res, next) => {
             try {
-                const log = fs.readFileSync("./src/utils/errors/errors.log", "utf-8");
-                const log2 = log
-                    .split("\n")
-                    .map((e) => e.trim())
-                    .filter((e) => e !== "");
-                return res.json({ response: log2 });
+                winstonLog.HTTP("LOG HTTP");
+                winstonLog.INFO("LOG INFO");
+                winstonLog.WARN("LOG WARN");
+                winstonLog.ERROR("LOG ERROR");
+
+                return res.json({ response: "WINSTON OK" });
             } catch (error) {
                 return next(error);
             }

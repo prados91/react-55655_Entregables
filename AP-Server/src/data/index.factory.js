@@ -1,6 +1,6 @@
 import argsUtil from "../utils/args.utils.js";
 import dbConnection from "../utils/dbConnection.utils.js";
-import winston_log from "../utils/logger/index.js";
+import winstonLog from "../utils/logger/index.js";
 
 const environment = argsUtil.env;
 
@@ -8,12 +8,12 @@ let dao = {};
 
 switch (environment) {
     case "test":
-        winston_log.INFO("MEMORY CONNECTED");
+        winstonLog.INFO("MEMORY CONNECTED");
         const { default: productsMemory } = await import("./memory/products.memory.js");
         dao = { products: productsMemory };
         break;
     case "dev": //aqui iría dev para que se use FileSystem en modo desarrollo
-        winston_log.INFO("FS CONNECTED");
+        winstonLog.INFO("FS CONNECTED");
         const { default: productsFs } = await import("./fs/products.fs.js");
         const { default: usersFs } = await import("./fs/users.fs.js");
         const { default: ordersFs } = await import("./fs/orders.fs.js");

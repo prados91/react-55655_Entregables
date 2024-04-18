@@ -1,4 +1,4 @@
-import winston_log from "../utils/logger/index.js";
+import winstonLog from "../utils/logger/index.js";
 fetch("/api/sessions/", { method: "POST" })
     .then((res) => res.json())
     .then((res) => {
@@ -28,7 +28,7 @@ fetch("/api/sessions/", { method: "POST" })
                         });
                     }
                 } catch (error) {
-                    winston_log.ERROR(error);
+                    winstonLog.ERROR(error);
                 }
             });
         } else {
