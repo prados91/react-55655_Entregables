@@ -7,7 +7,8 @@
 body {
     min-height: 100vh;
 }
-.body__container{
+
+.body__container {
     background-color: rgb(219, 219, 219);
 }
 
@@ -103,23 +104,23 @@ button.navbar-toggler {
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 104, 120, 0.25);
     transition: 0.3s;
-  }
-  
-  .card__products:hover {
+}
+
+.card__products:hover {
     box-shadow: 0 8px 32px 0 rgba(65, 65, 65, 0.25);
-  }
-  
-  .card__products--data {
+}
+
+.card__products--data {
     padding: 2px 16px;
     border-top: 2px solid #dc0054;
     margin-bottom: 25px;
-  }
-  
-  .card__products--data h5 {
-    text-align: center;
-  }
+}
 
-  .card__products--add {
+.card__products--data h5 {
+    text-align: center;
+}
+
+.card__products--add {
     background-color: #c8102e;
     color: #ffffff;
     padding: 10px 20px;
@@ -128,13 +129,13 @@ button.navbar-toggler {
     transition: letter-spacing 0.5s, box-shadow 0.5s;
     border-style: none;
     width: 100%;
-  }
-  
-  .card__products--add:hover {
+}
+
+.card__products--add:hover {
     color: #ffffff;
     letter-spacing: 0.1rem;
     box-shadow: 0 4px 8px 0 rgba(200, 16, 46, 0.7);
-  }
+}
 
 /*USERS*/
 
@@ -143,23 +144,23 @@ button.navbar-toggler {
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 104, 120, 0.25);
     transition: 0.3s;
-  }
-  
-  .card__users:hover {
+}
+
+.card__users:hover {
     box-shadow: 0 8px 32px 0 rgba(65, 65, 65, 0.25);
-  }
-  
-  .card__users--data {
+}
+
+.card__users--data {
     padding: 2px 16px;
     border-top: 2px solid #dc0054;
     margin-bottom: 25px;
-  }
-  
-  .card__users--data h5 {
-    text-align: center;
-  }
+}
 
-  .card__users--add {
+.card__users--data h5 {
+    text-align: center;
+}
+
+.card__users--add {
     background-color: #c8102e;
     color: #ffffff;
     padding: 10px 20px;
@@ -168,10 +169,10 @@ button.navbar-toggler {
     transition: letter-spacing 0.5s, box-shadow 0.5s;
     border-style: none;
     width: 100%;
-  }
-  
-  .card__users--add:hover {
+}
+
+.card__users--add:hover {
     color: #ffffff;
     letter-spacing: 0.1rem;
     box-shadow: 0 4px 8px 0 rgba(200, 16, 46, 0.7);
-  }
+}

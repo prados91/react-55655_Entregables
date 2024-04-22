@@ -51,8 +51,6 @@ export default class CustomRouter {
                 if (!data) return res.error400();
                 else {
                     const { email, role } = data;
-                    console.log(role);
-                    console.log(arrayOfPolicies);
                     if (
                         (role === "USER" && arrayOfPolicies.includes("USER")) ||
                         (role === "ADMIN" && arrayOfPolicies.includes("ADMIN")) ||

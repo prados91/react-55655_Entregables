@@ -6,14 +6,14 @@ const colors = { ERROR: "red", WARN: "yellow", INFO: "blue", HTTP: "green" };
 addColors(colors);
 
 export default createLogger({
-  levels,
-  format: colorize(),
-  transports: [
-    new transports.Console({ level: "HTTP", format: simple() }),
-    new transports.File({
-      level: "WARN",
-      format: simple(),
-      filename: "./src/utils/errors/errors.log",
-    }),
-  ],
+    levels,
+    format: colorize(),
+    transports: [
+        new transports.Console({ level: "HTTP", format: simple() }),
+        new transports.File({
+            level: "WARN",
+            format: simple(),
+            filename: "./src/utils/errors/errors.log",
+        }),
+    ],
 });

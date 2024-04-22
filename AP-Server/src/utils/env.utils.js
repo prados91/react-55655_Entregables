@@ -5,8 +5,6 @@ const { env } = args;
 const path = env === "prod" ? "./.env.prod" : env === "dev" ? "./.env.dev" : "./.env.test";
 config({ path });
 
-console.log(path);
-
 export default {
     PORT: process.env.PORT,
     DB_LINK: process.env.DB_LINK,

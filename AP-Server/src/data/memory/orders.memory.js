@@ -1,5 +1,6 @@
 import fs from "fs";
 import crypto from "crypto";
+import winstonLog from "../utils/logger/index.js";
 
 class OrdersManager {
     constructor(path) {
@@ -29,7 +30,6 @@ class OrdersManager {
             this.orders.push(order);
             const jsonData = JSON.stringify(this.orders, null, 2);
             await fs.promises.writeFile(this.path, jsonData);
-            console.log("create " + order.id);
             return order.id;
         } catch (error) {
             throw error;
@@ -42,13 +42,12 @@ class OrdersManager {
             const readFileParsed = JSON.parse(readFile);
 
             if (readFileParsed.length > 0) {
-                console.log(readFileParsed);
                 return readFileParsed;
             } else {
                 throw new Error("There are no orders in the database.");
             }
         } catch (error) {
-            console.log(error.message);
+            winstonLog.ERROR(error.message);
             return error.message;
         }
     }
@@ -102,7 +101,6 @@ class OrdersManager {
                 this.orders = this.orders.filter((each) => each.id !== oid);
                 const jsonData = JSON.stringify(this.orders, null, 2);
                 await fs.promises.writeFile(this.path, jsonData);
-                console.log("deleted " + oid);
                 return oid;
             }
         } catch (error) {

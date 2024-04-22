@@ -1,7 +1,7 @@
+import winstonLog from "../utils/logger/index.js";
 fetch("/api/sessions/", { method: "POST" })
     .then((res) => res.json())
     .then((res) => {
-        //console.log(res);
         if (res.statusCode === 200) {
             document.querySelector(".navbar-nav").removeChild(document.querySelector("#registerButton"));
             document.querySelector(".navbar-nav").removeChild(document.querySelector("#loginButton"));
@@ -15,7 +15,6 @@ fetch("/api/sessions/", { method: "POST" })
                     let response = await fetch("/api/sessions/signout", opts);
                     response = await response.json();
                     if (response.statusCode === 200) {
-                        //alert(response.message);
                         Swal.fire({
                             title: "GOOD BYE!",
                             icon: "success",
@@ -29,7 +28,7 @@ fetch("/api/sessions/", { method: "POST" })
                         });
                     }
                 } catch (error) {
-                    console.log(error);
+                    winstonLog.ERROR(error);
                 }
             });
         } else {

@@ -2,17 +2,17 @@ import env from "../env.utils.js";
 
 const persistence = env.MODE || "PROD";
 
-let logger;
+let winstonLog;
 
 switch (persistence) {
     case "PROD":
         const { default: winstonProd } = await import("./winstonProd.utils.js");
-        logger = winstonProd;
+        winstonLog = winstonProd;
         break;
     default:
         const { default: winstonDev } = await import("./winstonDev.utils.js");
-        logger = winstonDev;
+        winstonLog = winstonDev;
         break;
 }
 
-export default logger;
+export default winstonLog;
