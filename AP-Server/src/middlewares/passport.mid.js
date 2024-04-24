@@ -32,7 +32,7 @@ passport.use(
             const user = await repository.readByEmail(email);
             const verify = verifyHash(password, user.password);
             if (user?.verified && verify) {
-                const token = createToken({ email, role: user.role });
+                const token = createToken({ email, role: user.role , user_id: user._id});
                 req.token = token;
                 return done(null, user);
             } else {
