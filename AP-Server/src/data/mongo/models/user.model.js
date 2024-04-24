@@ -15,6 +15,7 @@ const schema = new Schema(
             type: String,
             default: "https://i.postimg.cc/wTgNFWhR/profile.png",
         },
+        owner_id:{ type: String, enum: ["ADMIN", "PREM"] } 
     },
     { timestamps: true }
 );
