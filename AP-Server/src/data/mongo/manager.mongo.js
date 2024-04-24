@@ -45,7 +45,7 @@ class MongoManager {
                 { $replaceRoot: { newRoot: { $mergeObjects: [{ $arrayElemAt: ["$product_id", 0] }, "$$ROOT"] } } },
                 { $set: { subTotal: { $multiply: ["$quantity", "$price"] } } },
                 { $group: { _id: "$user_id", total: { $sum: "$subTotal" } } },
-                { $project: { _id: 0, user_id: "$_id", total: "$total", currency: "ARS", date: new Date() } },
+                { $project: { _id: 0, user_id: "$_id", total: "$total", currency: "USD", date: new Date() } },
                 //{ $merge: { into: "bills" } }
             ]);
             return report;
