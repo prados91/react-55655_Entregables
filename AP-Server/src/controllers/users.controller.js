@@ -37,7 +37,7 @@ class UsersController {
     readOne = async (req, res, next) => {
         try {
             const { uid } = req.params;
-            
+
             const one = await this.service.readOne(uid);
             return res.success200(one);
         } catch (error) {
@@ -72,9 +72,20 @@ class UsersController {
             return next(error);
         }
     };
+    updateRole = async (req, res, next) => {
+        try {
+            const { uid } = req.params;
+            const one = await this.service.readOne(uid);
+            const newRole = one.role === "PREM" ? "USER" : "PREM";
+            const response = await this.service.update(uid, { role: newRole });
+            return res.success200(response);
+        } catch (error) {
+            return next(error);
+        }
+    };
 }
 
 export default UsersController;
 const controller = new UsersController();
-const { create, read, readOne, update, destroy, readByEmail } = controller;
-export { create, read, readOne, update, destroy, readByEmail };
+const { create, read, readOne, update, destroy, readByEmail, updateRole } = controller;
+export { create, read, readOne, update, destroy, readByEmail, updateRole };
