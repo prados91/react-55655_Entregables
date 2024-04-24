@@ -53,7 +53,7 @@ class ProductsController {
             if (req.user.role === "PREM") {
                 const one = await this.service.readOne(pid);
                 const oid = one.owner_id.toString();
-                if (oid === req.user.owner_id) {
+                if (oid === req.user.user_id) {
                     const response = await this.service.update(pid, data);
                     return res.success200(response);
                 } else {
