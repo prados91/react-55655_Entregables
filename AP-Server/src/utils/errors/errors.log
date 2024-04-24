@@ -126,3 +126,23 @@
 [33mWARN[39m: LOG WARN
 [31mERROR[39m: LOG ERROR
 [33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: Invalid credentials
+[31mERROR[39m: Cannot read properties of undefined (reading '_id')
+[33mWARN[39m: Not Found
+[31mERROR[39m: Cannot read properties of undefined (reading '_id')
+[33mWARN[39m: Not Found
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Invalid credentials
+[31mERROR[39m: Cannot read properties of undefined (reading 'owner_id')
+[33mWARN[39m: Not Found
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: PUT /api/products/66292d082c92ad622ebbd5c2 not found endpoint
+[33mWARN[39m: PUT /api/products/66292d082c92ad622ebbd5c2 not found endpoint
+[33mWARN[39m: Invalid credentials
+[31mERROR[39m: res.error402 is not a function
+[33mWARN[39m: Forbidden
