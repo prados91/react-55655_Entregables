@@ -39,9 +39,13 @@ export default class CustomRouter {
     };
     policies = (arrayOfPolicies) => async (req, res, next) => {
         try {
-            if (arrayOfPolicies.includes("PUBLIC")) return next();
+            /*if (arrayOfPolicies.includes("PUBLIC")) return next();
             let token = req.cookies["token"];
-            if (!token) return res.error401();
+            if (!token) return res.error401();*/
+            //ELIMINO LA CONDICIÓN DE PUBLIC PARA QUE SIEMPRE SE CONSULTE POR EL TOKEN, SI NO TENGO TOKEN ENTONCES ASUMO QUE NO HAY USUARIO LOGEADO 
+            //COMO SI FUERA PUBLIC
+            let token = req.cookies["token"];
+            if (!token) return next();
             else {
                 const data = jwt.verify(token, env.SECRET);
                 if (!data) return res.error400();
