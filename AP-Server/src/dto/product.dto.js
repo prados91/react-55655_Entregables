@@ -9,7 +9,7 @@ class ProductDTO {
         this.photo = data.photo || "https://static.frieze.com/files/inline-images/new-site2.jpeg";
         this.price = data.price;
         this.stock = data.stock;
-        this.owner_id = data.owner_id;
+        this.owner_id = data.user_id;
         this.date = data.date || new Date();
         argsUtil.env !== "prod" && (this.updatedAt = new Date());
         argsUtil.env !== "prod" && (this.createdAt = new Date());
