@@ -57,7 +57,7 @@ class ProductsController {
                     const response = await this.service.update(pid, data);
                     return res.success200(response);
                 } else {
-                    return res.error403()
+                    return res.error403();
                 }
             } else {
                 const response = await this.service.update(pid, data);
@@ -70,8 +70,19 @@ class ProductsController {
     destroy = async (req, res, next) => {
         try {
             const { pid } = req.params;
-            const response = await this.service.destroy(pid);
-            return res.success200(response);
+            if (req.user.role === "PREM") {
+                const one = await this.service.readOne(pid);
+                const oid = one.owner_id.toString();
+                if (oid === req.user.user_id) {
+                    const response = await this.service.destroy(pid);
+                    return res.success200(response);
+                } else {
+                    return res.error403();
+                }
+            } else {
+                const response = await this.service.destroy(pid);
+                return res.success200(response);
+            }
         } catch (error) {
             return next(error);
         }
