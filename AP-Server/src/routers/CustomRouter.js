@@ -31,13 +31,9 @@ export default class CustomRouter {
     responses = (req, res, next) => {
         res.success200 = (payload) => res.json({ statusCode: 200, response: payload });
         res.success201 = (payload) => res.json({ statusCode: 201, response: payload });
-        //res.error400 = (message) => res.json({ statusCode: 400, message });
         res.error400 = () => CustomError.new(errors.error);
-        //res.error401 = () => res.json({ statusCode: 401, message: "Bad auth!" });
         res.error401 = () => CustomError.new(errors.auth);
-        //res.error403 = () => res.json({ statusCode: 403, message: "Forbidden!" });
         res.error403 = () => CustomError.new(errors.forbidden);
-        //res.error404 = () => res.json({ statusCode: 404, message: "Not found!" });
         res.error404 = () => CustomError.new(errors.notFound);
         return next();
     };
@@ -50,7 +46,7 @@ export default class CustomRouter {
                 const data = jwt.verify(token, env.SECRET);
                 if (!data) return res.error400();
                 else {
-                    const { email, role } = data;
+                    const { email, role, owner_id } = data;
                     if (
                         (role === "USER" && arrayOfPolicies.includes("USER")) ||
                         (role === "ADMIN" && arrayOfPolicies.includes("ADMIN")) ||
@@ -58,6 +54,8 @@ export default class CustomRouter {
                     ) {
                         const user = await users.readByEmail(email);
                         req.user = user;
+                        req.user.role = role;
+                        req.user.owner_id = owner_id;
                         return next();
                     } else return res.error403();
                 }
