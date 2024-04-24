@@ -46,7 +46,7 @@ export default class CustomRouter {
                 const data = jwt.verify(token, env.SECRET);
                 if (!data) return res.error400();
                 else {
-                    const { email, role, owner_id } = data;
+                    const { email, role, user_id } = data;
                     if (
                         (role === "USER" && arrayOfPolicies.includes("USER")) ||
                         (role === "ADMIN" && arrayOfPolicies.includes("ADMIN")) ||
@@ -55,7 +55,7 @@ export default class CustomRouter {
                         const user = await users.readByEmail(email);
                         req.user = user;
                         req.user.role = role;
-                        req.user.owner_id = owner_id;
+                        req.user.user_id = user_id;
                         return next();
                     } else return res.error403();
                 }
