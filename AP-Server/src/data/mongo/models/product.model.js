@@ -9,6 +9,7 @@ const schema = new Schema(
         photo: { type: String, default: "https://i.postimg.cc/wTgNFWhR/profile.png" },
         price: { type: Number, default: 1000 },
         stock: { type: Number, default: 50 },
+        owner_id: { type: String, required: true, ref: "users", enum: ["ADMIN", "PREM"] },
     },
     { timestamps: true }
 );
