@@ -26,6 +26,8 @@ class ProductsController {
             if (req.query.title) {
                 filter.title = new RegExp(req.query.title.trim(), "i");
             }
+            //console.log(req.user)
+            //filter.owner_id = {$ne: req.user.owner_id}
             if (req.query.sort === "desc") {
                 options.sort.title = "desc";
             }
@@ -48,8 +50,19 @@ class ProductsController {
         try {
             const { pid } = req.params;
             const data = req.body;
-            const response = await this.service.update(pid, data);
-            return res.success200(response);
+            if (req.user.role === "PREM") {
+                const one = await this.service.readOne(pid);
+                const oid = one.owner_id.toString();
+                if (oid === req.user.owner_id) {
+                    const response = await this.service.update(pid, data);
+                    return res.success200(response);
+                } else {
+                    return res.error403()
+                }
+            } else {
+                const response = await this.service.update(pid, data);
+                return res.success200(response);
+            }
         } catch (error) {
             return next(error);
         }
