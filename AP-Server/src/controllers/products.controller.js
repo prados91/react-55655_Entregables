@@ -26,11 +26,15 @@ class ProductsController {
             if (req.query.title) {
                 filter.title = new RegExp(req.query.title.trim(), "i");
             }
-            //console.log(req.user)
-            //filter.owner_id = {$ne: req.user.owner_id}
+
             if (req.query.sort === "desc") {
                 options.sort.title = "desc";
             }
+
+            if (req.user && req.user.role === "PREM") {
+                filter.owner_id = { $ne: req.user.user_id };
+            }
+
             const all = await this.service.read({ filter, options });
             return res.success200(all);
         } catch (error) {
