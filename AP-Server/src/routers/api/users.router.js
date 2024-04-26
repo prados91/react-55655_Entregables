@@ -3,7 +3,7 @@ import { create, read, readOne, update, destroy, readByEmail, updateRole } from 
 
 class UsersRouter extends CustomRouter {
     init() {
-        this.create("/", ["PUBLIC"], create);
+        this.create("/", ["ADMIN","USER","PREM"], create);
         this.read("/", ["ADMIN"], read);
         this.read("/:uid", ["USER", "PREM"], readOne);
         this.update("/:uid", ["USER", "PREM"], update);
