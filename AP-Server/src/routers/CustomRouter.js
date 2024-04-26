@@ -42,7 +42,7 @@ export default class CustomRouter {
             /*if (arrayOfPolicies.includes("PUBLIC")) return next();
             let token = req.cookies["token"];
             if (!token) return res.error401();*/
-            //ELIMINO LA CONDICIÓN DE PUBLIC PARA QUE SIEMPRE SE CONSULTE POR EL TOKEN, SI NO TENGO TOKEN ENTONCES ASUMO QUE NO HAY USUARIO LOGEADO 
+            //ELIMINO LA CONDICIÓN DE PUBLIC PARA QUE SIEMPRE SE CONSULTE POR EL TOKEN, SI NO TENGO TOKEN ENTONCES ASUMO QUE NO HAY USUARIO LOGEADO
             //COMO SI FUERA PUBLIC
             let token = req.cookies["token"];
             if (!token) return next();
@@ -51,12 +51,9 @@ export default class CustomRouter {
                 if (!data) return res.error400();
                 else {
                     const { email, role, user_id } = data;
-                    if (
-                        (role === "USER" && arrayOfPolicies.includes("USER")) ||
-                        (role === "ADMIN" && arrayOfPolicies.includes("ADMIN")) ||
-                        (role === "PREM" && arrayOfPolicies.includes("PREM"))
-                    ) {
+                    if (arrayOfPolicies.includes(role)) {
                         const user = await users.readByEmail(email);
+                        console.log("policies", user);
                         req.user = user;
                         req.user.role = role;
                         req.user.user_id = user_id;
