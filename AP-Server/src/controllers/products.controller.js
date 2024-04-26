@@ -32,7 +32,7 @@ class ProductsController {
             }
 
             if (req.user && req.user.role === "PREM") {
-                filter.owner_id = { $ne: req.user.user_id };
+                filter.owner_id = { $ne: req.user._id };
             }
 
             const all = await this.service.read({ filter, options });
