@@ -5,7 +5,7 @@ import passCallBack from "../../middlewares/passCallBack.mid.js";
 
 class OrdersRouter extends CustomRouter {
     init() {
-        this.read("/", ["ADMIN", "PREM", "PUBLIC"], passCallBack("jwt"), async (req, res, next) => {
+        this.read("/", ["ADMIN", "PREM", "USER"], passCallBack("jwt"), async (req, res, next) => {//ESTABA PUBLIC
             try {
                 const options = {
                     limit: req.query.limit || 20,

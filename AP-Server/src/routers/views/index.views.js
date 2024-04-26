@@ -12,7 +12,7 @@ class ViewsRouter extends CustomRouter {
         this.router.use("/products", productsRouter);
         this.router.use("/orders", ordersRouter);
         this.router.use("/sessions", sessionsRouter);
-        this.read("/", ["PUBLIC"], async (req, res, next) => {
+        this.read("/", ["USER", "PREM","ADMIN"], async (req, res, next) => {//ESTABA PUBLIC
             try {
                 const options = {
                     limit: req.query.limit || 10,
