@@ -1,4 +1,4 @@
-import env from "../utils/env.utils.js";
+import env from "./env.utils.js";
 import { createTransport } from "nodemailer";
 import __dirname from "../../utils.js";
 
@@ -13,6 +13,7 @@ async function recoveryEmail(data) {
                 pass: env.GOOGLE_PASSWORD,
             },
         });
+        /*
         await transport.sendMail({
             from: `CODER <${env.GOOGLE_EMAIL}>`,
             to: data.email,
@@ -66,6 +67,7 @@ async function recoveryEmail(data) {
                 },
             ],
         });
+        */
     } catch (error) {
         throw error;
     }

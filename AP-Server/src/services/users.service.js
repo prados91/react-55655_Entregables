@@ -1,4 +1,5 @@
 import repository from "../repositories/users.rep.js";
+import recoveryEmail from "../utils/recoveryEmail.utils.js";
 import sendEmail from "../utils/sendEmail.utils.js";
 
 class UsersService {
@@ -14,6 +15,14 @@ class UsersService {
     register = async (data) => {
         try {
             await sendEmail(data);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    recovery = async (data) => {
+        try {
+            await recoveryEmail(data);
         } catch (error) {
             throw error;
         }

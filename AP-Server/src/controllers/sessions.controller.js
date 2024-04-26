@@ -99,9 +99,22 @@ class SessionsController {
             return next(error);
         }
     };
+    recovery = async (req, res, next) => {
+        const { email } = req.body;
+        const one = await this.service.readByEmail(email);
+        await this.service.recovery({ email });
+        try {
+            return res.json({
+                statusCode: 201,
+                message: one,
+            });
+        } catch (error) {
+            return next(error);
+        }
+    };
 }
 
 export default SessionsController;
 const controller = new SessionsController();
-const { register, login, signout, verifyAccount, me } = controller;
-export { register, login, signout, verifyAccount, me };
+const { register, login, signout, verifyAccount, me, recovery } = controller;
+export { register, login, signout, verifyAccount, me, recovery };
