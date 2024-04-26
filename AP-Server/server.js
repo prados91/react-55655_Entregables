@@ -36,8 +36,8 @@ server.set("view engine", "handlebars");
 server.set("views", __dirname + "/src/views");
 
 //MIDDLEWARES
-server.use(cors({ origin: true, credentials: true }));
 server.use(cookieParser(env.SECRET_KEY));
+server.use(cors({ origin: true, credentials: true }));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
