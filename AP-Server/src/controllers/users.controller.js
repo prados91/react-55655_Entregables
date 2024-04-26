@@ -83,9 +83,17 @@ class UsersController {
             return next(error);
         }
     };
+    recovery = async (req, res, next) => {
+        try {
+            const data = req.body;
+            return res.json({ statusCode: 201, message: req.body });
+        } catch (error) {
+            return next(error);
+        }
+    };
 }
 
 export default UsersController;
 const controller = new UsersController();
-const { create, read, readOne, update, destroy, readByEmail, updateRole } = controller;
-export { create, read, readOne, update, destroy, readByEmail, updateRole };
+const { create, read, readOne, update, destroy, readByEmail, updateRole, recovery } = controller;
+export { create, read, readOne, update, destroy, readByEmail, updateRole, recovery };
