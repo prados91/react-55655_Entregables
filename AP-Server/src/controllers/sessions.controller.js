@@ -103,7 +103,5 @@ class SessionsController {
 
 export default SessionsController;
 const controller = new SessionsController();
-//const { register, login, google, github, me, signout, verifyAccount, badauth } = controller;
-//export { register, login, google, github, me, signout, verifyAccount, badauth };
 const { register, login, signout, verifyAccount, me } = controller;
 export { register, login, signout, verifyAccount, me };
