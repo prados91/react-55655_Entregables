@@ -55,8 +55,8 @@ export default class CustomRouter {
                         const user = await users.readByEmail(email);
                         console.log("policies", user);
                         req.user = user;
-                        req.user.role = role;
-                        req.user.user_id = user_id;
+                       /* req.user.role = role;
+                        req.user.user_id = user_id;*/
                         return next();
                     } else return res.error403();
                 }
