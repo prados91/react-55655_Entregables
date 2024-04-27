@@ -70,7 +70,7 @@ class UsersController {
                 } else {
                     const newPass = createHash(password);
                     const response = await this.service.update(uid, { password: newPass });
-                    return res.success200(response);
+                    return res.success201(response);
                 }
             }
         } catch (error) {
