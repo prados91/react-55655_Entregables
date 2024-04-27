@@ -47,18 +47,6 @@ class SessionsController {
             return next(error);
         }
     };
-    current = async (req, res, next) => {
-        try {
-            const user = {
-                email: req.user.email,
-                role: req.user.role,
-                photo: req.user.photo,
-            };
-            return res.success200(user);
-        } catch (error) {
-            return next(error);
-        }
-    };
     signout = async (req, res, next) => {
         try {
             return res.clearCookie("token").success200("Signed out!");
@@ -100,14 +88,19 @@ class SessionsController {
         }
     };
     recovery = async (req, res, next) => {
-        const { email } = req.body;
-        const one = await this.service.readByEmail(email);
-        await this.service.recovery({ email });
         try {
-            return res.json({
-                statusCode: 201,
-                message: one,
-            });
+            const { email } = req.body;
+            const user = await this.service.readByEmail(email);
+            if (user) {
+                await this.service.recovery(user);
+                return res.json({
+                    statusCode: 200,
+                    message: "Email sent!",
+                    userId: user._id,
+                });
+            } else {
+                CustomError.new(errors.notFound);
+            }
         } catch (error) {
             return next(error);
         }
