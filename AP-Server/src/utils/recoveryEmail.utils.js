@@ -4,7 +4,7 @@ import __dirname from "../../utils.js";
 
 async function recoveryEmail(data) {
     try {
-        const recoveryLink = `https:/localhost:${env.PORT}/api/users/recovery/:${data.email}`;
+        const link = `http://localhost:5173/restoreInfo`
         const transport = createTransport({
             service: "gmail",
             port: env.PORT,
@@ -13,11 +13,11 @@ async function recoveryEmail(data) {
                 pass: env.GOOGLE_PASSWORD,
             },
         });
-        /*
+
         await transport.sendMail({
             from: `CODER <${env.GOOGLE_EMAIL}>`,
             to: data.email,
-            subject: `RECOVRY PASSWORD TO ${data.name.toUpperCase()} `,
+            subject: `RECOVERY PASSWORD: ${data.name.toUpperCase()} `,
             html: `
                 <!doctype html>
                 <html lang="en">
@@ -39,14 +39,14 @@ async function recoveryEmail(data) {
                                             <td class="wrapper">
                                                 <p>Hi ${data.name.toUpperCase()}</p>
                                                 <p>Para recuperar su contraseña haga click en el siguiente enlace.</p>
-                                                <a href=${recoveryLink}></a>
+                                                <a href=${link}>RECOVERY</a>
                                             </td>
                                         </tr>
                                     </table>
                                     <div class="footer">
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                             <td class="content-block powered-by">
-                                                Powered by <a href="http://htmlemail.io">BasketStore <img src="cid:weblogo"
+                                                Powered by <a>BasketStore <img src="cid:weblogo"
                                                         alt="Logo Ecommerce" class="img-fluid" style="max-width: 30px;"></a>
                                             </td>
                                         </table>
@@ -67,7 +67,6 @@ async function recoveryEmail(data) {
                 },
             ],
         });
-        */
     } catch (error) {
         throw error;
     }
