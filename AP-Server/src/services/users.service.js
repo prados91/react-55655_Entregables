@@ -19,7 +19,6 @@ class UsersService {
             throw error;
         }
     };
-
     recovery = async (data) => {
         try {
             await recoveryEmail(data);
