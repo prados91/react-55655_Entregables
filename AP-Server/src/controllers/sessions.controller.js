@@ -93,11 +93,16 @@ class SessionsController {
             const user = await this.service.readByEmail(email);
             if (user) {
                 await this.service.recovery(user);
-                return res.json({
-                    statusCode: 200,
-                    message: "Email sent!",
-                    userId: user._id,
-                });
+                return res
+                    .cookie("emailToken", {
+                        maxAge: 60 * 60 * 24 * 7,
+                        httpOnly: true,
+                    })
+                    .json({
+                        statusCode: 200,
+                        message: "Email sent!",
+                        userId: user._id,
+                    });
             } else {
                 CustomError.new(errors.notFound);
             }
