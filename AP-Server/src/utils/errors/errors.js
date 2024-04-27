@@ -7,6 +7,7 @@ const errors = {
     userProd: { message: "You cannot add your own product to your cart", statusCode: 403 },
     notFound: { message: "Not Found", statusCode: 404 },
     fatal: { message: "Fatal", statusCode: 500 },
+    equal: { message: "You can't use the same password", statusCode: 401 },
 };
 
 export default errors;
