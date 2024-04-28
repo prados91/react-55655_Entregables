@@ -4,7 +4,8 @@ import __dirname from "../../utils.js";
 
 async function recoveryEmail(data) {
     try {
-        const link = `http://localhost:5173/restoreInfo`
+        const id = data._id.toString();
+        const link = `http://localhost:5173/restoreInfo/${id}`;
         const transport = createTransport({
             service: "gmail",
             port: env.PORT,
