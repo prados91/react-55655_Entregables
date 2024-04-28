@@ -1,6 +1,7 @@
 import service from "../services/users.service.js";
 import CustomError from "../utils/errors/CustomError.js";
 import errors from "../utils/errors/errors.js";
+import { createToken } from "../utils/token.utils.js";
 
 class SessionsController {
     constructor() {
@@ -93,9 +94,10 @@ class SessionsController {
             const user = await this.service.readByEmail(email);
             if (user) {
                 await this.service.recovery(user);
+                const emailToken = createToken({ user_id: user._id }, { expiresIn: 60 * 60 });
                 return res
-                    .cookie("emailToken", {
-                        maxAge: 60 * 60 * 24 * 7,
+                    .cookie("emailToken", emailToken, {
+                        maxAge: 60*60*24*7,
                         httpOnly: true,
                     })
                     .json({
