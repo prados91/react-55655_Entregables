@@ -93,17 +93,12 @@ class SessionsController {
             const { email } = req.body;
             const user = await this.service.readByEmail(email);
             if (user) {
-                const token = createToken({ user_id: user._id, email: email }, { expiresIn: 3600000 });
-                await this.service.recovery(user, token);
-                return res
-                    .cookie("token", token, {
-                        maxAge: 3600000, //tiempo en milisegundos
-                        httpOnly: true, // si saco esta propiedad, funciona la expiración
-                    })
-                    .json({
-                        statusCode: 200,
-                        message: "Email sent!",
-                    });
+                const eToken = createToken({ user_id: user._id }, { expiresIn: 3600 }); //ACÁ EL TIEMPO VA EN SEGUNDOS
+                await this.service.recovery(user, eToken);
+                return res.json({
+                    statusCode: 200,
+                    message: "Email sent!",
+                });
             } else {
                 CustomError.new(errors.notFound);
             }
