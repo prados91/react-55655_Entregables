@@ -19,9 +19,9 @@ class UsersService {
             throw error;
         }
     };
-    recovery = async (data) => {
+    recovery = async (data, token) => {
         try {
-            await recoveryEmail(data);
+            await recoveryEmail(data, token);
         } catch (error) {
             throw error;
         }
