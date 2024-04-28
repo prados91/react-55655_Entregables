@@ -96,14 +96,13 @@ class SessionsController {
                 await this.service.recovery(user);
                 const emailToken = createToken({ user_id: user._id }, { expiresIn: 60 * 60 });
                 return res
-                    .cookie("emailToken", emailToken, {
-                        maxAge: 60000, //tiempo en milisegundos ,
-                        httpOnly: true,
+                    .cookie("emailToken", emailToken,{
+                        maxAge: 3600000, //tiempo en milisegundos
+                        httpOnly: true,// si saco esta propiedad, funciona la expiración
                     })
                     .json({
                         statusCode: 200,
                         message: "Email sent!",
-                        //userId: user._id,
                     });
             } else {
                 CustomError.new(errors.notFound);
