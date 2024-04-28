@@ -172,3 +172,25 @@
 [33mWARN[39m: PUT /api/users/ not found endpoint
 [33mWARN[39m: PUT /api/users/ not found endpoint
 [33mWARN[39m: PUT /api/users/ not found endpoint
+[33mWARN[39m: POST /api/users/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxYWQwNWY0NDMzOThjNjYxYTE5NzRiIiwiZW1haWwiOiJhdWd1c3RvLmF0cC45MUBnbWFpbC5jb20iLCJpYXQiOjE3MTQzMzQ5NDcsImV4cCI6MTcxNzkzNDk0N30.T3RwB5vn9Eqm6aIT_TCgh9okG-938ls5T07k8KMSRZo not found endpoint
+[33mWARN[39m: POST /api/users/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxYWQwNWY0NDMzOThjNjYxYTE5NzRiIiwiZW1haWwiOiJhdWd1c3RvLmF0cC45MUBnbWFpbC5jb20iLCJpYXQiOjE3MTQzMzQ5NDcsImV4cCI6MTcxNzkzNDk0N30.T3RwB5vn9Eqm6aIT_TCgh9okG-938ls5T07k8KMSRZo not found endpoint
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: bad auth
+[33mWARN[39m: bad auth
+[33mWARN[39m: bad auth
+[33mWARN[39m: bad auth
+[33mWARN[39m: You can't use the same password
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
