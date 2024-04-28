@@ -97,13 +97,13 @@ class SessionsController {
                 const emailToken = createToken({ user_id: user._id }, { expiresIn: 60 * 60 });
                 return res
                     .cookie("emailToken", emailToken, {
-                        maxAge: 60*60*24*7,
+                        maxAge: 60000, //tiempo en milisegundos ,
                         httpOnly: true,
                     })
                     .json({
                         statusCode: 200,
                         message: "Email sent!",
-                        userId: user._id,
+                        //userId: user._id,
                     });
             } else {
                 CustomError.new(errors.notFound);
