@@ -2,10 +2,11 @@ import env from "./env.utils.js";
 import { createTransport } from "nodemailer";
 import __dirname from "../../utils.js";
 
-async function recoveryEmail(data) {
+async function recoveryEmail(data, token) {
     try {
         const id = data._id.toString();
         const link = `http://localhost:5173/restoreInfo/${id}`;
+        const link2 = `http://localhost:5173/restoreInfo/?token=${token}`;
         const transport = createTransport({
             service: "gmail",
             port: env.PORT,
@@ -40,7 +41,7 @@ async function recoveryEmail(data) {
                                             <td class="wrapper">
                                                 <p>Hi ${data.name.toUpperCase()}</p>
                                                 <p>Para recuperar su contraseña haga click en el siguiente enlace.</p>
-                                                <a href=${link}>RECOVERY</a>
+                                                <a href=${link2}>RECOVERY</a>
                                             </td>
                                         </tr>
                                     </table>

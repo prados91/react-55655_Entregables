@@ -97,9 +97,16 @@ class UsersController {
             return next(error);
         }
     };
+    verifyToken = async (req, res, next) => {
+        try {
+            console.log("ACA LLEGO LA SOLICITUD");
+        } catch (error) {
+            return next(error);
+        }
+    };
 }
 
 export default UsersController;
 const controller = new UsersController();
-const { create, read, readOne, update, destroy, readByEmail, updateRole } = controller;
-export { create, read, readOne, update, destroy, readByEmail, updateRole };
+const { create, read, readOne, update, destroy, readByEmail, updateRole, verifyToken } = controller;
+export { create, read, readOne, update, destroy, readByEmail, updateRole, verifyToken };

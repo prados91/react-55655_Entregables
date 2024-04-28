@@ -1,5 +1,5 @@
 import CustomRouter from "../CustomRouter.js";
-import { create, read, readOne, update, destroy, readByEmail, updateRole } from "../../controllers/users.controller.js";
+import { create, read, readOne, update, destroy, readByEmail, updateRole , verifyToken} from "../../controllers/users.controller.js";
 
 class UsersRouter extends CustomRouter {
     init() {
@@ -10,6 +10,8 @@ class UsersRouter extends CustomRouter {
         this.destroy("/:uid", ["USER", "PREM"], destroy);
         this.read("/:email", ["ADMIN"], readByEmail);
         this.update("/premium/:uid", ["USER", "PREM"], updateRole);
+        this.update("/:token", ["USER", "PREM", "ADMIN"], verifyToken);
+
     }
 }
 
