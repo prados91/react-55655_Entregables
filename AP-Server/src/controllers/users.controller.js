@@ -2,6 +2,7 @@ import service from "../services/users.service.js";
 import { createHash, verifyHash } from "../utils/hash.utils.js";
 import CustomError from "../utils/errors/CustomError.js";
 import errors from "../utils/errors/errors.js";
+import { verifyToken } from "../utils/token.utils.js";
 
 class UsersController {
     constructor() {
@@ -97,9 +98,15 @@ class UsersController {
             return next(error);
         }
     };
-    verifyToken = async (req, res, next) => {
+    verify = async (req, res, next) => {
         try {
-            console.log("ACA LLEGO LA SOLICITUD");
+            const eToken = verifyToken(req.params);
+            console.log(eToken);
+            if (eToken) {
+                return res.json({ statusCode: 200, message: "Verified link", user_id: eToken.user_id });
+            } else {
+                return CustomError(errors.expired);
+            }
         } catch (error) {
             return next(error);
         }
@@ -108,5 +115,5 @@ class UsersController {
 
 export default UsersController;
 const controller = new UsersController();
-const { create, read, readOne, update, destroy, readByEmail, updateRole, verifyToken } = controller;
-export { create, read, readOne, update, destroy, readByEmail, updateRole, verifyToken };
+const { create, read, readOne, update, destroy, readByEmail, updateRole, verify } = controller;
+export { create, read, readOne, update, destroy, readByEmail, updateRole, verify };
