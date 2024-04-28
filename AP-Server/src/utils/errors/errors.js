@@ -8,6 +8,7 @@ const errors = {
     notFound: { message: "Not Found", statusCode: 404 },
     fatal: { message: "Fatal", statusCode: 500 },
     equal: { message: "You can't use the same password", statusCode: 401 },
+    expired: { message: "Link expired", statusCode: 403 },
 };
 
 export default errors;
