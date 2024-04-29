@@ -194,3 +194,8 @@
 [31mERROR[39m: jwt expired
 [31mERROR[39m: jwt expired
 [31mERROR[39m: jwt expired
+[31mERROR[39m: undefined {"connectionGeneration":0}
+[31mERROR[39m: undefined {"connectionGeneration":1}
+[31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
+[31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
+[31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
