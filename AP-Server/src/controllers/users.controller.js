@@ -101,7 +101,6 @@ class UsersController {
     verify = async (req, res, next) => {
         try {
             const eToken = verifyToken(req.params);
-            console.log(eToken);
             if (eToken) {
                 return res.json({ statusCode: 200, message: "Verified link", user_id: eToken.user_id });
             } else {
