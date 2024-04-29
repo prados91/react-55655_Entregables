@@ -199,3 +199,6 @@
 [31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
 [31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
 [31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: You can't use the same password
