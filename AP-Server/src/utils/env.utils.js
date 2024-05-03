@@ -17,4 +17,5 @@ export default {
     GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
     GOOGLE_PASSWORD: process.env.GOOGLE_PASSWORD,
     MODE: process.env.MODE,
+    RECOVERY: process.env.RECOVERY,
 };
