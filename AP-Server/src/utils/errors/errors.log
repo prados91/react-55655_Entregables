@@ -126,3 +126,79 @@
 [33mWARN[39m: LOG WARN
 [31mERROR[39m: LOG ERROR
 [33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: Invalid credentials
+[31mERROR[39m: Cannot read properties of undefined (reading '_id')
+[33mWARN[39m: Not Found
+[31mERROR[39m: Cannot read properties of undefined (reading '_id')
+[33mWARN[39m: Not Found
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Invalid credentials
+[31mERROR[39m: Cannot read properties of undefined (reading 'owner_id')
+[33mWARN[39m: Not Found
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: PUT /api/products/66292d082c92ad622ebbd5c2 not found endpoint
+[33mWARN[39m: PUT /api/products/66292d082c92ad622ebbd5c2 not found endpoint
+[33mWARN[39m: Invalid credentials
+[31mERROR[39m: res.error402 is not a function
+[33mWARN[39m: Forbidden
+[31mERROR[39m: Cannot read properties of undefined (reading '_id')
+[33mWARN[39m: Not Found
+[33mWARN[39m: Not Found
+[31mERROR[39m: one is not defined
+[33mWARN[39m: POST /api/orders not found endpoint
+[33mWARN[39m: POST /api/orders not found endpoint
+[33mWARN[39m: POST /api/orders not found endpoint
+[33mWARN[39m: POST /api/orders/ not found endpoint
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Forbidden
+[33mWARN[39m: You cannot add your own product to your cart
+[31mERROR[39m: Cannot read properties of null (reading 'password')
+[31mERROR[39m: Cannot read properties of null (reading 'password')
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Forbidden
+[33mWARN[39m: PUT /api/users/ not found endpoint
+[33mWARN[39m: PUT /api/users/ not found endpoint
+[33mWARN[39m: PUT /api/users/ not found endpoint
+[33mWARN[39m: PUT /api/users/ not found endpoint
+[33mWARN[39m: PUT /api/users/ not found endpoint
+[33mWARN[39m: POST /api/users/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxYWQwNWY0NDMzOThjNjYxYTE5NzRiIiwiZW1haWwiOiJhdWd1c3RvLmF0cC45MUBnbWFpbC5jb20iLCJpYXQiOjE3MTQzMzQ5NDcsImV4cCI6MTcxNzkzNDk0N30.T3RwB5vn9Eqm6aIT_TCgh9okG-938ls5T07k8KMSRZo not found endpoint
+[33mWARN[39m: POST /api/users/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxYWQwNWY0NDMzOThjNjYxYTE5NzRiIiwiZW1haWwiOiJhdWd1c3RvLmF0cC45MUBnbWFpbC5jb20iLCJpYXQiOjE3MTQzMzQ5NDcsImV4cCI6MTcxNzkzNDk0N30.T3RwB5vn9Eqm6aIT_TCgh9okG-938ls5T07k8KMSRZo not found endpoint
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: bad auth
+[33mWARN[39m: bad auth
+[33mWARN[39m: bad auth
+[33mWARN[39m: bad auth
+[33mWARN[39m: You can't use the same password
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: jwt expired
+[31mERROR[39m: undefined {"connectionGeneration":0}
+[31mERROR[39m: undefined {"connectionGeneration":1}
+[31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
+[31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
+[31mERROR[39m: Operation `products.countDocuments()` buffering timed out after 10000ms
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: You can't use the same password

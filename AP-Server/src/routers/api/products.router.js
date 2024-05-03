@@ -4,8 +4,8 @@ import { create, read, readOne, update, destroy } from "../../controllers/produc
 class ProductsRouter extends CustomRouter {
     init() {
         this.create("/", ["ADMIN", "PREM"], create);
-        this.read("/", ["PUBLIC"], read);
-        this.read("/:pid", ["PUBLIC"], readOne);
+        this.read("/", ["USER", "ADMIN", "PREM"], read); //ACA SOLO ESTABA PUBLIC
+        this.read("/:pid", ["USER", "ADMIN", "PREM"], readOne); //ACÁ SOLO ESTABA PUBLIC
         this.update("/:pid", ["ADMIN", "PREM"], update);
         this.destroy("/:pid", ["ADMIN", "PREM"], destroy);
     }

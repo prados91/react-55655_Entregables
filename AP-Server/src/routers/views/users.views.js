@@ -4,7 +4,7 @@ const { users } = dao;
 
 export default class UsersRouter extends CustomRouter {
     init() {
-        this.read("/", ["ADMIN", "PREM", "PUBLIC"], async (req, res, next) => {
+        this.read("/", ["ADMIN", "PREM", "USER"], async (req, res, next) => { //estaba PUBLIC
             try {
                 const all = await users.read({});
                 return res.render("register", { users: all, title: "USERS" });
@@ -12,7 +12,7 @@ export default class UsersRouter extends CustomRouter {
                 next(error);
             }
         });
-        this.read("/new", ["ADMIN", "PREM", "PUBLIC"], (req, res, next) => {
+        this.read("/new", ["ADMIN", "PREM", "USER"], (req, res, next) => {//ESTABA PUBLIC
             try {
                 return res.render("new", { title: "NEW" });
             } catch (error) {

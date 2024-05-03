@@ -1,6 +1,7 @@
 import service from "../services/users.service.js";
 import CustomError from "../utils/errors/CustomError.js";
 import errors from "../utils/errors/errors.js";
+import { createToken } from "../utils/token.utils.js";
 
 class SessionsController {
     constructor() {
@@ -47,18 +48,6 @@ class SessionsController {
             return next(error);
         }
     };
-    current = async (req, res, next) => {
-        try {
-            const user = {
-                email: req.user.email,
-                role: req.user.role,
-                photo: req.user.photo,
-            };
-            return res.success200(user);
-        } catch (error) {
-            return next(error);
-        }
-    };
     signout = async (req, res, next) => {
         try {
             return res.clearCookie("token").success200("Signed out!");
@@ -99,11 +88,27 @@ class SessionsController {
             return next(error);
         }
     };
+    recovery = async (req, res, next) => {
+        try {
+            const { email } = req.body;
+            const user = await this.service.readByEmail(email);
+            if (user) {
+                const eToken = createToken({ user_id: user._id }, { expiresIn: 3600 }); //ACÁ EL TIEMPO VA EN SEGUNDOS
+                await this.service.recovery(user, eToken);
+                return res.json({
+                    statusCode: 200,
+                    message: "Email sent!",
+                });
+            } else {
+                CustomError.new(errors.notFound);
+            }
+        } catch (error) {
+            return next(error);
+        }
+    };
 }
 
 export default SessionsController;
 const controller = new SessionsController();
-//const { register, login, google, github, me, signout, verifyAccount, badauth } = controller;
-//export { register, login, google, github, me, signout, verifyAccount, badauth };
-const { register, login, signout, verifyAccount, me } = controller;
-export { register, login, signout, verifyAccount, me };
+const { register, login, signout, verifyAccount, me, recovery } = controller;
+export { register, login, signout, verifyAccount, me, recovery };

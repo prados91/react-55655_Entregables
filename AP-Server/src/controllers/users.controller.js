@@ -1,4 +1,8 @@
 import service from "../services/users.service.js";
+import { createHash, verifyHash } from "../utils/hash.utils.js";
+import CustomError from "../utils/errors/CustomError.js";
+import errors from "../utils/errors/errors.js";
+import { verifyToken } from "../utils/token.utils.js";
 
 class UsersController {
     constructor() {
@@ -37,7 +41,7 @@ class UsersController {
     readOne = async (req, res, next) => {
         try {
             const { uid } = req.params;
-            
+
             const one = await this.service.readOne(uid);
             return res.success200(one);
         } catch (error) {
@@ -56,9 +60,20 @@ class UsersController {
     update = async (req, res, next) => {
         try {
             const { uid } = req.params;
-            const data = req.body;
-            const response = await this.service.update(uid, data);
-            return res.success200(response);
+            const { password } = req.body;
+            const one = await this.service.readOne(uid);
+            if (!one) {
+                CustomError.new(errors.notFound);
+            } else {
+                const verify = verifyHash(password, one.password);
+                if (verify) {
+                    CustomError.new(errors.equal);
+                } else {
+                    const newPass = createHash(password);
+                    const response = await this.service.update(uid, { password: newPass });
+                    return res.success201(response);
+                }
+            }
         } catch (error) {
             return next(error);
         }
@@ -72,9 +87,32 @@ class UsersController {
             return next(error);
         }
     };
+    updateRole = async (req, res, next) => {
+        try {
+            const { uid } = req.params;
+            const one = await this.service.readOne(uid);
+            const newRole = one.role === "PREM" ? "USER" : "PREM";
+            const response = await this.service.update(uid, { role: newRole });
+            return res.success200(response);
+        } catch (error) {
+            return next(error);
+        }
+    };
+    verify = async (req, res, next) => {
+        try {
+            const eToken = verifyToken(req.params);
+            if (eToken) {
+                return res.json({ statusCode: 200, message: "Verified link", user_id: eToken.user_id });
+            } else {
+                return CustomError(errors.expired);
+            }
+        } catch (error) {
+            return next(error);
+        }
+    };
 }
 
 export default UsersController;
 const controller = new UsersController();
-const { create, read, readOne, update, destroy, readByEmail } = controller;
-export { create, read, readOne, update, destroy, readByEmail };
+const { create, read, readOne, update, destroy, readByEmail, updateRole, verify } = controller;
+export { create, read, readOne, update, destroy, readByEmail, updateRole, verify };

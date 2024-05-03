@@ -2,7 +2,7 @@ import CustomRouter from "../CustomRouter.js";
 
 class SessionsRouter extends CustomRouter {
     init() {
-        this.read("/register", ["PUBLIC"], async (req, res, next) => {
+        this.read("/register", ["USER", "PREM","ADMIN"], async (req, res, next) => {//ESTABA PUBLIC
             try {
                 return res.render("register", { title: "REGISTER" });
             } catch (error) {
@@ -10,7 +10,7 @@ class SessionsRouter extends CustomRouter {
             }
         });
 
-        this.read("/login", ["ADMIN", "PREM", "PUBLIC"], async (req, res, next) => {
+        this.read("/login", ["ADMIN", "PREM", "USER"], async (req, res, next) => { //ESTABA PUBLIC EN VEZ DE USER
             try {
                 return res.render("login", { title: "LOGIN" });
             } catch (error) {

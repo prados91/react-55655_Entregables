@@ -24,7 +24,7 @@ class ProductsRouter extends CustomRouter {
             }
         });
 
-        this.read("/:pid", ["PUBLIC"], async (req, res, next) => {
+        this.read("/:pid", ["USER", "PREM","ADMIN"], async (req, res, next) => {// ESTABA PUBLIC
             try {
                 const { pid } = req.params;
                 const one = await products.readOne(pid);

@@ -1,15 +1,23 @@
 import service from "../services/orders.service.js";
-
+import productService from "../services/products.service.js";
+import errors from "../utils/errors/errors.js";
+import CustomError from "../utils/errors/CustomError.js";
 class OrdersController {
     constructor() {
         this.service = service;
+        this.prodService = productService;
     }
     create = async (req, res, next) => {
         try {
             const data = req.body;
-            data.user_id = req.user._id;
-            const response = await this.service.create(data);
-            return res.success201(response);
+            const { user_id, product_id } = data;
+            const one = await this.prodService.readOne(product_id);
+            if (one.owner_id.toString() === user_id) {
+                return CustomError.new(errors.userProd);
+            } else {
+                const response = await this.service.create(data);
+                return res.success201(response);
+            }
         } catch (error) {
             return next(error);
         }

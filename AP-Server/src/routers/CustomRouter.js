@@ -31,31 +31,27 @@ export default class CustomRouter {
     responses = (req, res, next) => {
         res.success200 = (payload) => res.json({ statusCode: 200, response: payload });
         res.success201 = (payload) => res.json({ statusCode: 201, response: payload });
-        //res.error400 = (message) => res.json({ statusCode: 400, message });
         res.error400 = () => CustomError.new(errors.error);
-        //res.error401 = () => res.json({ statusCode: 401, message: "Bad auth!" });
         res.error401 = () => CustomError.new(errors.auth);
-        //res.error403 = () => res.json({ statusCode: 403, message: "Forbidden!" });
         res.error403 = () => CustomError.new(errors.forbidden);
-        //res.error404 = () => res.json({ statusCode: 404, message: "Not found!" });
         res.error404 = () => CustomError.new(errors.notFound);
         return next();
     };
     policies = (arrayOfPolicies) => async (req, res, next) => {
         try {
-            if (arrayOfPolicies.includes("PUBLIC")) return next();
+            /*if (arrayOfPolicies.includes("PUBLIC")) return next();
             let token = req.cookies["token"];
-            if (!token) return res.error401();
+            if (!token) return res.error401();*/
+            //ELIMINO LA CONDICIÓN DE PUBLIC PARA QUE SIEMPRE SE CONSULTE POR EL TOKEN, SI NO TENGO TOKEN ENTONCES ASUMO QUE NO HAY USUARIO LOGEADO
+            //COMO SI FUERA PUBLIC
+            let token = req.cookies["token"];
+            if (!token) return next();
             else {
                 const data = jwt.verify(token, env.SECRET);
                 if (!data) return res.error400();
                 else {
                     const { email, role } = data;
-                    if (
-                        (role === "USER" && arrayOfPolicies.includes("USER")) ||
-                        (role === "ADMIN" && arrayOfPolicies.includes("ADMIN")) ||
-                        (role === "PREM" && arrayOfPolicies.includes("PREM"))
-                    ) {
+                    if (arrayOfPolicies.includes(role)) {
                         const user = await users.readByEmail(email);
                         req.user = user;
                         return next();

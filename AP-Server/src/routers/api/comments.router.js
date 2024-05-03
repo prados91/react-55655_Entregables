@@ -4,8 +4,8 @@ import { create, read, readOne, update, destroy } from "../../controllers/commen
 class CommentsRouter extends CustomRouter {
     init() {
         this.create("/", ["USER", "PREM"], create);
-        this.read("/", ["PUBLIC"], read);
-        this.read("/:cid", ["PUBLIC"], readOne);
+        this.read("/", ["USER", "PREM","ADMIN"], read);//ESTABA PUBLIC
+        this.read("/:cid", ["USER", "PREM","ADMIN"], readOne);//ESTABA PUBLIC
         this.update("/:cid", ["USER", "PREM"], update);
         this.destroy("/:cid", ["USER", "PREM"], destroy);
     }

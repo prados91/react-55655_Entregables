@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import env from "./env.utils.js";
 
-const createToken = (data) => jwt.sign(data, env.SECRET, { expiresIn: 60 * 60 * 24 });
+//const createToken = (data) => jwt.sign(data, env.SECRET, { expiresIn: 60 * 60 * 24 });
+const createToken = (data, expiresIn) => jwt.sign(data, env.SECRET, expiresIn);
 
 const verifyToken = (headers) => {
     const token = headers.token;
