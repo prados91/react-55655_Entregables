@@ -4,7 +4,7 @@ const swaggerOptions = {
     definition: {
         openapi: "3.0.1",
         info: {
-            title: "BasketStore",
+            title: "Basket||Store",
             description: "Documentation of API",
         },
     },
