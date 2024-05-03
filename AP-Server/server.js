@@ -18,12 +18,17 @@ import __dirname from "./utils.js";
 import winstonLog from "./src/utils/logger/index.js";
 import winston from "./src/middlewares/winston.js";
 
+import swaggerOptions from "./src/config/swagger.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import { serve, setup } from "swagger-ui-express";
+
 //Server
 const server = express();
 const PORT = env.PORT || 8080;
 const ready = () => {
     winstonLog.INFO("server ready on port " + PORT);
 };
+const specs = swaggerJSDoc(swaggerOptions);
 
 const httpServer = createServer(server);
 const socketServer = new Server(httpServer);
@@ -36,6 +41,7 @@ server.set("view engine", "handlebars");
 server.set("views", __dirname + "/src/views");
 
 //MIDDLEWARES
+server.use("/api/docs", serve, setup(specs));
 server.use(cookieParser(env.SECRET_KEY));
 server.use(cors({ origin: true, credentials: true }));
 server.use(express.json());
