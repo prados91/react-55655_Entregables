@@ -33,134 +33,117 @@ components:
     create:
       type: object
       properties:
-        statusCode: Código de estado de la respuesta
-        response: Documento de mascota creado correctamente
-      example:
-        statusCode: success
+        statusCode:
+          type: integer
+          description: Código de estado de la respuesta
         response:
-          _id: 6541aae1e7b2683607f2b4df
-          name: Igna
-          specie: Conejo
-          birthDate: 09-07-2020
-          adopted: false
-          image: https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg
+          type: object
+          description: Documento de producto creado correctamente
+      example:
+        statusCode: 201
+        response:
+          _id: 663681010dfef890410ee9fa
+          title: Pelota Molten GG7
+          category: Accesorios
+          photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
+          price: 500
+          stock: 500
+          owner_id: b57c3250b6775dd772906b29
     read:
       type: object
       properties:
         statusCode: Código de estado de la respuesta
-        response: Devuelve los documentos de mascotas del servidor
+        response: Devuelve los documentos de productos del servidor
       example:
-        statusCode: success
+        statusCode: 200
         response:
-          - _id: 6541aae1e7b2683607f2b4df
-            name: Igna
-            specie: Conejo
-            birthDate: 09-07-2020
-            adopted: false
-            image: https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg
-          - _id: 6541aae1e7b2683607f2b4de
-            name: Emiliano
-            specie: Conejo
-            birthDate: 09-07-2020
-            adopted: false
-            image: https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg
-          - _id: 6541aae1e7b2683607f2b4da
-            name: Saul
-            specie: Conejo
-            birthDate: 09-07-2020
-            adopted: false
-            image: https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del primer producto
+            category: Categoría del primer producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 500
+            stock: 500
+            owner_id: b57c3250b6775dd772906b29
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del segundo producto
+            category: Categoría del segundo producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 5000
+            stock: 5000
+            owner_id: b57c3250b6775dd772906b29
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del tercer producto
+            category: Categoría del tercer producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 50000
+            stock: 50000
+            owner_id: b57c3250b6775dd772906b29
     update:
       type: object
       properties:
         statusCode:
-          type: string
+          type: integer
           description: Código de estado de la respuesta
         response:
-          type: string
-          description: ObjectId del documento modificado
+          type: object
+          description: Objeto del documento modificado
       example:
-          statusCode: success
-          response: 6541aae1e7b2683607f2b4da
+        statusCode: 200
+        response:
+          _id: 663681010dfef890410ee9fa
+          title: Pelota Molten GG7 Modificado
+          category: Accesorios
+          photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
+          price: 500
+          stock: 500
+          owner_id: b57c3250b6775dd772906b29
     auth:
       type: object
       properties:
         statusCode:
-          type: string
+          type: integer
           description: Estado de la solicitud
-        from:
-          type: string
-          description: Descripción del endpoint del error
         message:
           type: string
           description: Descripción del error
       example:
         statusCode: auth
-        from: POST /api/sessions/signout middleware
         message: Invalid credentials
     forbidden:
       type: object
       properties:
         statusCode:
-          type: string
+          type: integer
           description: Estado de la solicitud
-        from:
-          type: string
-          description: Descripción del endpoint del error
         message:
           type: string
           description: Descripción del error
       example:
         statusCode: forbidden
-        from: POST /api/sessions/signout middleware
         message: Not Allowed
-    incomplete:
-      type: object
-      properties:
-        statusCode:
-          type: string
-          description: Estado de la solicitud
-        from:
-          type: string
-          description: Descripción del endpoint del error
-        message:
-          type: string
-          description: Descripción del error
-      example:
-        statusCode: error
-        from: POST /api/sessions/register middleware
-        message: Incomplete values
     notFound:
       type: object
       properties:
         statusCode:
-          type: string
+          type: integer
           description: Código de estado de la respuesta
-        from:
-          type: string
-          description: Indicador de dónde se cometió el error
         message:
           type: string
           description: Indicador de qué error se cometió
       example:
-        statusCode: error
-        from: controller
-        message: Not found documents
+        statusCode: 404
+        message: Not found
     fatal:
       type: object
       properties:
         statusCode:
-          type: string
+          type: integer
           description: Código de estado de la respuesta
-        from:
-          type: string
-          description: Indicador de dónde se cometió el error
         message:
           type: string
           description: Indicador de qué error se cometió
       example:
         statusCode: fatal
-        from: error handler
         message: dat is not defined
   securitySchemes:
     cookieAuth:
@@ -168,11 +151,11 @@ components:
       in: cookie
       name: token
 paths:
-  /api/pets:
+  /api/products:
     post:
-      summary: Agregar una nueva mascota al sistema de adopción de mascotas
+      summary: Agregar un nuevo producto al e-commerce
       tags:
-        - Pet
+        - Product
       security:
         - cookieAuth: []
       requestBody:
@@ -180,10 +163,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/schemas/Pet'
+              $ref: '#components/schemas/Product'
       responses:
         "201":
-          description: Éxito en la carga de una mascota
+          description: Éxito en la creación de un producto
           content:
             application/json:
               schema:
@@ -201,27 +184,35 @@ paths:
               schema:
                 $ref: '#components/responses/forbidden'
         "500":
-          description: Falla del servidor al crear una mascota
+          description: Falla del servidor al crear un producto
           content:
             application/json:
               schema:
                 $ref: '#components/responses/fatal'
     get:
-      summary: Leer las mascotas del sistema
+      summary: Leer los productos de la base de datos
       tags:
-        - Pet
+        - Product
       parameters:
         - name: page
           in: query
           type: integer
-          description: Numero de página a mostrar
+          description: Número de página a mostrar
         - name: limit
           in: query
           type: integer
-          description: Numero de documentos a mostrar por página
+          description: Número de documentos a mostrar por página
+        - name: title
+          in: query
+          type: string
+          description: Nombre o parte del nombre del producto a mostrar
+        - name: pid
+          in: path
+          type: ObjectID
+          description: ObjectId del producto a buscar
       responses:
         "200":
-          description: Éxito en la lectura de mascotas
+          description: Éxito en la lectura de productos
           content:
             application/json:
               schema:
@@ -233,23 +224,23 @@ paths:
               schema:
                 $ref: '#components/responses/notFound'
         "500":
-          description: Falla del servidor al leer las mascotas
+          description: Falla del servidor al leer los documentos
           content:
             application/json:
               schema:
                 $ref: '#components/responses/fatal'
-  /api/pets/{pid}:
+  /api/products/:pid:
     put:
-      summary: Actualizar los datos de una mascota
+      summary: Actualizar los datos de un producto
       tags:
-        - Pet
+        - Product
       security:
         - cookieAuth: []
       parameters:
         - name: pid
           in: path
           required: true
-          description: ObjectId de la mascota a modificar
+          description: ObjectId del producto a modificar
           schema:
             $type: string
       requestBody:
@@ -257,10 +248,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/schemas/PetUpdate'
+              $ref: '#components/schemas/update'
       responses:
         "200":
-          description: Éxito al actualizar una mascota
+          description: Éxito al actualizar un producto
           content:
             application/json:
               schema:
@@ -284,27 +275,27 @@ paths:
               schema:
                 $ref: '#components/responses/notFound'
         "500":
-          description: Falla del servidor al actualizar una mascota
+          description: Falla del servidor al actualizar un producto
           content:
             application/json:
               schema:
                 $ref: '#components/responses/fatal'
     delete:
-      summary: Eliminar una mascota del sistema
+      summary: Eliminar um producto de la base de datos
       tags:
-        - Pet
+        - Product
       security:
         - cookieAuth: []
       parameters:
         - name: pid
           in: path
           required: true
-          description: ObjectId de la mascota a eliminar
+          description: ObjectId del producto a eliminar
           schema:
             $type: string
       responses:
         "200":
-          description: Éxito al eliminar una mascota
+          description: Éxito al eliminar un producto
           content:
             application/json:
               schema:
@@ -334,7 +325,7 @@ paths:
               schema:
                 $ref: '#components/responses/notFound'
         "500":
-          description: Falla del servidor al actualizar una mascota
+          description: Falla del servidor al actualizar un producto
           content:
             application/json:
               schema:
