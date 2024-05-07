@@ -202,3 +202,23 @@
 [33mWARN[39m: Invalid credentials
 [33mWARN[39m: Invalid credentials
 [33mWARN[39m: You can't use the same password
+[31mERROR[39m: Cannot read properties of undefined (reading 'role')
+[33mWARN[39m: No auth token
+[33mWARN[39m: GET /api/prod/65b6b7c47984a340a0c6441d not found endpoint
+[31mERROR[39m: Cannot read properties of undefined (reading '_id')
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[33mWARN[39m: GET /api/prod/65b6b7c47984a340a0c6441d not found endpoint
+[33mWARN[39m: GET /api/prod/65b6b7c47984a340a0c6441d not found endpoint
+[33mWARN[39m: Not Found
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: jwt must be provided
+[31mERROR[39m: Cast to ObjectId failed for value "66292d082c92ad622ebbd5c" (type string) at path "_id" for model "products"
+[33mWARN[39m: Not Found
+[31mERROR[39m: Cannot read properties of undefined (reading 'role')
+[31mERROR[39m: Cannot read properties of undefined (reading 'role')
+[31mERROR[39m: Cannot read properties of undefined (reading 'role')
