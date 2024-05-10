@@ -1,0 +1,370 @@
+components:
+  schemas:
+    Register:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del usuario
+        lastName:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          description: Email registrado
+        password:
+          type: string
+          description: Contraseña guardada en la base de datos
+        role:
+          type: string
+          description: Rol de usuario
+        verified:
+          type: bool
+          description: Estado de verificación del usuario
+        verifiedCode:
+          type: string
+          description: Código de verificación de usuario
+        photo:
+          type: string
+          description: Fotografía del usuario registrado
+        createdAt:
+          type: date
+          description: Fecha de creación del usuario
+      example:
+        name: Augusto
+        email: augusto@coder.com
+        password: coder1234
+        photo: https://i.postimg.cc/wTgNFWhR/profile.png
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email registrado
+        password:
+          type: string
+          description: Contraseña guardada en la base de datos
+      example:
+        email: augusto@coder.com
+        password: coder1234
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+  responses:
+    register:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: string
+          description: Descripción de la solicitud
+      example:
+        statusCode: 201
+        message: Registered!
+    login:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        message:
+          type: string
+          description: Descripcion de la operación realizada
+      example:
+        statusCode: 200
+        message: Logged in!
+    verified:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: string
+          description: Descripción de la solicitud
+      example:
+        statusCode: 200
+        message: Verified user!
+    signout:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          description: Estado de la solicitud
+        message:
+          type: string
+          description: Descripcion de la operación realizada
+      example:
+        statusCode: success
+        message: Signed out!
+    auth:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 401
+        path: POST /api/sessions/login
+        message: Invalid/Missing credentials/token
+    fatal:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 500
+        path: POST /api/sessions/
+        message: Cannot destructure property 'email' of 'req.user' as it is undefined.
+    failRegister:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 500
+        path: POST /api/sessions/register
+        message: Users validation failed. name Path `name` is required.
+    me:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: string
+          description: Datos del usuario
+      example:
+        statusCode: 200
+        response:
+          - email: augusto@coder.com
+            role: ADMIN
+            photo: https://i.postimg.cc/wTgNFWhR/profile.png
+            name: Augusto
+            _id: 663d59bd594b0ad0f07cad50
+    notFound:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Código de estado de la respuesta
+        message:
+          type: string
+          description: Mensaje de error
+      example:
+        statusCode: 404
+        message: Not found
+    recovery:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Código de estado de la respuesta
+        message:
+          type: string
+          description: Mensaje de exito
+      example:
+        statusCode: 200
+        message: Email sent!
+paths:
+  /api/sessions/register:
+    post:
+      summary: Registrar un usuario
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        description: Objeto con las propiedades mínimas para registrar un usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        '200':
+          description: El éxito retorna el id del usuario registrado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/register'
+        '500':
+          description: Campos faltantes
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/failRegister'
+        '401':
+          description: Credenciales invalidas
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+  /api/sessions/login:
+    post:
+      summary: Iniciar sesión
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        description: objeto con las propiedades necesarias/mínimas para iniciar sesión
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: El éxito retorna una cookie 'token' para enviar en las peticiones que requieran autenticación
+          headers: 
+            Set-Cookie:
+              schema: 
+                type: string
+                example: token=yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaWduYSBjb2RlciIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJpZ25hQGNvZGVyLmNvbSIsImlhdCI6MTY5ODg0MjkzNSwiZXhwIjoxNjk4ODQ2NTM1fQ.FfpFL2XuKTp0MW6F_M8dy5qbKqHtYsw4mDET2611ddI
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/login'
+        '400':
+          description: Campos faltantes
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/incomplete'
+        '401':
+          description: Credenciales invalidas
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '500':
+          description: Servidor caído
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+  /api/sessions/signout:
+    post:
+      summary: Cerrar sesión
+      tags:
+        - Sessions
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Éxito en el cierre de sesión
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/signout'
+        '401':
+          description: Usuario no autenticado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '500':
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+  /api/sessions/verify:
+    post:
+      summary: Verificar el registro
+      tags:
+        - Sessions
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Éxito en la verificación 
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/verified'
+        '401':
+          description: Usuario no autenticado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '500':
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+  /api/sessions/me:
+    post:
+      summary: Datos del usuario que inició sesión
+      tags:
+        - Sessions
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Datos del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/me'
+        '401':
+          description: Usuario no autenticado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '500':
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+  /api/sessions/recovery:
+    post:
+      summary: Restaurar la contraseña
+      tags:
+        - Sessions
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Éxito en la recuperación 
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/recovery'
+        '404':
+          description: No encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/notFound'
+        '500':
+          description: Error en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'

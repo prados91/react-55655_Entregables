@@ -237,3 +237,38 @@
 [31mERROR[39m: Cast to ObjectId failed for value "augustoprados91@gmail.com" (type string) at path "_id" for model "users"
 [31mERROR[39m: Cannot read properties of undefined (reading 'role')
 [33mWARN[39m: No auth token
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: Expected ':' after property name in JSON at position 16 (line 2 column 14)
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: POST /api/sessions/logi not found endpoint
+[33mWARN[39m: Missing credentials
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[33mWARN[39m: User already exists
+[31mERROR[39m: users validation failed: name: Path `name` is required.
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: Missing credentials
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[31mERROR[39m: Cannot read properties of null (reading 'verifiedCode')
+[33mWARN[39m: Invalid verified token!
+[31mERROR[39m: Cannot read properties of null (reading 'verifiedCode')
+[31mERROR[39m: Cannot read properties of null (reading 'verifiedCode')
+[33mWARN[39m: Invalid verified token!
+[31mERROR[39m: Cannot read properties of null (reading 'verifiedCode')
+[31mERROR[39m: Cannot read properties of null (reading 'verifiedCode')
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: Missing credentials
+[33mWARN[39m: POST /api/sessions/m not found endpoint
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[33mWARN[39m: Not Found
+[33mWARN[39m: Not Found
+[33mWARN[39m: Not Found
+[33mWARN[39m: Not Found
+[33mWARN[39m: Not Found
+[33mWARN[39m: Not Found
+[33mWARN[39m: POST /api/sessions/recover not found endpoint
+[33mWARN[39m: POST /api/sessions/recover not found endpoint

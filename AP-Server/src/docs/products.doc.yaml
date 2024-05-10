@@ -29,55 +29,7 @@ components:
         photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
         price: 500
         stock: 500
-    ProductUpdate:
-      type: object
-      properties:
-        title:
-          description: Nombre del producto
-          type: string
-        category:
-          description: Categoría del producto
-          type: string
-        photo:
-          description: Imagen del producto
-          type: string
-        price:
-          description: Precio del producto
-          type: integer
-          format: int64
-        stock:
-          description: Cantidad de unidades disponibles del producto
-          type: integer
-          format: int64
-        owner:
-          description: ObjectId que referencia al usuario que creo el producto
-          type: string
-      example:
-        title: Pelota Molten GG7
-        category: Accesorios
-        photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
-        price: 500
-        stock: 500
   responses:
-    create:
-      type: object
-      properties:
-        statusCode:
-          type: integer
-          description: Código de estado de la respuesta
-        response:
-          type: object
-          description: Documento de producto creado correctamente
-      example:
-        statusCode: 201
-        response:
-          _id: 663681010dfef890410ee9fa
-          title: Pelota Molten GG7
-          category: Accesorios
-          photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
-          price: 500
-          stock: 500
-          owner_id: b57c3250b6775dd772906b29
     read:
       type: object
       properties:
@@ -209,25 +161,25 @@ paths:
             schema:
               $ref: '#components/schemas/Product'
       responses:
-        "201":
+        '201':
           description: Éxito en la creación de un producto
           content:
             application/json:
               schema:
                 $ref: '#components/responses/create'
-        "401":
+        '401':
           description: Credenciales invalidas
           content:
             application/json:
               schema:
                 $ref: '#components/responses/auth'
-        "403":
+        '403':
           description: Acceso no permitido
           content:
             application/json:
               schema:
                 $ref: '#components/responses/forbidden'
-        "500":
+        '500':
           description: Falla del servidor al crear un producto
           content:
             application/json:
@@ -251,19 +203,19 @@ paths:
           type: string
           description: Nombre o parte del nombre del producto a mostrar
       responses:
-        "200":
+        '200':
           description: Éxito en la lectura de productos
           content:
             application/json:
               schema:
                 $ref: '#components/responses/read'
-        "404":
+        '404':
           description: Documentos no encontrados
           content:
             application/json:
               schema:
                 $ref: '#components/responses/notFound'
-        "500":
+        '500':
           description: Falla del servidor al leer los documentos
           content:
             application/json:
@@ -282,19 +234,19 @@ paths:
           schema:
             $type: string
       responses:
-        "200":
+        '200':
           description: Éxito en leer el producto
           content:
             application/json:
               schema:
                 $ref: '#components/responses/readOne'
-        "404":
+        '404':
           description: Documento no encontrados
           content:
             application/json:
               schema:
                 $ref: '#components/responses/notFound'
-        "500":
+        '500':
           description: Falla del servidor al leer el documento
           content:
             application/json:
@@ -318,33 +270,33 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/schemas/ProductUpdate'
+              $ref: '#components/schemas/Product'
       responses:
-        "200":
+        '200':
           description: Éxito al actualizar un producto
           content:
             application/json:
               schema:
                 $ref: '#components/responses/update'
-        "401":
+        '401':
           description: Credenciales invalidas
           content:
             application/json:
               schema:
                 $ref: '#components/responses/auth'
-        "403":
+        '403':
           description: Acceso no permitido
           content:
             application/json:
               schema:
                 $ref: '#components/responses/forbidden'
-        "404":
+        '404':
           description: Documento/s no encontrados
           content:
             application/json:
               schema:
                 $ref: '#components/responses/notFound'
-        "500":
+        '500':
           description: Falla del servidor al actualizar un producto
           content:
             application/json:
@@ -364,31 +316,31 @@ paths:
           schema:
             $type: string
       responses:
-        "200":
+        '200':
           description: Éxito al eliminar un producto
           content:
             application/json:
               schema:
                 $ref: '#components/responses/update'
-        "401":
+        '401':
           description: Credenciales invalidas
           content:
             application/json:
               schema:
                 $ref: '#components/responses/auth'
-        "403":
+        '403':
           description: Acceso no permitido
           content:
             application/json:
               schema:
                 $ref: '#components/responses/forbidden'
-        "404":
+        '404':
           description: Documento/s no encontrados
           content:
             application/json:
               schema:
                 $ref: '#components/responses/notFound'
-        "500":
+        '500':
           description: Falla del servidor al actualizar un producto
           content:
             application/json:
