@@ -272,3 +272,4 @@
 [33mWARN[39m: Not Found
 [33mWARN[39m: POST /api/sessions/recover not found endpoint
 [33mWARN[39m: POST /api/sessions/recover not found endpoint
+[33mWARN[39m: Invalid verified token!

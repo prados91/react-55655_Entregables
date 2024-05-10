@@ -30,11 +30,34 @@ components:
         price: 500
         stock: 500
   responses:
+    create:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: object
+          description: Documentos del documento creado
+      example:
+        status: success
+        response:
+          _id: 663d68da65d6dd460f0c0904
+          owner_id: b57c3250b6775dd772906b29
+          title: Pelota Molten GG7
+          category: Accesorios
+          photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
+          price: 500
+          stock: 500
     read:
       type: object
       properties:
-        statusCode: Código de estado de la respuesta
-        response: Devuelve los documentos de productos del servidor
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: object
+          description: Documentos de la solicitud
       example:
         statusCode: 200
         response:
@@ -81,8 +104,12 @@ components:
     readOne:
       type: object
       properties:
-        statusCode: Código de estado de la respuesta
-        response: Devuelve los documentos de productos del servidor
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: object
+          description: Documentos de la solicitud
       example:
         statusCode: 200
         response:
@@ -99,6 +126,9 @@ components:
         statusCode:
           type: integer
           description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
         message:
           type: string
           description: Descripción del error
@@ -111,6 +141,9 @@ components:
         statusCode:
           type: integer
           description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
         message:
           type: string
           description: Descripción del error
@@ -123,9 +156,12 @@ components:
         statusCode:
           type: integer
           description: Código de estado de la respuesta
+        path:
+          type: string
+          description: Descripción del endpoint del error
         message:
           type: string
-          description: Indicador de qué error se cometió
+          description: Descripción del error
       example:
         statusCode: 404
         message: Not found
@@ -135,9 +171,12 @@ components:
         statusCode:
           type: integer
           description: Código de estado de la respuesta
+        path:
+          type: string
+          description: Descripción del endpoint del error
         message:
           type: string
-          description: Indicador de qué error se cometió
+          description: Descripción del error
       example:
         statusCode: 500
         message: jwt must be provided
