@@ -102,7 +102,7 @@ class UsersController {
         try {
             const eToken = verifyToken(req.params);
             if (eToken) {
-                return res.json({ statusCode: 200, message: "Verified link", user_id: eToken.user_id });
+                return res.json({ statusCode: 200, response: "Verified link", user_id: eToken.user_id });
             } else {
                 return CustomError(errors.expired);
             }

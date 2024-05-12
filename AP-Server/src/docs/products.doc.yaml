@@ -380,7 +380,7 @@ paths:
               schema:
                 $ref: '#components/responses/notFound'
         '500':
-          description: Falla del servidor al actualizar un producto
+          description: Falla del servidor al eliminar un producto
           content:
             application/json:
               schema:

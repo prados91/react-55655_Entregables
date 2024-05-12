@@ -273,3 +273,9 @@
 [33mWARN[39m: POST /api/sessions/recover not found endpoint
 [33mWARN[39m: POST /api/sessions/recover not found endpoint
 [33mWARN[39m: Invalid verified token!
+[33mWARN[39m: GET /apiusers not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: GET /favicon.ico not found endpoint
+[33mWARN[39m: Not Found
+[33mWARN[39m: Forbidden
+[33mWARN[39m: Forbidden
