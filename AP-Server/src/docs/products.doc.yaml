@@ -1,0 +1,387 @@
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        title:
+          description: Nombre del producto
+          type: string
+        category:
+          description: Categoría del producto
+          type: string
+        photo:
+          description: Imagen del producto
+          type: string
+        price:
+          description: Precio del producto
+          type: integer
+          format: int64
+        stock:
+          description: Cantidad de unidades disponibles del producto
+          type: integer
+          format: int64
+        owner:
+          description: ObjectId que referencia al usuario que creo el producto
+          type: string
+      example:
+        title: Pelota Molten GG7
+        category: Accesorios
+        photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
+        price: 500
+        stock: 500
+  responses:
+    create:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: object
+          description: Documentos del documento creado
+      example:
+        status: success
+        response:
+          _id: 663d68da65d6dd460f0c0904
+          owner_id: b57c3250b6775dd772906b29
+          title: Pelota Molten GG7
+          category: Accesorios
+          photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
+          price: 500
+          stock: 500
+    read:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: object
+          description: Documentos de la solicitud
+      example:
+        statusCode: 200
+        response:
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del primer producto
+            category: Categoría del primer producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 500
+            stock: 500
+            owner_id: b57c3250b6775dd772906b29
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del segundo producto
+            category: Categoría del segundo producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 5000
+            stock: 5000
+            owner_id: b57c3250b6775dd772906b29
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del tercer producto
+            category: Categoría del tercer producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 50000
+            stock: 50000
+            owner_id: b57c3250b6775dd772906b29
+    update:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Código de estado de la respuesta
+        response:
+          type: object
+          description: Objeto del documento modificado
+      example:
+        statusCode: 200
+        response:
+          _id: 663681010dfef890410ee9fa
+          title: Pelota Molten GG7 Modificado
+          category: Accesorios
+          photo: https://static.wixstatic.com/media/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png/v1/fill/w_477,h_477,al_c,q_85,enc_auto/40f312_a5b43fc24aa047be900291cceccb3f17~mv2.png
+          price: 500
+          stock: 500
+          owner_id: b57c3250b6775dd772906b29
+    readOne:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        response:
+          type: object
+          description: Documentos de la solicitud
+      example:
+        statusCode: 200
+        response:
+          - _id: 66292d082c92ad622ebbd5c2
+            title: Nombre del primer producto
+            category: Categoría del primer producto
+            photo: https://i.postimg.cc/rmgbCmG5/default-Product-Image.jpg
+            price: 500
+            stock: 500
+            owner_id: b57c3250b6775dd772906b29
+    auth:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 401
+        message: Invalid credentials
+    forbidden:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Estado de la solicitud
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 403
+        message: Forbiden
+    notFound:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Código de estado de la respuesta
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 404
+        message: Not found
+    fatal:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: Código de estado de la respuesta
+        path:
+          type: string
+          description: Descripción del endpoint del error
+        message:
+          type: string
+          description: Descripción del error
+      example:
+        statusCode: 500
+        message: jwt must be provided
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+paths:
+  /api/products:
+    post:
+      summary: Agregar un nuevo producto al e-commerce
+      tags:
+        - Product
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/Product'
+      responses:
+        '201':
+          description: Éxito en la creación de un producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/create'
+        '401':
+          description: Credenciales invalidas
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '403':
+          description: Acceso no permitido
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/forbidden'
+        '500':
+          description: Falla del servidor al crear un producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+    get:
+      summary: Leer los productos de la base de datos
+      tags:
+        - Product
+      parameters:
+        - name: page
+          in: query
+          type: integer
+          description: Número de página a mostrar
+        - name: limit
+          in: query
+          type: integer
+          description: Número de documentos a mostrar por página
+        - name: title
+          in: query
+          type: string
+          description: Nombre o parte del nombre del producto a mostrar
+      responses:
+        '200':
+          description: Éxito en la lectura de productos
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/read'
+        '404':
+          description: Documentos no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/notFound'
+        '500':
+          description: Falla del servidor al leer los documentos
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+  /api/products/:pid:
+    get:
+      summary: Leer un producto de la base de datos
+      tags:
+        - Product
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ObjectId del producto a buscar
+          schema:
+            $type: string
+      responses:
+        '200':
+          description: Éxito en leer el producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/readOne'
+        '404':
+          description: Documento no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/notFound'
+        '500':
+          description: Falla del servidor al leer el documento
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+    put:
+      summary: Actualizar los datos de un producto
+      tags:
+        - Product
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ObjectId del producto a modificar
+          schema:
+            $type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/Product'
+      responses:
+        '200':
+          description: Éxito al actualizar un producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/update'
+        '401':
+          description: Credenciales invalidas
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '403':
+          description: Acceso no permitido
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/forbidden'
+        '404':
+          description: Documento/s no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/notFound'
+        '500':
+          description: Falla del servidor al actualizar un producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
+    delete:
+      summary: Eliminar un producto de la base de datos
+      tags:
+        - Product
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ObjectId del producto a eliminar
+          schema:
+            $type: string
+      responses:
+        '200':
+          description: Éxito al eliminar un producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/update'
+        '401':
+          description: Credenciales invalidas
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/auth'
+        '403':
+          description: Acceso no permitido
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/forbidden'
+        '404':
+          description: Documento/s no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/notFound'
+        '500':
+          description: Falla del servidor al eliminar un producto
+          content:
+            application/json:
+              schema:
+                $ref: '#components/responses/fatal'
