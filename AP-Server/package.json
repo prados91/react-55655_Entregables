@@ -9,7 +9,9 @@
     "prod": "nodemon ./server.js --env prod",
     "dev": "nodemon ./server.js --env dev",
     "test": "nodemon ./server.js --env test",
-    "mock": "node ./src/data/mocks/products.mocks.js"
+    "mock": "node ./src/data/mocks/products.mocks.js",
+    "performance": "artillery run ./test/flow.yaml --output ./test/flow.json",
+    "report": "artillery report ./test/flow.html"
   },
   "keywords": [],
   "author": "",
