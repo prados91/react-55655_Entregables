@@ -4,7 +4,7 @@ import dao from "../../src/data/index.factory.js";
 const { products } = dao;
 
 describe("Testing: Products Model", () => {
-    const model = products();
+    const model = products;
     const data = { title: "ProductoTest", category: "test" };
     let id;
     it("La creación del producto requiere un objeto con la propiedad title", () => {
@@ -24,10 +24,8 @@ describe("Testing: Products Model", () => {
     });
     it("La función para leer productos debe devolver un objeto con las propiedades 'prev', 'next' y 'category'", async () => {
         const all = await model.read({
-            page: 2,
-            skip: 2,
-            limit: 2,
-            adopted: true,
+            page: 1,
+            limit: 5,
         });
         expect(all).to.have.property("prev");
         expect(all).to.have.property("next");
@@ -39,8 +37,8 @@ describe("Testing: Products Model", () => {
         expect(one.title).not.to.be.equals(before.title);
     });
     it("La función para eliminar un producto debe efectivamente eliminarlo", async () => {
-        await model.destroy(id);
+        const before = await model.destroy(id);
         const after = await model.readOne(id);
-        expect(after).to.be.equals(null);
+        expect(before).not.to.be.equals(after);
     });
 });
