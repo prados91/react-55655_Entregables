@@ -11,7 +11,9 @@
     "test": "nodemon ./server.js --env test",
     "mock": "node ./src/data/mocks/products.mocks.js",
     "performance": "artillery run ./test/flow/flow.yaml --output ./test/flow/flow.json",
-    "report": "artillery report ./test/flow/flow.html"
+    "report": "artillery report ./test/flow/flow.html",
+    "mocha": "mocha ./test/mocha",
+    "chai": "mocha ./test/chai"
   },
   "keywords": [],
   "author": "",
