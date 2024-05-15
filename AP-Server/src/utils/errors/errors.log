@@ -279,3 +279,64 @@
 [33mWARN[39m: Not Found
 [33mWARN[39m: Forbidden
 [33mWARN[39m: Forbidden
+[31mERROR[39m: users validation failed: role: `admin` is not a valid enum value for path `role`.
+[31mERROR[39m: Cannot read properties of null (reading 'password')
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: users validation failed: role: `admin` is not a valid enum value for path `role`.
+[31mERROR[39m: Cannot read properties of null (reading 'password')
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[33mWARN[39m: Invalid credentials
+[33mWARN[39m: No auth token
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: User already exists
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cannot destructure property 'email' of 'req.user' as it is undefined.
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[33mWARN[39m: GET /api/user/augusto@coder.com not found endpoint
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "augusto@coder.com" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
+[31mERROR[39m: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "users"
