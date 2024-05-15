@@ -10,6 +10,7 @@ import {
     verify,
 } from "../../controllers/users.controller.js";
 
+
 class UsersRouter extends CustomRouter {
     init() {
         this.create("/", ["ADMIN", "USER", "PREM"], create);
